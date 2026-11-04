@@ -14,6 +14,10 @@
 .PARAMETER Clean
   Delete build/ and the generated ROM/NOI/map files first.
 
+.PARAMETER Trace
+  Build the golden-trace debug ROM (-DDEBUG_TRACE, scripted input + trace ring, see
+  src/trace.h) as roms/keystone_kapers_trace.nes; used by tests/run_c_trace.ps1.
+
 .PARAMETER Profile
   Export the statics of river.c and entities.c as .noi symbols, for the perf_*
   scripts that split costs by function or read river_job.
@@ -25,7 +29,8 @@
 [CmdletBinding()]
 param(
     [switch]$Clean,
-    [switch]$Profile
+    [switch]$Profile,
+    [switch]$Trace
 )
 
 $ErrorActionPreference = 'Stop'
@@ -35,11 +40,12 @@ $gbdk     = Join-Path $repoRoot 'gbdk'
 $lcc      = Join-Path $gbdk 'bin\lcc.exe'
 $srcRoot  = Join-Path $repoRoot 'src'
 $buildDir = Join-Path $repoRoot 'build'
-$objDir   = Join-Path $buildDir 'obj'
+$romBase  = if ($Trace) { 'keystone_kapers_trace' } else { 'keystone_kapers' }
+$objDir   = Join-Path $buildDir $(if ($Trace) { 'obj_trace' } else { 'obj' })
 $romDir   = Join-Path $repoRoot 'roms'
-$romPath  = Join-Path $romDir 'keystone_kapers.nes'
-$noiPath  = Join-Path $romDir 'keystone_kapers.noi'
-$mapPath  = Join-Path $romDir 'keystone_kapers.map'
+$romPath  = Join-Path $romDir "$romBase.nes"
+$noiPath  = Join-Path $romDir "$romBase.noi"
+$mapPath  = Join-Path $romDir "$romBase.map"
 
 if (-not (Test-Path $lcc)) {
     throw "GBDK lcc not found at $lcc"
@@ -52,8 +58,8 @@ if ($Clean) {
     Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $buildDir
     Remove-Item -Force -ErrorAction SilentlyContinue @(
         $romPath, $noiPath, $mapPath,
-        (Join-Path $romDir 'keystone_kapers.ihx'),
-        (Join-Path $romDir 'keystone_kapers.rom')
+        (Join-Path $romDir "$romBase.ihx"),
+        (Join-Path $romDir "$romBase.rom")
     )
 }
 
@@ -66,6 +72,7 @@ $compileFlags = @(
     '-Wf--opt-code-size'
 )
 if ($Profile) { $compileFlags += '-DPROF_EXPORT_STATICS' }
+if ($Trace)   { $compileFlags += '-DDEBUG_TRACE' }
 
 $linkFlags = @(
     '-mmos6502:nes'
@@ -104,8 +111,8 @@ if ($LASTEXITCODE -ne 0) {
 
 # lcc/makenes leave the intermediate Intel-hex and raw ROM images behind.
 Remove-Item -Force -ErrorAction SilentlyContinue @(
-    (Join-Path $romDir 'keystone_kapers.ihx'),
-    (Join-Path $romDir 'keystone_kapers.rom')
+    (Join-Path $romDir "$romBase.ihx"),
+    (Join-Path $romDir "$romBase.rom")
 )
 
 if (-not (Test-Path $romPath)) { throw "ROM not produced: $romPath" }
@@ -200,8 +207,25 @@ function Assert-RamLayout {
         $dataStart, ($dataEnd - 1), $bssStart, ($bssEnd - 1), $heapStart, (0x0800 - $heapStart))
 }
 
+function Assert-FixedBank {
+    param([Parameter(Mandatory = $true)][string]$Noi)
+    # The linker does not fail when the fixed bank runs into the vectors (river-raid lesson 13).
+    $end = 0
+    foreach ($area in @('_CODE', '_HOME', '_RODATA', '_XINIT', '_GSINIT', '_GSFINAL')) {
+        $s = Select-String -Path $Noi -Pattern "^DEF s_$([regex]::Escape($area)) 0x([0-9A-Fa-f]+)$"
+        $l = Select-String -Path $Noi -Pattern "^DEF l_$([regex]::Escape($area)) 0x([0-9A-Fa-f]+)$"
+        if ($s -and $l) {
+            $e = [Convert]::ToInt32($s.Matches[0].Groups[1].Value, 16) + [Convert]::ToInt32($l.Matches[0].Groups[1].Value, 16)
+            if ($e -gt $end) { $end = $e }
+        }
+    }
+    if ($end -gt 0xFFFA) { throw ("Fixed bank ends at 0x{0:X4}, past the vectors at 0xFFFA" -f $end) }
+    Write-Host ("BANK fixed bank ends at 0x{0:X4} ({1} bytes free)" -f $end, (0xFFFA - $end))
+}
+
 Assert-RomHeader -Path $romPath
 Assert-RamLayout -Noi $noiPath
+Assert-FixedBank -Noi $noiPath
 
 Write-Host "MAP  $mapPath"
 Write-Host "OK   $romPath"

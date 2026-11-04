@@ -34,3 +34,5 @@ Reference project with full history: `C:\dev\AI\river-raid-port` (`archive/nes`,
 - Constant data over ~16 KB overflows the fixed bank into unreachable banks (linker only warns `Write from one bank spans`). Put data in its own file, compile with `-Wf-bo1` (build.ps1 maps file name -> bank), and `SWITCH_ROM(n)` before reading.
 - `set_bkg_attribute_xy_nes16x16(cellx, celly, pal)` is the unambiguous attribute call; the packed-block `set_bkg_attributes_nes16x16` stride is unclear.
 - Call `set_bkg_palette` after `DISPLAY_OFF` (a call before the first one never reached the PPU).
+
+- NES: at runtime the hardware PPUCTRL can be left in +32 increment mode. Before a direct set_bkg_data with the display off, write PPUCTRL = shadow_PPUCTRL & ~(PPUCTRL_NMI|PPUCTRL_INC32), then restore from shadow_PPUCTRL. Otherwise the CHR lands 32 bytes apart.
