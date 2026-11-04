@@ -1,0 +1,18 @@
+gbdk/
+MesenCE-MCP/
+xex/
+assets/atari/runtime/
+
+# build artifacts
+build/
+roms/
+*.ihx
+*.rom
+*.map
+*.o
+tools/__pycache__
+__pycache__/*.pyc
+gearboy/
+shots/
+assets/atari/segments/
+assets/atari/runtime/*/ram_*.bin

@@ -1,0 +1,3401 @@
+frame input  090 01B 01F 011 028 063 058 01A 014
+   0 centre   5C  B1  0B  04  49  03  00  00  FF 
+   1 centre   5D  B2  0B  04  49  03  00  00  FF 
+   2 centre   5E  B2  0B  04  49  03  00  00  FF 
+   3 centre   5F  B3  0B  04  49  04  00  00  FF 
+   4 centre   60  B3  0B  04  49  04  00  00  FF 
+   5 centre   61  B4  0B  04  49  04  00  00  FF 
+   6 centre   62  B4  0B  04  49  04  00  00  FF 
+   7 centre   63  B5  0B  04  49  05  00  00  FF 
+   8 centre   64  B5  0B  04  49  05  00  00  FF 
+   9 centre   65  B6  0B  04  49  05  00  00  FF 
+  10 centre   66  B6  0B  04  49  05  00  00  FF 
+  11 centre   67  B7  0B  04  49  01  00  00  FF 
+  12 centre   68  B7  0B  04  49  01  00  00  FF 
+  13 centre   69  B8  0B  04  49  01  00  00  FF 
+  14 centre   6A  B8  0B  04  49  01  00  00  FF 
+  15 centre   6B  B9  0B  04  49  02  00  00  FF 
+  16 centre   6C  B9  0B  04  49  02  00  00  FF 
+  17 centre   6D  BA  0B  04  49  02  00  00  FF 
+  18 centre   6E  BA  0B  04  49  02  00  00  FF 
+  19 centre   6F  BB  0B  04  49  03  00  00  FF 
+  20 centre   70  BB  0B  04  49  03  00  00  FF 
+  21 centre   71  BC  0B  04  49  03  00  00  FF 
+  22 centre   72  BC  0B  04  49  03  00  00  FF 
+  23 centre   73  BD  0B  04  49  04  00  00  FF 
+  24 centre   74  BD  0B  04  49  04  00  00  FF 
+  25 centre   75  BE  0B  04  49  04  00  00  FF 
+  26 centre   76  BE  0B  04  49  04  00  00  FF 
+  27 centre   77  BF  0B  04  49  05  00  00  FF 
+  28 centre   78  BF  0B  04  49  05  00  00  FF 
+  29 centre   79  C0  0B  04  49  05  00  00  FF 
+  30 centre   7A  C0  0B  04  49  05  00  00  FF 
+  31 centre   7B  C1  0B  04  49  01  00  00  FF 
+  32 centre   7C  C1  0B  04  49  01  00  00  FF 
+  33 centre   7D  C2  0B  04  49  01  00  00  FF 
+  34 centre   7E  C2  0B  04  49  01  00  00  FF 
+  35 centre   7F  C3  0B  04  49  02  00  00  FF 
+  36 centre   80  C3  0B  04  49  02  00  00  FF 
+  37 centre   81  C4  0B  04  48  02  00  00  FF 
+  38 centre   82  C4  0B  04  48  02  00  00  FF 
+  39 centre   83  C5  0B  04  48  03  00  00  FF 
+  40 centre   84  C5  0B  04  48  03  00  00  FF 
+  41 centre   85  C6  0B  04  48  03  00  00  FF 
+  42 centre   86  C6  0B  04  48  03  00  00  FF 
+  43 centre   87  C7  0B  04  48  04  00  00  FF 
+  44 centre   88  C7  0B  04  48  04  00  00  FF 
+  45 centre   89  C8  0B  04  48  04  00  00  FF 
+  46 centre   8A  C8  0B  04  48  04  00  00  FF 
+  47 centre   8B  C9  0B  04  48  05  00  00  FF 
+  48 centre   8C  C9  0B  04  48  05  00  00  FF 
+  49 centre   8D  CA  0B  04  48  05  00  00  FF 
+  50 centre   8E  CA  0B  04  48  05  00  00  FF 
+  51 centre   8F  CB  0B  04  48  01  00  00  FF 
+  52 centre   90  CB  0B  04  48  01  00  00  FF 
+  53 centre   91  CC  0B  04  48  01  00  00  FF 
+  54 centre   92  CC  0B  04  48  01  00  00  FF 
+  55 centre   93  2B  0C  03  48  02  00  00  FF 
+  56 centre   94  2B  0C  03  48  02  00  00  FF 
+  57 centre   95  2C  0C  03  48  02  00  00  FF 
+  58 centre   96  2C  0C  03  48  02  00  00  FF 
+  59 centre   97  2D  0C  03  48  03  00  00  FF 
+  60 centre   98  2D  0C  03  48  03  00  00  FF 
+  61 centre   99  2E  0C  03  48  03  00  00  FF 
+  62 centre   9A  2E  0C  03  48  03  00  00  FF 
+  63 centre   9B  2F  0C  03  48  04  00  00  FF 
+  64 centre   9C  2F  0C  03  48  04  00  00  FF 
+  65 centre   9D  30  0C  03  48  04  00  00  FF 
+  66 centre   9E  30  0C  03  48  04  00  00  FF 
+  67 centre   9F  31  0C  03  48  05  00  00  FF 
+  68 centre   A0  31  0C  03  48  05  00  00  FF 
+  69 centre   A1  32  0C  03  48  05  00  00  FF 
+  70 centre   A2  32  0C  03  48  05  00  00  FF 
+  71 centre   A3  33  0C  03  48  01  00  00  FF 
+  72 centre   A4  33  0C  03  48  01  00  00  FF 
+  73 centre   A5  34  0C  03  48  01  00  00  FF 
+  74 centre   A6  34  0C  03  48  01  00  00  FF 
+  75 centre   A7  35  0C  03  48  02  00  00  FF 
+  76 centre   A8  35  0C  03  48  02  00  00  FF 
+  77 centre   A9  36  0C  03  48  02  00  00  FF 
+  78 centre   AA  36  0C  03  48  02  00  00  FF 
+  79 centre   AB  37  0C  03  48  03  00  00  FF 
+  80 centre   AC  37  0C  03  48  03  00  00  FF 
+  81 centre   AD  38  0C  03  48  03  00  00  FF 
+  82 centre   AE  38  0C  03  48  03  00  00  FF 
+  83 centre   AF  39  0C  03  48  04  00  00  FF 
+  84 centre   B0  39  0C  03  48  04  00  00  FF 
+  85 centre   B1  3A  0C  03  48  04  00  00  FF 
+  86 centre   B2  3A  0C  03  48  04  00  00  FF 
+  87 centre   B3  3B  0C  03  48  05  00  00  FF 
+  88 centre   B4  3B  0C  03  48  05  00  00  FF 
+  89 centre   B5  3C  0C  03  48  05  00  00  FF 
+  90 centre   B6  3C  0C  03  48  05  00  00  FF 
+  91 centre   B7  3D  0C  03  48  01  00  00  FF 
+  92 centre   B8  3D  0C  03  48  01  00  00  FF 
+  93 centre   B9  3E  0C  03  48  01  00  00  FF 
+  94 centre   BA  3E  0C  03  48  01  00  00  FF 
+  95 centre   BB  3F  0C  03  48  02  00  00  FF 
+  96 centre   BC  3F  0C  03  48  02  00  00  FF 
+  97 centre   BD  40  0C  03  48  02  00  00  FF 
+  98 centre   BE  40  0C  03  48  02  00  00  FF 
+  99 centre   BF  41  0C  03  48  03  00  00  FF 
+ 100 centre   C0  41  0C  03  48  03  00  00  FF 
+ 101 centre   C1  42  0C  03  48  03  00  00  FF 
+ 102 centre   C2  42  0C  03  48  03  00  00  FF 
+ 103 centre   C3  43  0C  03  48  04  00  00  FF 
+ 104 centre   C4  43  0C  03  48  04  00  00  FF 
+ 105 centre   C5  44  0C  03  48  04  00  00  FF 
+ 106 centre   C6  44  0C  03  48  04  00  00  FF 
+ 107 centre   C7  45  0C  03  48  05  00  00  FF 
+ 108 centre   C8  45  0C  03  48  05  00  00  FF 
+ 109 centre   C9  46  0C  03  48  05  00  00  FF 
+ 110 centre   CA  46  0C  03  48  05  00  00  FF 
+ 111 centre   CB  47  0C  03  48  01  00  00  FF 
+ 112 centre   CC  47  0C  03  48  01  00  00  FF 
+ 113 centre   CD  48  0C  03  48  01  00  00  FF 
+ 114 centre   CE  48  0C  03  48  01  00  00  FF 
+ 115 centre   CF  49  0C  03  48  02  00  00  FF 
+ 116 centre   D0  49  0C  03  48  02  00  00  FF 
+ 117 centre   D1  4A  0C  03  48  02  00  00  FF 
+ 118 centre   D2  4A  0C  03  48  02  00  00  FF 
+ 119 centre   D3  4B  0C  03  48  03  00  00  FF 
+ 120 centre   D4  4B  0C  03  48  03  00  00  FF 
+ 121 centre   D5  4C  0C  03  48  03  00  00  FF 
+ 122 centre   D6  4C  0C  03  48  03  00  00  FF 
+ 123 centre   D7  4D  0C  03  48  04  00  00  FF 
+ 124 centre   D8  4D  0C  03  48  04  00  00  FF 
+ 125 centre   D9  4E  0C  03  48  04  00  00  FF 
+ 126 centre   DA  4E  0C  03  48  04  00  00  FF 
+ 127 centre   DB  4F  0C  03  48  05  00  00  FF 
+ 128 centre   DC  4F  0C  03  48  05  00  00  FF 
+ 129 centre   DD  50  0C  03  48  05  00  00  FF 
+ 130 centre   DE  50  0C  03  48  05  00  00  FF 
+ 131 centre   DF  51  0C  03  48  01  00  00  FF 
+ 132 centre   E0  51  0C  03  48  01  00  00  FF 
+ 133 centre   E1  52  0C  03  48  01  00  00  FF 
+ 134 centre   E2  52  0C  03  48  01  00  00  FF 
+ 135 centre   E3  53  0C  03  48  02  00  00  FF 
+ 136 centre   E4  53  0C  03  48  02  00  00  FF 
+ 137 centre   E5  54  0C  03  48  02  00  00  FF 
+ 138 centre   E6  54  0C  03  48  02  00  00  FF 
+ 139 centre   E7  55  0C  03  48  03  00  00  FF 
+ 140 centre   E8  55  0C  03  48  03  00  00  FF 
+ 141 centre   E9  56  0C  03  48  03  00  00  FF 
+ 142 centre   EA  56  0C  03  48  03  00  00  FF 
+ 143 centre   EB  57  0C  03  48  04  00  00  FF 
+ 144 centre   EC  57  0C  03  48  04  00  00  FF 
+ 145 centre   ED  58  0C  03  48  04  00  00  FF 
+ 146 centre   EE  58  0C  03  48  04  00  00  FF 
+ 147 centre   EF  59  0C  03  48  05  00  00  FF 
+ 148 centre   F0  59  0C  03  48  05  00  00  FF 
+ 149 centre   F1  5A  0C  03  48  05  00  00  FF 
+ 150 centre   F2  5A  0C  03  48  05  00  00  FF 
+ 151 centre   F3  5B  0C  03  48  01  00  00  FF 
+ 152 centre   F4  5B  0C  03  48  01  00  00  FF 
+ 153 centre   F5  5C  0C  03  48  01  00  00  FF 
+ 154 centre   F6  5C  0C  03  48  01  00  00  FF 
+ 155 centre   F7  5D  0C  03  48  02  00  00  FF 
+ 156 centre   F8  5D  0C  03  48  02  00  00  FF 
+ 157 centre   F9  5E  0C  03  48  02  00  00  FF 
+ 158 centre   FA  5E  0C  03  48  02  00  00  FF 
+ 159 centre   FB  5F  0C  03  48  03  00  00  FF 
+ 160 centre   FC  5F  0C  03  48  03  00  00  FF 
+ 161 centre   FD  60  0C  03  48  03  00  00  FF 
+ 162 centre   FE  60  0C  03  48  03  00  00  FF 
+ 163 centre   FF  61  0C  03  48  04  00  00  FF 
+ 164 centre   00  61  0C  03  48  04  00  00  FF 
+ 165 centre   01  62  0C  03  47  04  00  00  FF 
+ 166 centre   02  62  0C  03  47  04  00  00  FF 
+ 167 centre   03  63  0C  03  47  05  00  00  FF 
+ 168 centre   04  63  0C  03  47  05  00  00  FF 
+ 169 centre   05  64  0C  03  47  05  00  00  FF 
+ 170 centre   06  64  0C  03  47  05  00  00  FF 
+ 171 centre   07  65  0C  03  47  01  00  00  FF 
+ 172 centre   08  65  0C  03  47  01  00  00  FF 
+ 173 centre   09  66  0C  03  47  01  00  00  FF 
+ 174 centre   0A  66  0C  03  47  01  00  00  FF 
+ 175 centre   0B  67  0C  03  47  02  00  00  FF 
+ 176 centre   0C  67  0C  03  47  02  00  00  FF 
+ 177 centre   0D  68  0C  03  47  02  00  00  FF 
+ 178 centre   0E  68  0C  03  47  02  00  00  FF 
+ 179 centre   0F  69  0C  03  47  03  00  00  FF 
+ 180 centre   10  69  0C  03  47  03  00  00  FF 
+ 181 centre   11  6A  0C  03  47  03  00  00  FF 
+ 182 centre   12  6A  0C  03  47  03  00  00  FF 
+ 183 centre   13  6B  0C  03  47  04  00  00  FF 
+ 184 centre   14  6B  0C  03  47  04  00  00  FF 
+ 185 centre   15  6C  0C  03  47  04  00  00  FF 
+ 186 centre   16  6C  0C  03  47  04  00  00  FF 
+ 187 centre   17  6D  0C  03  47  05  00  00  FF 
+ 188 centre   18  6D  0C  03  47  05  00  00  FF 
+ 189 centre   19  6E  0C  03  47  05  00  00  FF 
+ 190 centre   1A  6E  0C  03  47  05  00  00  FF 
+ 191 centre   1B  6F  0C  03  47  01  00  00  FF 
+ 192 centre   1C  6F  0C  03  47  01  00  00  FF 
+ 193 centre   1D  70  0C  03  47  01  00  00  FF 
+ 194 centre   1E  70  0C  03  47  01  00  00  FF 
+ 195 centre   1F  71  0C  03  47  02  00  00  FF 
+ 196 centre   20  71  0C  03  47  02  00  00  FF 
+ 197 centre   21  72  0C  03  47  02  00  00  FF 
+ 198 centre   22  72  0C  03  47  02  00  00  FF 
+ 199 centre   23  73  0C  03  47  03  00  00  FF 
+ 200 centre   24  73  0C  03  47  03  00  00  FF 
+ 201 centre   25  74  0C  03  47  03  00  00  FF 
+ 202 centre   26  74  0C  03  47  03  00  00  FF 
+ 203 centre   27  75  0C  03  47  04  00  00  FF 
+ 204 centre   28  75  0C  03  47  04  00  00  FF 
+ 205 centre   29  76  0C  03  47  04  00  00  FF 
+ 206 centre   2A  76  0C  03  47  04  00  00  FF 
+ 207 centre   2B  77  0C  03  47  05  00  00  FF 
+ 208 centre   2C  77  0C  03  47  05  00  00  FF 
+ 209 centre   2D  78  0C  03  47  05  00  00  FF 
+ 210 centre   2E  78  0C  03  47  05  00  00  FF 
+ 211 centre   2F  79  0C  03  47  01  00  00  FF 
+ 212 centre   30  79  0C  03  47  01  00  00  FF 
+ 213 centre   31  7A  0C  03  47  01  00  00  FF 
+ 214 centre   32  7A  0C  03  47  01  00  00  FF 
+ 215 centre   33  7B  0C  03  47  02  00  00  FF 
+ 216 centre   34  7B  0C  03  47  02  00  00  FF 
+ 217 centre   35  7C  0C  03  47  02  00  00  FF 
+ 218 centre   36  7C  0C  03  47  02  00  00  FF 
+ 219 centre   37  7D  0C  03  47  03  00  00  FF 
+ 220 centre   38  7D  0C  03  47  03  00  00  FF 
+ 221 centre   39  7E  0C  03  47  03  00  00  FF 
+ 222 centre   3A  7E  0C  03  47  03  00  00  FF 
+ 223 centre   3B  7F  0C  03  47  04  00  00  FF 
+ 224 centre   3C  7F  0C  03  47  04  00  00  FF 
+ 225 centre   3D  80  0C  03  47  04  00  00  FF 
+ 226 centre   3E  80  0C  03  47  04  00  00  FF 
+ 227 centre   3F  81  0C  03  47  05  00  00  FF 
+ 228 centre   40  81  0C  03  47  05  00  00  FF 
+ 229 centre   41  82  0C  03  47  05  00  00  FF 
+ 230 centre   42  82  0C  03  47  05  00  00  FF 
+ 231 centre   43  83  0C  03  47  01  00  00  FF 
+ 232 centre   44  83  0C  03  47  01  00  00  FF 
+ 233 centre   45  84  0C  03  47  01  00  00  FF 
+ 234 centre   46  84  0C  03  47  01  00  00  FF 
+ 235 centre   47  85  0C  03  47  02  00  00  FF 
+ 236 centre   48  85  0C  03  47  02  00  00  FF 
+ 237 centre   49  86  0C  03  47  02  00  00  FF 
+ 238 centre   4A  86  0C  03  47  02  00  00  FF 
+ 239 centre   4B  87  0C  03  47  03  00  00  FF 
+ 240 centre   4C  87  0C  03  47  03  00  00  FF 
+ 241 centre   4D  88  0C  03  47  03  00  00  FF 
+ 242 centre   4E  88  0C  03  47  03  00  00  FF 
+ 243 centre   4F  89  0C  03  47  04  00  00  FF 
+ 244 centre   50  89  0C  03  47  04  00  00  FF 
+ 245 centre   51  8A  0C  03  47  04  00  00  FF 
+ 246 centre   52  8A  0C  03  47  04  00  00  FF 
+ 247 centre   53  8B  0C  03  47  05  00  00  FF 
+ 248 centre   54  8B  0C  03  47  05  00  00  FF 
+ 249 centre   55  8C  0C  03  47  05  00  00  FF 
+ 250 centre   56  8C  0C  03  47  05  00  00  FF 
+ 251 centre   57  8D  0C  03  47  01  00  00  FF 
+ 252 centre   58  8D  0C  03  47  01  00  00  FF 
+ 253 centre   59  8E  0C  03  47  01  00  00  FF 
+ 254 centre   5A  8E  0C  03  47  01  00  00  FF 
+ 255 centre   5B  8F  0C  03  47  02  00  00  FF 
+ 256 centre   5C  8F  0C  03  47  02  00  00  FF 
+ 257 centre   5D  90  0C  03  47  02  00  00  FF 
+ 258 centre   5E  90  0C  03  47  02  00  00  FF 
+ 259 centre   5F  91  0C  03  47  03  00  00  FF 
+ 260 centre   60  91  0C  03  47  03  00  00  FF 
+ 261 centre   61  92  0C  03  47  03  00  00  FF 
+ 262 centre   62  92  0C  03  47  03  00  00  FF 
+ 263 centre   63  93  0C  03  47  04  00  00  FF 
+ 264 centre   64  93  0C  03  47  04  00  00  FF 
+ 265 centre   65  94  0C  03  47  04  00  00  FF 
+ 266 centre   66  94  0C  03  47  04  00  00  FF 
+ 267 centre   67  95  0C  03  47  05  00  00  FF 
+ 268 centre   68  95  0C  03  47  05  00  00  FF 
+ 269 centre   69  96  0C  03  47  05  00  00  FF 
+ 270 centre   6A  96  0C  03  47  05  00  00  FF 
+ 271 centre   6B  97  0C  03  47  01  00  00  FF 
+ 272 centre   6C  97  0C  03  47  01  00  00  FF 
+ 273 centre   6D  98  0C  03  47  01  00  00  FF 
+ 274 centre   6E  98  0C  03  47  01  00  00  FF 
+ 275 centre   6F  99  0C  03  47  02  00  00  FF 
+ 276 centre   70  99  0C  03  47  02  00  00  FF 
+ 277 centre   71  9A  0C  03  47  02  00  00  FF 
+ 278 centre   72  9A  0C  03  47  02  00  00  FF 
+ 279 centre   73  9B  0C  03  47  03  00  00  FF 
+ 280 centre   74  9B  0C  03  47  03  00  00  FF 
+ 281 centre   75  9C  0C  03  47  03  00  00  FF 
+ 282 centre   76  9C  0C  03  47  03  00  00  FF 
+ 283 centre   77  9D  0C  03  47  04  00  00  FF 
+ 284 centre   78  9D  0C  03  47  04  00  00  FF 
+ 285 centre   79  9E  0C  03  47  04  00  00  FF 
+ 286 centre   7A  9E  0C  03  47  04  00  00  FF 
+ 287 centre   7B  9F  0C  03  47  05  00  00  FF 
+ 288 centre   7C  9F  0C  03  47  05  00  00  FF 
+ 289 centre   7D  A0  0C  03  47  05  00  00  FF 
+ 290 centre   7E  A0  0C  03  47  05  00  00  FF 
+ 291 centre   7F  A1  0C  03  47  01  00  00  FF 
+ 292 centre   80  A1  0C  03  47  01  00  00  FF 
+ 293 centre   81  A2  0C  03  46  01  00  00  FF 
+ 294 centre   82  A2  0C  03  46  01  00  00  FF 
+ 295 centre   83  A3  0C  03  46  02  00  00  FF 
+ 296 centre   84  A3  0C  03  46  02  00  00  FF 
+ 297 centre   85  A4  0C  03  46  02  00  00  FF 
+ 298 centre   86  A4  0C  03  46  02  00  00  FF 
+ 299 centre   87  A5  0C  03  46  03  00  00  FF 
+ 300 centre   88  A5  0C  03  46  03  00  00  FF 
+ 301 centre   89  A6  0C  03  46  03  00  00  FF 
+ 302 centre   8A  A6  0C  03  46  03  00  00  FF 
+ 303 centre   8B  A7  0C  03  46  04  00  00  FF 
+ 304 centre   8C  A7  0C  03  46  04  00  00  FF 
+ 305 centre   8D  A8  0C  03  46  04  00  00  FF 
+ 306 centre   8E  A8  0C  03  46  04  00  00  FF 
+ 307 centre   8F  A9  0C  03  46  05  00  00  FF 
+ 308 centre   90  A9  0C  03  46  05  00  00  FF 
+ 309 centre   91  AA  0C  03  46  05  00  00  FF 
+ 310 centre   92  AA  0C  03  46  05  00  00  FF 
+ 311 centre   93  AB  0C  03  46  01  00  00  FF 
+ 312 centre   94  AB  0C  03  46  01  00  00  FF 
+ 313 centre   95  AC  0C  03  46  01  00  00  FF 
+ 314 centre   96  AC  0C  03  46  01  00  00  FF 
+ 315 centre   97  AD  0C  03  46  02  00  00  FF 
+ 316 centre   98  AD  0C  03  46  02  00  00  FF 
+ 317 centre   99  AE  0C  03  46  02  00  00  FF 
+ 318 centre   9A  AE  0C  03  46  02  00  00  FF 
+ 319 centre   9B  AF  0C  03  46  03  00  00  FF 
+ 320 centre   9C  AF  0C  03  46  03  00  00  FF 
+ 321 centre   9D  B0  0C  03  46  03  00  00  FF 
+ 322 centre   9E  B0  0C  03  46  03  00  00  FF 
+ 323 centre   9F  B1  0C  03  46  04  00  00  FF 
+ 324 centre   A0  B1  0C  03  46  04  00  00  FF 
+ 325 centre   A1  B2  0C  03  46  04  00  00  FF 
+ 326 centre   A2  B2  0C  03  46  04  00  00  FF 
+ 327 centre   A3  B3  0C  03  46  05  00  00  FF 
+ 328 centre   A4  B3  0C  03  46  05  00  00  FF 
+ 329 centre   A5  B4  0C  03  46  05  00  00  FF 
+ 330 centre   A6  B4  0C  03  46  05  00  00  FF 
+ 331 centre   A7  B5  0C  03  46  01  00  00  FF 
+ 332 centre   A8  B5  0C  03  46  01  00  00  FF 
+ 333 centre   A9  B6  0C  03  46  01  00  00  FF 
+ 334 centre   AA  B6  0C  03  46  01  00  00  FF 
+ 335 centre   AB  B7  0C  03  46  02  00  00  FF 
+ 336 centre   AC  B7  0C  03  46  02  00  00  FF 
+ 337 centre   AD  B8  0C  03  46  02  00  00  FF 
+ 338 centre   AE  B8  0C  03  46  02  00  00  FF 
+ 339 centre   AF  B9  0C  03  46  03  00  00  FF 
+ 340 centre   B0  B9  0C  03  46  03  00  00  FF 
+ 341 centre   B1  BA  0C  03  46  03  00  00  FF 
+ 342 centre   B2  BA  0C  03  46  03  00  00  FF 
+ 343 centre   B3  BB  0C  03  46  04  00  00  FF 
+ 344 centre   B4  BB  0C  03  46  04  00  00  FF 
+ 345 centre   B5  BC  0C  03  46  04  00  00  FF 
+ 346 centre   B6  BC  0C  03  46  04  00  00  FF 
+ 347 centre   B7  BD  0C  03  46  05  00  00  FF 
+ 348 centre   B8  BD  0C  03  46  05  00  00  FF 
+ 349 centre   B9  BE  0C  03  46  05  00  00  FF 
+ 350 centre   BA  BE  0C  03  46  05  00  00  FF 
+ 351 centre   BB  BF  0C  03  46  01  00  00  FF 
+ 352 centre   BC  BF  0C  03  46  01  00  00  FF 
+ 353 centre   BD  C0  0C  03  46  01  00  00  FF 
+ 354 centre   BE  C0  0C  03  46  01  00  00  FF 
+ 355 centre   BF  C1  0C  03  46  02  00  00  FF 
+ 356 centre   C0  C1  0C  03  46  02  00  00  FF 
+ 357 centre   C1  C2  0C  03  46  02  00  00  FF 
+ 358 centre   C2  C2  0C  03  46  02  00  00  FF 
+ 359 centre   C3  C3  0C  03  46  03  00  00  FF 
+ 360 centre   C4  C3  0C  03  46  03  00  00  FF 
+ 361 centre   C5  C4  0C  03  46  03  00  00  FF 
+ 362 centre   C6  C4  0C  03  46  03  00  00  FF 
+ 363 centre   C7  C5  0C  03  46  04  00  00  FF 
+ 364 centre   C8  C5  0C  03  46  04  00  00  FF 
+ 365 centre   C9  C6  0C  03  46  04  00  00  FF 
+ 366 centre   CA  C6  0C  03  46  04  00  00  FF 
+ 367 centre   CB  C7  0C  03  46  05  00  00  FF 
+ 368 centre   CC  C7  0C  03  46  05  00  00  FF 
+ 369 centre   CD  C8  0C  03  46  05  00  00  FF 
+ 370 centre   CE  C8  0C  03  46  05  00  00  FF 
+ 371 centre   CF  C9  0C  03  46  01  00  00  FF 
+ 372 centre   D0  C9  0C  03  46  01  00  00  FF 
+ 373 centre   D1  CA  0C  03  46  01  00  00  FF 
+ 374 centre   D2  CA  0C  03  46  01  00  00  FF 
+ 375 centre   D3  CB  0C  03  46  02  00  00  FF 
+ 376 centre   D4  CB  0C  03  46  02  00  00  FF 
+ 377 centre   D5  CC  0C  03  46  02  00  00  FF 
+ 378 centre   D6  CC  0C  03  46  02  00  00  FF 
+ 379 centre   D7  2B  0D  02  46  03  00  00  FF 
+ 380 centre   D8  2B  0D  02  46  03  00  00  FF 
+ 381 centre   D9  2C  0D  02  46  03  00  00  FF 
+ 382 centre   DA  2C  0D  02  46  03  00  00  FF 
+ 383 centre   DB  2D  0D  02  46  04  00  00  FF 
+ 384 centre   DC  2D  0D  02  46  04  00  00  FF 
+ 385 centre   DD  2E  0D  02  46  04  00  00  FF 
+ 386 centre   DE  2E  0D  02  46  04  00  00  FF 
+ 387 centre   DF  2F  0D  02  46  05  00  00  FF 
+ 388 centre   E0  2F  0D  02  46  05  00  00  FF 
+ 389 centre   E1  30  0D  02  46  05  00  00  FF 
+ 390 centre   E2  30  0D  02  46  05  00  00  FF 
+ 391 centre   E3  31  0D  02  46  01  00  00  FF 
+ 392 centre   E4  31  0D  02  46  01  00  00  FF 
+ 393 centre   E5  32  0D  02  46  01  00  00  FF 
+ 394 centre   E6  32  0D  02  46  01  00  00  FF 
+ 395 centre   E7  33  0D  02  46  02  00  00  FF 
+ 396 centre   E8  33  0D  02  46  02  00  00  FF 
+ 397 centre   E9  34  0D  02  46  02  00  00  FF 
+ 398 centre   EA  34  0D  02  46  02  00  00  FF 
+ 399 centre   EB  35  0D  02  46  03  00  00  FF 
+ 400 centre   EC  35  0D  02  46  03  00  00  FF 
+ 401 centre   ED  36  0D  02  46  03  00  00  FF 
+ 402 centre   EE  36  0D  02  46  03  00  00  FF 
+ 403 centre   EF  37  0D  02  46  04  00  00  FF 
+ 404 centre   F0  37  0D  02  46  04  00  00  FF 
+ 405 centre   F1  38  0D  02  46  04  00  00  FF 
+ 406 centre   F2  38  0D  02  46  04  00  00  FF 
+ 407 centre   F3  39  0D  02  46  05  00  00  FF 
+ 408 centre   F4  39  0D  02  46  05  00  00  FF 
+ 409 centre   F5  3A  0D  02  46  05  00  00  FF 
+ 410 centre   F6  3A  0D  02  46  05  00  00  FF 
+ 411 centre   F7  3B  0D  02  46  01  00  00  FF 
+ 412 centre   F8  3B  0D  02  46  01  00  00  FF 
+ 413 centre   F9  3C  0D  02  46  01  00  00  FF 
+ 414 centre   FA  3C  0D  02  46  01  00  00  FF 
+ 415 centre   FB  3D  0D  02  46  02  00  00  FF 
+ 416 centre   FC  3D  0D  02  46  02  00  00  FF 
+ 417 centre   FD  3E  0D  02  46  02  00  00  FF 
+ 418 centre   FE  3E  0D  02  46  02  00  00  FF 
+ 419 centre   FF  3F  0D  02  46  03  00  00  FF 
+ 420 centre   00  3F  0D  02  46  03  00  00  FF 
+ 421 centre   01  40  0D  02  45  03  00  00  FF 
+ 422 centre   02  40  0D  02  45  03  00  00  FF 
+ 423 centre   03  41  0D  02  45  04  00  00  FF 
+ 424 centre   04  41  0D  02  45  04  00  00  FF 
+ 425 centre   05  42  0D  02  45  04  00  00  FF 
+ 426 centre   06  42  0D  02  45  04  00  00  FF 
+ 427 centre   07  43  0D  02  45  05  00  00  FF 
+ 428 centre   08  43  0D  02  45  05  00  00  FF 
+ 429 centre   09  44  0D  02  45  05  00  00  FF 
+ 430 centre   0A  44  0D  02  45  05  00  00  FF 
+ 431 centre   0B  45  0D  02  45  01  00  00  FF 
+ 432 centre   0C  45  0D  02  45  01  00  00  FF 
+ 433 centre   0D  46  0D  02  45  01  00  00  FF 
+ 434 centre   0E  46  0D  02  45  01  00  00  FF 
+ 435 centre   0F  47  0D  02  45  02  00  00  FF 
+ 436 centre   10  47  0D  02  45  02  00  00  FF 
+ 437 centre   11  48  0D  02  45  02  00  00  FF 
+ 438 centre   12  48  0D  02  45  02  00  00  FF 
+ 439 centre   13  49  0D  02  45  03  00  00  FF 
+ 440 centre   14  49  0D  02  45  03  00  00  FF 
+ 441 centre   15  4A  0D  02  45  03  00  00  FF 
+ 442 centre   16  4A  0D  02  45  03  00  00  FF 
+ 443 centre   17  4B  0D  02  45  04  00  00  FF 
+ 444 centre   18  4B  0D  02  45  04  00  00  FF 
+ 445 centre   19  4C  0D  02  45  04  00  00  FF 
+ 446 centre   1A  4C  0D  02  45  04  00  00  FF 
+ 447 centre   1B  4D  0D  02  45  05  00  00  FF 
+ 448 centre   1C  4D  0D  02  45  05  00  00  FF 
+ 449 centre   1D  4E  0D  02  45  05  00  00  FF 
+ 450 centre   1E  4E  0D  02  45  05  00  00  FF 
+ 451 centre   1F  4F  0D  02  45  01  00  00  FF 
+ 452 centre   20  4F  0D  02  45  01  00  00  FF 
+ 453 centre   21  50  0D  02  45  01  00  00  FF 
+ 454 centre   22  50  0D  02  45  01  00  00  FF 
+ 455 centre   23  51  0D  02  45  02  00  00  FF 
+ 456 centre   24  51  0D  02  45  02  00  00  FF 
+ 457 centre   25  52  0D  02  45  02  00  00  FF 
+ 458 centre   26  52  0D  02  45  02  00  00  FF 
+ 459 centre   27  53  0D  02  45  03  00  00  FF 
+ 460 centre   28  53  0D  02  45  03  00  00  FF 
+ 461 centre   29  54  0D  02  45  03  00  00  FF 
+ 462 centre   2A  54  0D  02  45  03  00  00  FF 
+ 463 centre   2B  55  0D  02  45  04  00  00  FF 
+ 464 centre   2C  55  0D  02  45  04  00  00  FF 
+ 465 centre   2D  56  0D  02  45  04  00  00  FF 
+ 466 centre   2E  56  0D  02  45  04  00  00  FF 
+ 467 centre   2F  57  0D  02  45  05  00  00  FF 
+ 468 centre   30  57  0D  02  45  05  00  00  FF 
+ 469 centre   31  58  0D  02  45  05  00  00  FF 
+ 470 centre   32  58  0D  02  45  05  00  00  FF 
+ 471 centre   33  59  0D  02  45  01  00  00  FF 
+ 472 centre   34  59  0D  02  45  01  00  00  FF 
+ 473 centre   35  5A  0D  02  45  01  00  00  FF 
+ 474 centre   36  5A  0D  02  45  01  00  00  FF 
+ 475 centre   37  5B  0D  02  45  02  00  00  FF 
+ 476 centre   38  5B  0D  02  45  02  00  00  FF 
+ 477 centre   39  5C  0D  02  45  02  00  00  FF 
+ 478 centre   3A  5C  0D  02  45  02  00  00  FF 
+ 479 centre   3B  5D  0D  02  45  03  00  00  FF 
+ 480 centre   3C  5D  0D  02  45  03  00  00  FF 
+ 481 centre   3D  5E  0D  02  45  03  00  00  FF 
+ 482 centre   3E  5E  0D  02  45  03  00  00  FF 
+ 483 centre   3F  5F  0D  02  45  04  00  00  FF 
+ 484 centre   40  5F  0D  02  45  04  00  00  FF 
+ 485 centre   41  60  0D  02  45  04  00  00  FF 
+ 486 centre   42  60  0D  02  45  04  00  00  FF 
+ 487 centre   43  61  0D  02  45  05  00  00  FF 
+ 488 centre   44  61  0D  02  45  05  00  00  FF 
+ 489 centre   45  62  0D  02  45  05  00  00  FF 
+ 490 centre   46  62  0D  02  45  05  00  00  FF 
+ 491 centre   47  63  0D  02  45  01  00  00  FF 
+ 492 centre   48  63  0D  02  45  01  00  00  FF 
+ 493 centre   49  64  0D  02  45  01  00  00  FF 
+ 494 centre   4A  64  0D  02  45  01  00  00  FF 
+ 495 centre   4B  65  0D  02  45  02  00  00  FF 
+ 496 centre   4C  65  0D  02  45  02  00  00  FF 
+ 497 centre   4D  66  0D  02  45  02  00  00  FF 
+ 498 centre   4E  66  0D  02  45  02  00  00  FF 
+ 499 centre   4F  67  0D  02  45  03  00  00  FF 
+ 500 centre   50  67  0D  02  45  03  00  00  FF 
+ 501 centre   51  68  0D  02  45  03  00  00  FF 
+ 502 centre   52  68  0D  02  45  03  00  00  FF 
+ 503 centre   53  69  0D  02  45  04  00  00  FF 
+ 504 centre   54  69  0D  02  45  04  00  00  FF 
+ 505 centre   55  6A  0D  02  45  04  00  00  FF 
+ 506 centre   56  6A  0D  02  45  04  00  00  FF 
+ 507 centre   57  6B  0D  02  45  05  00  00  FF 
+ 508 centre   58  6B  0D  02  45  05  00  00  FF 
+ 509 centre   59  6C  0D  02  45  05  00  00  FF 
+ 510 centre   5A  6C  0D  02  45  05  00  00  FF 
+ 511 centre   5B  6D  0D  02  45  01  00  00  FF 
+ 512 centre   5C  6D  0D  02  45  01  00  00  FF 
+ 513 centre   5D  6E  0D  02  45  01  00  00  FF 
+ 514 centre   5E  6E  0D  02  45  01  00  00  FF 
+ 515 centre   5F  6F  0D  02  45  02  00  00  FF 
+ 516 centre   60  6F  0D  02  45  02  00  00  FF 
+ 517 centre   61  70  0D  02  45  02  00  00  FF 
+ 518 centre   62  70  0D  02  45  02  00  00  FF 
+ 519 centre   63  71  0D  02  45  03  00  00  FF 
+ 520 centre   64  71  0D  02  45  03  00  00  FF 
+ 521 centre   65  72  0D  02  45  03  00  00  FF 
+ 522 centre   66  72  0D  02  45  03  00  00  FF 
+ 523 centre   67  73  0D  02  45  04  00  00  FF 
+ 524 centre   68  73  0D  02  45  04  00  00  FF 
+ 525 centre   69  74  0D  02  45  04  00  00  FF 
+ 526 centre   6A  74  0D  02  45  04  00  00  FF 
+ 527 centre   6B  75  0D  02  45  05  00  00  FF 
+ 528 centre   6C  75  0D  02  45  05  00  00  FF 
+ 529 centre   6D  76  0D  02  45  05  00  00  FF 
+ 530 centre   6E  76  0D  02  45  05  00  00  FF 
+ 531 centre   6F  77  0D  02  45  01  00  00  FF 
+ 532 centre   70  77  0D  02  45  01  00  00  FF 
+ 533 centre   71  78  0D  02  45  01  00  00  FF 
+ 534 centre   72  78  0D  02  45  01  00  00  FF 
+ 535 centre   73  79  0D  02  45  02  00  00  FF 
+ 536 centre   74  79  0D  02  45  02  00  00  FF 
+ 537 centre   75  7A  0D  02  45  02  00  00  FF 
+ 538 centre   76  7A  0D  02  45  02  00  00  FF 
+ 539 centre   77  7B  0D  02  45  03  00  00  FF 
+ 540 centre   78  7B  0D  02  45  03  00  00  FF 
+ 541 centre   79  7C  0D  02  45  03  00  00  FF 
+ 542 centre   7A  7C  0D  02  45  03  00  00  FF 
+ 543 centre   7B  7D  0D  02  45  04  00  00  FF 
+ 544 centre   7C  7D  0D  02  45  04  00  00  FF 
+ 545 centre   7D  7E  0D  02  45  04  00  00  FF 
+ 546 centre   7E  7E  0D  02  45  04  00  00  FF 
+ 547 centre   7F  7F  0D  02  45  05  00  00  FF 
+ 548 centre   80  7F  0D  02  45  05  00  00  FF 
+ 549 centre   81  80  0D  02  44  05  00  00  FF 
+ 550 centre   82  80  0D  02  44  05  00  00  FF 
+ 551 centre   83  81  0D  02  44  01  00  00  FF 
+ 552 centre   84  81  0D  02  44  01  00  00  FF 
+ 553 centre   85  82  0D  02  44  01  00  00  FF 
+ 554 centre   86  82  0D  02  44  01  00  00  FF 
+ 555 centre   87  83  0D  02  44  02  00  00  FF 
+ 556 centre   88  83  0D  02  44  02  00  00  FF 
+ 557 centre   89  84  0D  02  44  02  00  00  FF 
+ 558 centre   8A  84  0D  02  44  02  00  00  FF 
+ 559 centre   8B  85  0D  02  44  03  00  00  FF 
+ 560 centre   8C  85  0D  02  44  03  00  00  FF 
+ 561 centre   8D  86  0D  02  44  03  00  00  FF 
+ 562 centre   8E  86  0D  02  44  03  00  00  FF 
+ 563 centre   8F  87  0D  02  44  04  00  00  FF 
+ 564 centre   90  87  0D  02  44  04  00  00  FF 
+ 565 centre   91  88  0D  02  44  04  00  00  FF 
+ 566 centre   92  88  0D  02  44  04  00  00  FF 
+ 567 centre   93  89  0D  02  44  05  00  00  FF 
+ 568 centre   94  89  0D  02  44  05  00  00  FF 
+ 569 centre   95  8A  0D  02  44  05  00  00  FF 
+ 570 centre   96  8A  0D  02  44  05  00  00  FF 
+ 571 centre   97  8B  0D  02  44  01  00  00  FF 
+ 572 centre   98  8B  0D  02  44  01  00  00  FF 
+ 573 centre   99  8C  0D  02  44  01  00  00  FF 
+ 574 centre   9A  8C  0D  02  44  01  00  00  FF 
+ 575 centre   9B  8D  0D  02  44  02  00  00  FF 
+ 576 centre   9C  8D  0D  02  44  02  00  00  FF 
+ 577 centre   9D  8E  0D  02  44  02  00  00  FF 
+ 578 centre   9E  8E  0D  02  44  02  00  00  FF 
+ 579 centre   9F  8F  0D  02  44  03  00  00  FF 
+ 580 centre   A0  8F  0D  02  44  03  00  00  FF 
+ 581 centre   A1  90  0D  02  44  03  00  00  FF 
+ 582 centre   A2  90  0D  02  44  03  00  00  FF 
+ 583 centre   A3  91  0D  02  44  04  00  00  FF 
+ 584 centre   A4  91  0D  02  44  04  00  00  FF 
+ 585 centre   A5  92  0D  02  44  04  00  00  FF 
+ 586 centre   A6  92  0D  02  44  04  00  00  FF 
+ 587 centre   A7  93  0D  02  44  05  00  00  FF 
+ 588 centre   A8  93  0D  02  44  05  00  00  FF 
+ 589 centre   A9  94  0D  02  44  05  00  00  FF 
+ 590 centre   AA  94  0D  02  44  05  00  00  FF 
+ 591 centre   AB  95  0D  02  44  01  00  00  FF 
+ 592 centre   AC  95  0D  02  44  01  00  00  FF 
+ 593 centre   AD  96  0D  02  44  01  00  00  FF 
+ 594 centre   AE  96  0D  02  44  01  00  00  FF 
+ 595 centre   AF  97  0D  02  44  02  00  00  FF 
+ 596 centre   B0  97  0D  02  44  02  00  00  FF 
+ 597 centre   B1  98  0D  02  44  02  00  00  FF 
+ 598 centre   B2  98  0D  02  44  02  00  00  FF 
+ 599 centre   B3  99  0D  02  44  03  00  00  FF 
+ 600 centre   B4  99  0D  02  44  03  00  00  FF 
+ 601 centre   B5  9A  0D  02  44  03  00  00  FF 
+ 602 centre   B6  9A  0D  02  44  03  00  00  FF 
+ 603 centre   B7  9B  0D  02  44  04  00  00  FF 
+ 604 centre   B8  9B  0D  02  44  04  00  00  FF 
+ 605 centre   B9  9C  0D  02  44  04  00  00  FF 
+ 606 centre   BA  9C  0D  02  44  04  00  00  FF 
+ 607 centre   BB  9D  0D  02  44  05  00  00  FF 
+ 608 centre   BC  9D  0D  02  44  05  00  00  FF 
+ 609 centre   BD  9E  0D  02  44  05  00  00  FF 
+ 610 centre   BE  9E  0D  02  44  05  00  00  FF 
+ 611 centre   BF  9F  0D  02  44  01  00  00  FF 
+ 612 centre   C0  9F  0D  02  44  01  00  00  FF 
+ 613 centre   C1  A0  0D  02  44  01  00  00  FF 
+ 614 centre   C2  A0  0D  02  44  01  00  00  FF 
+ 615 centre   C3  A1  0D  02  44  02  00  00  FF 
+ 616 centre   C4  A1  0D  02  44  02  00  00  FF 
+ 617 centre   C5  A2  0D  02  44  02  00  00  FF 
+ 618 centre   C6  A2  0D  02  44  02  00  00  FF 
+ 619 centre   C7  A3  0D  02  44  03  00  00  FF 
+ 620 centre   C8  A3  0D  02  44  03  00  00  FF 
+ 621 centre   C9  A4  0D  02  44  03  00  00  FF 
+ 622 centre   CA  A4  0D  02  44  03  00  00  FF 
+ 623 centre   CB  A5  0D  02  44  04  00  00  FF 
+ 624 centre   CC  A5  0D  02  44  04  00  00  FF 
+ 625 centre   CD  A6  0D  02  44  04  00  00  FF 
+ 626 centre   CE  A6  0D  02  44  04  00  00  FF 
+ 627 centre   CF  A7  0D  02  44  05  00  00  FF 
+ 628 centre   D0  A7  0D  02  44  05  00  00  FF 
+ 629 centre   D1  A8  0D  02  44  05  00  00  FF 
+ 630 centre   D2  A8  0D  02  44  05  00  00  FF 
+ 631 centre   D3  A9  0D  02  44  01  00  00  FF 
+ 632 centre   D4  A9  0D  02  44  01  00  00  FF 
+ 633 centre   D5  AA  0D  02  44  01  00  00  FF 
+ 634 centre   D6  AA  0D  02  44  01  00  00  FF 
+ 635 centre   D7  AB  0D  02  44  02  00  00  FF 
+ 636 centre   D8  AB  0D  02  44  02  00  00  FF 
+ 637 centre   D9  AC  0D  02  44  02  00  00  FF 
+ 638 centre   DA  AC  0D  02  44  02  00  00  FF 
+ 639 centre   DB  AD  0D  02  44  03  00  00  FF 
+ 640 centre   DC  AD  0D  02  44  03  00  00  FF 
+ 641 centre   DD  AE  0D  02  44  03  00  00  FF 
+ 642 centre   DE  AE  0D  02  44  03  00  00  FF 
+ 643 centre   DF  AF  0D  02  44  04  00  00  FF 
+ 644 centre   E0  AF  0D  02  44  04  00  00  FF 
+ 645 centre   E1  B0  0D  02  44  04  00  00  FF 
+ 646 centre   E2  B0  0D  02  44  04  00  00  FF 
+ 647 centre   E3  B1  0D  02  44  05  00  00  FF 
+ 648 centre   E4  B1  0D  02  44  05  00  00  FF 
+ 649 centre   E5  B2  0D  02  44  05  00  00  FF 
+ 650 centre   E6  B2  0D  02  44  05  00  00  FF 
+ 651 centre   E7  B3  0D  02  44  01  00  00  FF 
+ 652 centre   E8  B3  0D  02  44  01  00  00  FF 
+ 653 centre   E9  B4  0D  02  44  01  00  00  FF 
+ 654 centre   EA  B4  0D  02  44  01  00  00  FF 
+ 655 centre   EB  B5  0D  02  44  02  00  00  FF 
+ 656 centre   EC  B5  0D  02  44  02  00  00  FF 
+ 657 centre   ED  B6  0D  02  44  02  00  00  FF 
+ 658 centre   EE  B6  0D  02  44  02  00  00  FF 
+ 659 centre   EF  B7  0D  02  44  03  00  00  FF 
+ 660 centre   F0  B7  0D  02  44  03  00  00  FF 
+ 661 centre   F1  B8  0D  02  44  03  00  00  FF 
+ 662 centre   F2  B8  0D  02  44  03  00  00  FF 
+ 663 centre   F3  B9  0D  02  44  04  00  00  FF 
+ 664 centre   F4  B9  0D  02  44  04  00  00  FF 
+ 665 centre   F5  BA  0D  02  44  04  00  00  FF 
+ 666 centre   F6  BA  0D  02  44  04  00  00  FF 
+ 667 centre   F7  BB  0D  02  44  05  00  00  FF 
+ 668 centre   F8  BB  0D  02  44  05  00  00  FF 
+ 669 centre   F9  BC  0D  02  44  05  00  00  FF 
+ 670 centre   FA  BC  0D  02  44  05  00  00  FF 
+ 671 centre   FB  BD  0D  02  44  01  00  00  FF 
+ 672 centre   FC  BD  0D  02  44  01  00  00  FF 
+ 673 centre   FD  BE  0D  02  44  01  00  00  FF 
+ 674 centre   FE  BE  0D  02  44  01  00  00  FF 
+ 675 centre   FF  BF  0D  02  44  02  00  00  FF 
+ 676 centre   00  BF  0D  02  44  02  00  00  FF 
+ 677 centre   01  C0  0D  02  43  02  00  00  FF 
+ 678 centre   02  C0  0D  02  43  02  00  00  FF 
+ 679 centre   03  C1  0D  02  43  03  00  00  FF 
+ 680 centre   04  C1  0D  02  43  03  00  00  FF 
+ 681 centre   05  C2  0D  02  43  03  00  00  FF 
+ 682 centre   06  C2  0D  02  43  03  00  00  FF 
+ 683 centre   07  C3  0D  02  43  04  00  00  FF 
+ 684 centre   08  C3  0D  02  43  04  00  00  FF 
+ 685 centre   09  C4  0D  02  43  04  00  00  FF 
+ 686 centre   0A  C4  0D  02  43  04  00  00  FF 
+ 687 centre   0B  C5  0D  02  43  05  00  00  FF 
+ 688 centre   0C  C5  0D  02  43  05  00  00  FF 
+ 689 centre   0D  C6  0D  02  43  05  00  00  FF 
+ 690 centre   0E  C6  0D  02  43  05  00  00  FF 
+ 691 centre   0F  C7  0D  02  43  01  00  00  FF 
+ 692 centre   10  C7  0D  02  43  01  00  00  FF 
+ 693 centre   11  C8  0D  02  43  01  00  00  FF 
+ 694 centre   12  C8  0D  02  43  01  00  00  FF 
+ 695 centre   13  C9  0D  02  43  02  00  00  FF 
+ 696 centre   14  C9  0D  02  43  02  00  00  FF 
+ 697 centre   15  CA  0D  02  43  02  00  00  FF 
+ 698 centre   16  CA  0D  02  43  02  00  00  FF 
+ 699 centre   17  CB  0D  02  43  03  00  00  FF 
+ 700 centre   18  CB  0D  02  43  03  00  00  FF 
+ 701 centre   19  CC  0D  02  43  03  00  00  FF 
+ 702 centre   1A  CC  0D  02  43  03  00  00  FF 
+ 703 centre   1B  2B  0E  01  43  04  00  00  FF 
+ 704 centre   1C  2B  0E  01  43  04  00  00  FF 
+ 705 centre   1D  2C  0E  01  43  04  00  00  FF 
+ 706 centre   1E  2C  0E  01  43  04  00  00  FF 
+ 707 centre   1F  2D  0E  01  43  05  00  00  FF 
+ 708 centre   20  2D  0E  01  43  05  00  00  FF 
+ 709 centre   21  2E  0E  01  43  05  00  00  FF 
+ 710 centre   22  2E  0E  01  43  05  00  00  FF 
+ 711 centre   23  2F  0E  01  43  01  00  00  FF 
+ 712 centre   24  2F  0E  01  43  01  00  00  FF 
+ 713 centre   25  30  0E  01  43  01  00  00  FF 
+ 714 centre   26  30  0E  01  43  01  00  00  FF 
+ 715 centre   27  31  0E  01  43  02  00  00  FF 
+ 716 centre   28  31  0E  01  43  02  00  00  FF 
+ 717 centre   29  32  0E  01  43  02  00  00  FF 
+ 718 centre   2A  32  0E  01  43  02  00  00  FF 
+ 719 centre   2B  33  0E  01  43  03  00  00  FF 
+ 720 centre   2C  33  0E  01  43  03  00  00  FF 
+ 721 centre   2D  34  0E  01  43  03  00  00  FF 
+ 722 centre   2E  34  0E  01  43  03  00  00  FF 
+ 723 centre   2F  35  0E  01  43  04  00  00  FF 
+ 724 centre   30  35  0E  01  43  04  00  00  FF 
+ 725 centre   31  36  0E  01  43  04  00  00  FF 
+ 726 centre   32  36  0E  01  43  04  00  00  FF 
+ 727 centre   33  37  0E  01  43  05  00  00  FF 
+ 728 centre   34  37  0E  01  43  05  00  00  FF 
+ 729 centre   35  38  0E  01  43  05  00  00  FF 
+ 730 centre   36  38  0E  01  43  05  00  00  FF 
+ 731 centre   37  39  0E  01  43  01  00  00  FF 
+ 732 centre   38  39  0E  01  43  01  00  00  FF 
+ 733 centre   39  3A  0E  01  43  01  00  00  FF 
+ 734 centre   3A  3A  0E  01  43  01  00  00  FF 
+ 735 centre   3B  3B  0E  01  43  02  00  00  FF 
+ 736 centre   3C  3B  0E  01  43  02  00  00  FF 
+ 737 centre   3D  3C  0E  01  43  02  00  00  FF 
+ 738 centre   3E  3C  0E  01  43  02  00  00  FF 
+ 739 centre   3F  3D  0E  01  43  03  00  00  FF 
+ 740 centre   40  3D  0E  01  43  03  00  00  FF 
+ 741 centre   41  3E  0E  01  43  03  00  00  FF 
+ 742 centre   42  3E  0E  01  43  03  00  00  FF 
+ 743 centre   43  3F  0E  01  43  04  00  00  FF 
+ 744 centre   44  3F  0E  01  43  04  00  00  FF 
+ 745 centre   45  40  0E  01  43  04  00  00  FF 
+ 746 centre   46  40  0E  01  43  04  00  00  FF 
+ 747 centre   47  41  0E  01  43  05  00  00  FF 
+ 748 centre   48  41  0E  01  43  05  00  00  FF 
+ 749 centre   49  42  0E  01  43  05  00  00  FF 
+ 750 centre   4A  42  0E  01  43  05  00  00  FF 
+ 751 centre   4B  43  0E  01  43  01  00  00  FF 
+ 752 centre   4C  43  0E  01  43  01  00  00  FF 
+ 753 centre   4D  44  0E  01  43  01  00  00  FF 
+ 754 centre   4E  44  0E  01  43  01  00  00  FF 
+ 755 centre   4F  45  0E  01  43  02  00  00  FF 
+ 756 centre   50  45  0E  01  43  02  00  00  FF 
+ 757 centre   51  46  0E  01  43  02  00  00  FF 
+ 758 centre   52  46  0E  01  43  02  00  00  FF 
+ 759 centre   53  47  0E  01  43  03  00  00  FF 
+ 760 centre   54  47  0E  01  43  03  00  00  FF 
+ 761 centre   55  48  0E  01  43  03  00  00  FF 
+ 762 centre   56  48  0E  01  43  03  00  00  FF 
+ 763 centre   57  49  0E  01  43  04  00  00  FF 
+ 764 centre   58  49  0E  01  43  04  00  00  FF 
+ 765 centre   59  4A  0E  01  43  04  00  00  FF 
+ 766 centre   5A  4A  0E  01  43  04  00  00  FF 
+ 767 centre   5B  4B  0E  01  43  05  00  00  FF 
+ 768 centre   5C  4B  0E  01  43  05  00  00  FF 
+ 769 centre   5D  4C  0E  01  43  05  00  00  FF 
+ 770 centre   5E  4C  0E  01  43  05  00  00  FF 
+ 771 centre   5F  4D  0E  01  43  01  00  00  FF 
+ 772 centre   60  4D  0E  01  43  01  00  00  FF 
+ 773 centre   61  4E  0E  01  43  01  00  00  FF 
+ 774 centre   62  4E  0E  01  43  01  00  00  FF 
+ 775 centre   63  4F  0E  01  43  02  00  00  FF 
+ 776 centre   64  4F  0E  01  43  02  00  00  FF 
+ 777 centre   65  50  0E  01  43  02  00  00  FF 
+ 778 centre   66  50  0E  01  43  02  00  00  FF 
+ 779 centre   67  51  0E  01  43  03  00  00  FF 
+ 780 centre   68  51  0E  01  43  03  00  00  FF 
+ 781 centre   69  52  0E  01  43  03  00  00  FF 
+ 782 centre   6A  52  0E  01  43  03  00  00  FF 
+ 783 centre   6B  53  0E  01  43  04  00  00  FF 
+ 784 centre   6C  53  0E  01  43  04  00  00  FF 
+ 785 centre   6D  54  0E  01  43  04  00  00  FF 
+ 786 centre   6E  54  0E  01  43  04  00  00  FF 
+ 787 centre   6F  55  0E  01  43  05  00  00  FF 
+ 788 centre   70  55  0E  01  43  05  00  00  FF 
+ 789 centre   71  56  0E  01  43  05  00  00  FF 
+ 790 centre   72  56  0E  01  43  05  00  00  FF 
+ 791 centre   73  57  0E  01  43  01  00  00  FF 
+ 792 centre   74  57  0E  01  43  01  00  00  FF 
+ 793 centre   75  58  0E  01  43  01  00  00  FF 
+ 794 centre   76  58  0E  01  43  01  00  00  FF 
+ 795 centre   77  59  0E  01  43  02  00  00  FF 
+ 796 centre   78  59  0E  01  43  02  00  00  FF 
+ 797 centre   79  5A  0E  01  43  02  00  00  FF 
+ 798 centre   7A  5A  0E  01  43  02  00  00  FF 
+ 799 centre   7B  5B  0E  01  43  03  00  00  FF 
+ 800 centre   7C  5B  0E  01  43  03  00  00  FF 
+ 801 centre   7D  5C  0E  01  43  03  00  00  FF 
+ 802 centre   7E  5C  0E  01  43  03  00  00  FF 
+ 803 centre   7F  5D  0E  01  43  04  00  00  FF 
+ 804 centre   80  5D  0E  01  43  04  00  00  FF 
+ 805 centre   81  5E  0E  01  42  04  00  00  FF 
+ 806 centre   82  5E  0E  01  42  04  00  00  FF 
+ 807 centre   83  5F  0E  01  42  05  00  00  FF 
+ 808 centre   84  5F  0E  01  42  05  00  00  FF 
+ 809 centre   85  60  0E  01  42  05  00  00  FF 
+ 810 centre   86  60  0E  01  42  05  00  00  FF 
+ 811 centre   87  61  0E  01  42  01  00  00  FF 
+ 812 centre   88  61  0E  01  42  01  00  00  FF 
+ 813 centre   89  62  0E  01  42  01  00  00  FF 
+ 814 centre   8A  62  0E  01  42  01  00  00  FF 
+ 815 centre   8B  63  0E  01  42  02  00  00  FF 
+ 816 centre   8C  63  0E  01  42  02  00  00  FF 
+ 817 centre   8D  64  0E  01  42  02  00  00  FF 
+ 818 centre   8E  64  0E  01  42  02  00  00  FF 
+ 819 centre   8F  65  0E  01  42  03  00  00  FF 
+ 820 centre   90  65  0E  01  42  03  00  00  FF 
+ 821 centre   91  66  0E  01  42  03  00  00  FF 
+ 822 centre   92  66  0E  01  42  03  00  00  FF 
+ 823 centre   93  67  0E  01  42  04  00  00  FF 
+ 824 centre   94  67  0E  01  42  04  00  00  FF 
+ 825 centre   95  68  0E  01  42  04  00  00  FF 
+ 826 centre   96  68  0E  01  42  04  00  00  FF 
+ 827 centre   97  69  0E  01  42  05  00  00  FF 
+ 828 centre   98  69  0E  01  42  05  00  00  FF 
+ 829 centre   99  6A  0E  01  42  05  00  00  FF 
+ 830 centre   9A  6A  0E  01  42  05  00  00  FF 
+ 831 centre   9B  6B  0E  01  42  01  00  00  FF 
+ 832 centre   9C  6B  0E  01  42  01  00  00  FF 
+ 833 centre   9D  6C  0E  01  42  01  00  00  FF 
+ 834 centre   9E  6C  0E  01  42  01  00  00  FF 
+ 835 centre   9F  6D  0E  01  42  02  00  00  FF 
+ 836 centre   A0  6D  0E  01  42  02  00  00  FF 
+ 837 centre   A1  6E  0E  01  42  02  00  00  FF 
+ 838 centre   A2  6E  0E  01  42  02  00  00  FF 
+ 839 centre   A3  6F  0E  01  42  03  00  00  FF 
+ 840 centre   A4  6F  0E  01  42  03  00  00  FF 
+ 841 centre   A5  70  0E  01  42  03  00  00  FF 
+ 842 centre   A6  70  0E  01  42  03  00  00  FF 
+ 843 centre   A7  71  0E  01  42  04  00  00  FF 
+ 844 centre   A8  71  0E  01  42  04  00  00  FF 
+ 845 centre   A9  72  0E  01  42  04  00  00  FF 
+ 846 centre   AA  72  0E  01  42  04  00  00  FF 
+ 847 centre   AB  73  0E  01  42  05  00  00  FF 
+ 848 centre   AC  73  0E  01  42  05  00  00  FF 
+ 849 centre   AD  74  0E  01  42  05  00  00  FF 
+ 850 centre   AE  74  0E  01  42  05  00  00  FF 
+ 851 centre   AF  75  0E  01  42  01  00  00  FF 
+ 852 centre   B0  75  0E  01  42  01  00  00  FF 
+ 853 centre   B1  76  0E  01  42  01  00  00  FF 
+ 854 centre   B2  76  0E  01  42  01  00  00  FF 
+ 855 centre   B3  77  0E  01  42  02  00  00  FF 
+ 856 centre   B4  77  0E  01  42  02  00  00  FF 
+ 857 centre   B5  78  0E  01  42  02  00  00  FF 
+ 858 centre   B6  78  0E  01  42  02  00  00  FF 
+ 859 centre   B7  79  0E  01  42  03  00  00  FF 
+ 860 centre   B8  79  0E  01  42  03  00  00  FF 
+ 861 centre   B9  7A  0E  01  42  03  00  00  FF 
+ 862 centre   BA  7A  0E  01  42  03  00  00  FF 
+ 863 centre   BB  7B  0E  01  42  04  00  00  FF 
+ 864 centre   BC  7B  0E  01  42  04  00  00  FF 
+ 865 centre   BD  7C  0E  01  42  04  00  00  FF 
+ 866 centre   BE  7C  0E  01  42  04  00  00  FF 
+ 867 centre   BF  7D  0E  01  42  05  00  00  FF 
+ 868 centre   C0  7D  0E  01  42  05  00  00  FF 
+ 869 centre   C1  7E  0E  01  42  05  00  00  FF 
+ 870 centre   C2  7E  0E  01  42  05  00  00  FF 
+ 871 centre   C3  7F  0E  01  42  01  00  00  FF 
+ 872 centre   C4  7F  0E  01  42  01  00  00  FF 
+ 873 centre   C5  80  0E  01  42  01  00  00  FF 
+ 874 centre   C6  80  0E  01  42  01  00  00  FF 
+ 875 centre   C7  81  0E  01  42  02  00  00  FF 
+ 876 centre   C8  81  0E  01  42  02  00  00  FF 
+ 877 centre   C9  82  0E  01  42  02  00  00  FF 
+ 878 centre   CA  82  0E  01  42  02  00  00  FF 
+ 879 centre   CB  83  0E  01  42  03  00  00  FF 
+ 880 centre   CC  83  0E  01  42  03  00  00  FF 
+ 881 centre   CD  84  0E  01  42  03  00  00  FF 
+ 882 centre   CE  84  0E  01  42  03  00  00  FF 
+ 883 centre   CF  85  0E  01  42  04  00  00  FF 
+ 884 centre   D0  85  0E  01  42  04  00  00  FF 
+ 885 centre   D1  86  0E  01  42  04  00  00  FF 
+ 886 centre   D2  86  0E  01  42  04  00  00  FF 
+ 887 centre   D3  87  0E  01  42  05  00  00  FF 
+ 888 centre   D4  87  0E  01  42  05  00  00  FF 
+ 889 centre   D5  88  0E  01  42  05  00  00  FF 
+ 890 centre   D6  88  0E  01  42  05  00  00  FF 
+ 891 centre   D7  89  0E  01  42  01  00  00  FF 
+ 892 centre   D8  89  0E  01  42  01  00  00  FF 
+ 893 centre   D9  8A  0E  01  42  01  00  00  FF 
+ 894 centre   DA  8A  0E  01  42  01  00  00  FF 
+ 895 centre   DB  8B  0E  01  42  02  00  00  FF 
+ 896 centre   DC  8B  0E  01  42  02  00  00  FF 
+ 897 centre   DD  8C  0E  01  42  02  00  00  FF 
+ 898 centre   DE  8C  0E  01  42  02  00  00  FF 
+ 899 centre   DF  8D  0E  01  42  03  00  00  FF 
+ 900 centre   E0  8D  0E  01  42  03  00  00  FF 
+ 901 centre   E1  8E  0E  01  42  03  00  00  FF 
+ 902 centre   E2  8E  0E  01  42  03  00  00  FF 
+ 903 centre   E3  8F  0E  01  42  04  00  00  FF 
+ 904 centre   E4  8F  0E  01  42  04  00  00  FF 
+ 905 centre   E5  90  0E  01  42  04  00  00  FF 
+ 906 centre   E6  90  0E  01  42  04  00  00  FF 
+ 907 centre   E7  91  0E  01  42  05  00  00  FF 
+ 908 centre   E8  91  0E  01  42  05  00  00  FF 
+ 909 centre   E9  92  0E  01  42  05  00  00  FF 
+ 910 centre   EA  92  0E  01  42  05  00  00  FF 
+ 911 centre   EB  93  0E  01  42  01  00  00  FF 
+ 912 centre   EC  93  0E  01  42  01  00  00  FF 
+ 913 centre   ED  94  0E  01  42  01  00  00  FF 
+ 914 centre   EE  94  0E  01  42  01  00  00  FF 
+ 915 centre   EF  95  0E  01  42  02  00  00  FF 
+ 916 centre   F0  95  0E  01  42  02  00  00  FF 
+ 917 centre   F1  96  0E  01  42  02  00  00  FF 
+ 918 centre   F2  96  0E  01  42  02  00  00  FF 
+ 919 centre   F3  97  0E  01  42  03  00  00  FF 
+ 920 centre   F4  97  0E  01  42  03  00  00  FF 
+ 921 centre   F5  98  0E  01  42  03  00  00  FF 
+ 922 centre   F6  98  0E  01  42  03  00  00  FF 
+ 923 centre   F7  99  0E  01  42  04  00  00  FF 
+ 924 centre   F8  99  0E  01  42  04  00  00  FF 
+ 925 centre   F9  9A  0E  01  42  04  00  00  FF 
+ 926 centre   FA  9A  0E  01  42  04  00  00  FF 
+ 927 centre   FB  9B  0E  01  42  05  00  00  FF 
+ 928 centre   FC  9B  0E  01  42  05  00  00  FF 
+ 929 centre   FD  9C  0E  01  42  05  00  00  FF 
+ 930 centre   FE  9C  0E  01  42  05  00  00  FF 
+ 931 centre   FF  9D  0E  01  42  01  00  00  FF 
+ 932 centre   00  9D  0E  01  42  01  00  00  FF 
+ 933 centre   01  9E  0E  01  41  01  00  00  FF 
+ 934 centre   02  9E  0E  01  41  01  00  00  FF 
+ 935 centre   03  9F  0E  01  41  02  00  00  FF 
+ 936 centre   04  9F  0E  01  41  02  00  00  FF 
+ 937 centre   05  A0  0E  01  41  02  00  00  FF 
+ 938 centre   06  A0  0E  01  41  02  00  00  FF 
+ 939 centre   07  A1  0E  01  41  03  00  00  FF 
+ 940 centre   08  A1  0E  01  41  03  00  00  FF 
+ 941 centre   09  A2  0E  01  41  03  00  00  FF 
+ 942 centre   0A  A2  0E  01  41  03  00  00  FF 
+ 943 centre   0B  A3  0E  01  41  04  00  00  FF 
+ 944 centre   0C  A3  0E  01  41  04  00  00  FF 
+ 945 centre   0D  A4  0E  01  41  04  00  00  FF 
+ 946 centre   0E  A4  0E  01  41  04  00  00  FF 
+ 947 centre   0F  A5  0E  01  41  05  00  00  FF 
+ 948 centre   10  A5  0E  01  41  05  00  00  FF 
+ 949 centre   11  A6  0E  01  41  05  00  00  FF 
+ 950 centre   12  A6  0E  01  41  05  00  00  FF 
+ 951 centre   13  A7  0E  01  41  01  00  00  FF 
+ 952 centre   14  A7  0E  01  41  01  00  00  FF 
+ 953 centre   15  A8  0E  01  41  01  00  00  FF 
+ 954 centre   16  A8  0E  01  41  01  00  00  FF 
+ 955 centre   17  A9  0E  01  41  02  00  00  FF 
+ 956 centre   18  A9  0E  01  41  02  00  00  FF 
+ 957 centre   19  AA  0E  01  41  02  00  00  FF 
+ 958 centre   1A  AA  0E  01  41  02  00  00  FF 
+ 959 centre   1B  AB  0E  01  41  03  00  00  FF 
+ 960 centre   1C  AB  0E  01  41  03  00  00  FF 
+ 961 centre   1D  AC  0E  01  41  03  00  00  FF 
+ 962 centre   1E  AC  0E  01  41  03  00  00  FF 
+ 963 centre   1F  AD  0E  01  41  04  00  00  FF 
+ 964 centre   20  AD  0E  01  41  04  00  00  FF 
+ 965 centre   21  AE  0E  01  41  04  00  00  FF 
+ 966 centre   22  AE  0E  01  41  04  00  00  FF 
+ 967 centre   23  AF  0E  01  41  05  00  00  FF 
+ 968 centre   24  AF  0E  01  41  05  00  00  FF 
+ 969 centre   25  B0  0E  01  41  05  00  00  FF 
+ 970 centre   26  B0  0E  01  41  05  00  00  FF 
+ 971 centre   27  B1  0E  01  41  01  00  00  FF 
+ 972 centre   28  B1  0E  01  41  01  00  00  FF 
+ 973 centre   29  B2  0E  01  41  01  00  00  FF 
+ 974 centre   2A  B2  0E  01  41  01  00  00  FF 
+ 975 centre   2B  B3  0E  01  41  02  00  00  FF 
+ 976 centre   2C  B3  0E  01  41  02  00  00  FF 
+ 977 centre   2D  B4  0E  01  41  02  00  00  FF 
+ 978 centre   2E  B4  0E  01  41  02  00  00  FF 
+ 979 centre   2F  B5  0E  01  41  03  00  00  FF 
+ 980 centre   30  B5  0E  01  41  03  00  00  FF 
+ 981 centre   31  B6  0E  01  41  03  00  00  FF 
+ 982 centre   32  B6  0E  01  41  03  00  00  FF 
+ 983 centre   33  B7  0E  01  41  04  00  00  FF 
+ 984 centre   34  B7  0E  01  41  04  00  00  FF 
+ 985 centre   35  B8  0E  01  41  04  00  00  FF 
+ 986 centre   36  B8  0E  01  41  04  00  00  FF 
+ 987 centre   37  B9  0E  01  41  05  00  00  FF 
+ 988 centre   38  B9  0E  01  41  05  00  00  FF 
+ 989 centre   39  BA  0E  01  41  05  00  00  FF 
+ 990 centre   3A  BA  0E  01  41  05  00  00  FF 
+ 991 centre   3B  BB  0E  01  41  01  00  00  FF 
+ 992 centre   3C  BB  0E  01  41  01  00  00  FF 
+ 993 centre   3D  BC  0E  01  41  01  00  00  FF 
+ 994 centre   3E  BC  0E  01  41  01  00  00  FF 
+ 995 centre   3F  BD  0E  01  41  02  00  00  FF 
+ 996 centre   40  BD  0E  01  41  02  00  00  FF 
+ 997 centre   41  BE  0E  01  41  02  00  00  FF 
+ 998 centre   42  BE  0E  01  41  02  00  00  FF 
+ 999 centre   43  BF  0E  01  41  03  00  00  FF 
+1000 centre   44  BF  0E  01  41  03  00  00  FF 
+1001 centre   45  C0  0E  01  41  03  00  00  FF 
+1002 centre   46  C0  0E  01  41  03  00  00  FF 
+1003 centre   47  C1  0E  01  41  04  00  00  FF 
+1004 centre   48  C1  0E  01  41  04  00  00  FF 
+1005 centre   49  C2  0E  01  41  04  00  00  FF 
+1006 centre   4A  C2  0E  01  41  04  00  00  FF 
+1007 centre   4B  C3  0E  01  41  05  00  00  FF 
+1008 centre   4C  C3  0E  01  41  05  00  00  FF 
+1009 centre   4D  C4  0E  01  41  05  00  00  FF 
+1010 centre   4E  C4  0E  01  41  05  00  00  FF 
+1011 centre   4F  C5  0E  01  41  01  00  00  FF 
+1012 centre   50  C5  0E  01  41  01  00  00  FF 
+1013 centre   51  C6  0E  01  41  01  00  00  FF 
+1014 centre   52  C6  0E  01  41  01  00  00  FF 
+1015 centre   53  C7  0E  01  41  02  00  00  FF 
+1016 centre   54  C7  0E  01  41  02  00  00  FF 
+1017 centre   55  C8  0E  01  41  02  00  00  FF 
+1018 centre   56  C8  0E  01  41  02  00  00  FF 
+1019 centre   57  C9  0E  01  41  03  00  00  FF 
+1020 centre   58  C9  0E  01  41  03  00  00  FF 
+1021 centre   59  CA  0E  01  41  03  00  00  FF 
+1022 centre   5A  CA  0E  01  41  03  00  00  FF 
+1023 centre   5B  CB  0E  01  41  04  00  00  FF 
+1024 centre   5C  CB  0E  01  41  04  00  00  FF 
+1025 centre   5D  CC  0E  01  41  04  00  00  FF 
+1026 centre   5E  CC  0E  01  41  04  00  00  FF 
+1027 centre   5F  2B  0F  00  41  05  00  00  FF 
+1028 centre   60  2B  0F  00  41  05  00  00  FF 
+1029 centre   61  2C  0F  00  41  05  00  00  FF 
+1030 centre   62  2C  0F  00  41  05  00  00  FF 
+1031 centre   63  2D  0F  00  41  01  00  00  FF 
+1032 centre   64  2D  0F  00  41  01  00  00  FF 
+1033 centre   65  2E  0F  00  41  01  00  00  FF 
+1034 centre   66  2E  0F  00  41  01  00  00  FF 
+1035 centre   67  2F  0F  00  41  02  00  00  FF 
+1036 centre   68  2F  0F  00  41  02  00  00  FF 
+1037 centre   69  30  0F  00  41  02  00  00  FF 
+1038 centre   6A  30  0F  00  41  02  00  00  FF 
+1039 centre   6B  31  0F  00  41  03  00  00  FF 
+1040 centre   6C  31  0F  00  41  03  00  00  FF 
+1041 centre   6D  32  0F  00  41  03  00  00  FF 
+1042 centre   6E  32  0F  00  41  03  00  00  FF 
+1043 centre   6F  33  0F  00  41  04  00  00  FF 
+1044 centre   70  33  0F  00  41  04  00  00  FF 
+1045 centre   71  34  0F  00  41  04  00  00  FF 
+1046 centre   72  34  0F  00  41  04  00  00  FF 
+1047 centre   73  35  0F  00  41  05  00  00  FF 
+1048 centre   74  35  0F  00  41  05  00  00  FF 
+1049 centre   75  36  0F  00  41  05  00  00  FF 
+1050 centre   76  36  0F  00  41  05  00  00  FF 
+1051 centre   77  37  0F  00  41  01  00  00  FF 
+1052 centre   78  37  0F  00  41  01  00  00  FF 
+1053 centre   79  38  0F  00  41  01  00  00  FF 
+1054 centre   7A  38  0F  00  41  01  00  00  FF 
+1055 centre   7B  39  0F  00  41  02  00  00  FF 
+1056 centre   7C  39  0F  00  41  02  00  00  FF 
+1057 centre   7D  3A  0F  00  41  02  00  00  FF 
+1058 centre   7E  3A  0F  00  41  02  00  00  FF 
+1059 centre   7F  3B  0F  00  41  03  00  00  FF 
+1060 centre   80  3B  0F  00  41  03  00  00  FF 
+1061 centre   81  3C  0F  00  40  03  00  00  FF 
+1062 centre   82  3C  0F  00  40  03  00  00  FF 
+1063 centre   83  3D  0F  00  40  04  00  00  FF 
+1064 centre   84  3D  0F  00  40  04  00  00  FF 
+1065 centre   85  3E  0F  00  40  04  00  00  FF 
+1066 centre   86  3E  0F  00  40  04  00  00  FF 
+1067 centre   87  3F  0F  00  40  05  00  00  FF 
+1068 centre   88  3F  0F  00  40  05  00  00  FF 
+1069 centre   89  40  0F  00  40  05  00  00  FF 
+1070 centre   8A  40  0F  00  40  05  00  00  FF 
+1071 centre   8B  41  0F  00  40  01  00  00  FF 
+1072 centre   8C  41  0F  00  40  01  00  00  FF 
+1073 centre   8D  42  0F  00  40  01  00  00  FF 
+1074 centre   8E  42  0F  00  40  01  00  00  FF 
+1075 centre   8F  43  0F  00  40  02  00  00  FF 
+1076 centre   90  43  0F  00  40  02  00  00  FF 
+1077 centre   91  44  0F  00  40  02  00  00  FF 
+1078 centre   92  44  0F  00  40  02  00  00  FF 
+1079 centre   93  45  0F  00  40  03  00  00  FF 
+1080 centre   94  45  0F  00  40  03  00  00  FF 
+1081 centre   95  46  0F  00  40  03  00  00  FF 
+1082 centre   96  46  0F  00  40  03  00  00  FF 
+1083 centre   97  47  0F  00  40  04  00  00  FF 
+1084 centre   98  47  0F  00  40  04  00  00  FF 
+1085 centre   99  48  0F  00  40  04  00  00  FF 
+1086 centre   9A  48  0F  00  40  04  00  00  FF 
+1087 centre   9B  49  0F  00  40  05  00  00  FF 
+1088 centre   9C  49  0F  00  40  05  00  00  FF 
+1089 centre   9D  4A  0F  00  40  05  00  00  FF 
+1090 centre   9E  4A  0F  00  40  05  00  00  FF 
+1091 centre   9F  4B  0F  00  40  01  00  00  FF 
+1092 centre   A0  4B  0F  00  40  01  00  00  FF 
+1093 centre   A1  4C  0F  00  40  01  00  00  FF 
+1094 centre   A2  4C  0F  00  40  01  00  00  FF 
+1095 centre   A3  4D  0F  00  40  02  00  00  FF 
+1096 centre   A4  4D  0F  00  40  02  00  00  FF 
+1097 centre   A5  4E  0F  00  40  02  00  00  FF 
+1098 centre   A6  4E  0F  00  40  02  00  00  FF 
+1099 centre   A7  4F  0F  00  40  03  00  00  FF 
+1100 centre   A8  4F  0F  00  40  03  00  00  FF 
+1101 centre   A9  50  0F  00  40  03  00  00  FF 
+1102 centre   AA  50  0F  00  40  03  00  00  FF 
+1103 centre   AB  51  0F  00  40  04  00  00  FF 
+1104 centre   AC  51  0F  00  40  04  00  00  FF 
+1105 centre   AD  52  0F  00  40  04  00  00  FF 
+1106 centre   AE  52  0F  00  40  04  00  00  FF 
+1107 centre   AF  53  0F  00  40  05  00  00  FF 
+1108 centre   B0  53  0F  00  40  05  00  00  FF 
+1109 centre   B1  54  0F  00  40  05  00  00  FF 
+1110 centre   B2  54  0F  00  40  05  00  00  FF 
+1111 centre   B3  55  0F  00  40  01  00  00  FF 
+1112 centre   B4  55  0F  00  40  01  00  00  FF 
+1113 centre   B5  56  0F  00  40  01  00  00  FF 
+1114 centre   B6  56  0F  00  40  01  00  00  FF 
+1115 centre   B7  57  0F  00  40  02  00  00  FF 
+1116 centre   B8  57  0F  00  40  02  00  00  FF 
+1117 centre   B9  58  0F  00  40  02  00  00  FF 
+1118 centre   BA  58  0F  00  40  02  00  00  FF 
+1119 centre   BB  59  0F  00  40  03  00  00  FF 
+1120 centre   BC  59  0F  00  40  03  00  00  FF 
+1121 centre   BD  5A  0F  00  40  03  00  00  FF 
+1122 centre   BE  5A  0F  00  40  03  00  00  FF 
+1123 centre   BF  5B  0F  00  40  04  00  00  FF 
+1124 centre   C0  5B  0F  00  40  04  00  00  FF 
+1125 centre   C1  5C  0F  00  40  04  00  00  FF 
+1126 centre   C2  5C  0F  00  40  04  00  00  FF 
+1127 centre   C3  5D  0F  00  40  05  00  00  FF 
+1128 centre   C4  5D  0F  00  40  05  00  00  FF 
+1129 centre   C5  5E  0F  00  40  05  00  00  FF 
+1130 centre   C6  5E  0F  00  40  05  00  00  FF 
+1131 centre   C7  5F  0F  00  40  01  00  00  FF 
+1132 centre   C8  5F  0F  00  40  01  00  00  FF 
+1133 centre   C9  60  0F  00  40  01  00  00  FF 
+1134 centre   CA  60  0F  00  40  01  00  00  FF 
+1135 centre   CB  61  0F  00  40  02  00  00  FF 
+1136 centre   CC  61  0F  00  40  02  00  00  FF 
+1137 centre   CD  62  0F  00  40  02  00  00  FF 
+1138 centre   CE  62  0F  00  40  02  00  00  FF 
+1139 centre   CF  63  0F  00  40  03  00  00  FF 
+1140 centre   D0  63  0F  00  40  03  00  00  FF 
+1141 centre   D1  64  0F  00  40  03  00  00  FF 
+1142 centre   D2  64  0F  00  40  03  00  00  FF 
+1143 centre   D3  65  0F  00  40  04  00  00  FF 
+1144 centre   D4  65  0F  00  40  04  00  00  FF 
+1145 centre   D5  66  0F  00  40  04  00  00  FF 
+1146 centre   D6  66  0F  00  40  04  00  00  FF 
+1147 centre   D7  67  0F  00  40  05  00  00  FF 
+1148 centre   D8  67  0F  00  40  05  00  00  FF 
+1149 centre   D9  68  0F  00  40  05  00  00  FF 
+1150 centre   DA  68  0F  00  40  05  00  00  FF 
+1151 centre   DB  69  0F  00  40  01  00  00  FF 
+1152 centre   DC  69  0F  00  40  01  00  00  FF 
+1153 centre   DD  6A  0F  00  40  01  00  00  FF 
+1154 centre   DE  6A  0F  00  40  01  00  00  FF 
+1155 centre   DF  6B  0F  00  40  02  00  00  FF 
+1156 centre   E0  6B  0F  00  40  02  00  00  FF 
+1157 centre   E1  6C  0F  00  40  02  00  00  FF 
+1158 centre   E2  6C  0F  00  40  02  00  00  FF 
+1159 centre   E3  6D  0F  00  40  03  00  00  FF 
+1160 centre   E4  6D  0F  00  40  03  00  00  FF 
+1161 centre   E5  6E  0F  00  40  03  00  00  FF 
+1162 centre   E6  6E  0F  00  40  03  00  00  FF 
+1163 centre   E7  6F  0F  00  40  04  00  00  FF 
+1164 centre   E8  6F  0F  00  40  04  00  00  FF 
+1165 centre   E9  70  0F  00  40  04  00  00  FF 
+1166 centre   EA  70  0F  00  40  04  00  00  FF 
+1167 centre   EB  71  0F  00  40  05  00  00  FF 
+1168 centre   EC  71  0F  00  40  05  00  00  FF 
+1169 centre   ED  72  0F  00  40  05  00  00  FF 
+1170 centre   EE  72  0F  00  40  05  00  00  FF 
+1171 centre   EF  73  0F  00  40  01  00  00  FF 
+1172 centre   F0  73  0F  00  40  01  00  00  FF 
+1173 centre   F1  74  0F  00  40  01  00  00  FF 
+1174 centre   F2  74  0F  00  40  01  00  00  FF 
+1175 centre   F3  75  0F  00  40  02  00  00  FF 
+1176 centre   F4  75  0F  00  40  02  00  00  FF 
+1177 centre   F5  76  0F  00  40  02  00  00  FF 
+1178 centre   F6  76  0F  00  40  02  00  00  FF 
+1179 centre   F7  77  0F  00  40  03  00  00  FF 
+1180 centre   F8  77  0F  00  40  03  00  00  FF 
+1181 centre   F9  78  0F  00  40  03  00  00  FF 
+1182 centre   FA  78  0F  00  40  03  00  00  FF 
+1183 centre   FB  79  0F  00  40  04  00  00  FF 
+1184 centre   FC  79  0F  00  40  04  00  00  FF 
+1185 centre   FD  7A  0F  00  40  04  00  00  FF 
+1186 centre   FE  7A  0F  00  40  04  00  00  FF 
+1187 centre   FF  7B  0F  00  40  05  00  00  FF 
+1188 centre   00  7B  0F  00  40  05  00  00  FF 
+1189 centre   01  7C  0F  00  39  05  00  00  FF 
+1190 centre   02  7C  0F  00  39  05  00  00  FF 
+1191 centre   03  7D  0F  00  39  01  00  00  FF 
+1192 centre   04  7D  0F  00  39  01  00  00  FF 
+1193 centre   05  7E  0F  00  39  01  00  00  FF 
+1194 centre   06  7E  0F  00  39  01  00  00  FF 
+1195 centre   07  7F  0F  00  39  02  00  00  FF 
+1196 centre   08  7F  0F  00  39  02  00  00  FF 
+1197 centre   09  80  0F  00  39  02  00  00  FF 
+1198 centre   0A  80  0F  00  39  02  00  00  FF 
+1199 centre   0B  81  0F  00  39  03  00  00  FF 
+1200 centre   0C  81  0F  00  39  03  00  00  FF 
+1201 centre   0D  82  0F  00  39  03  00  00  FF 
+1202 centre   0E  82  0F  00  39  03  00  00  FF 
+1203 centre   0F  83  0F  00  39  04  00  00  FF 
+1204 centre   10  83  0F  00  39  04  00  00  FF 
+1205 centre   11  84  0F  00  39  04  00  00  FF 
+1206 centre   12  84  0F  00  39  04  00  00  FF 
+1207 centre   13  85  0F  00  39  05  00  00  FF 
+1208 centre   14  85  0F  00  39  05  00  00  FF 
+1209 centre   15  86  0F  00  39  05  00  00  FF 
+1210 centre   16  86  0F  00  39  05  00  00  FF 
+1211 centre   17  87  0F  00  39  01  00  00  FF 
+1212 centre   18  87  0F  00  39  01  00  00  FF 
+1213 centre   19  88  0F  00  39  01  00  00  FF 
+1214 centre   1A  88  0F  00  39  01  00  00  FF 
+1215 centre   1B  89  0F  00  39  02  00  00  FF 
+1216 centre   1C  89  0F  00  39  02  00  00  FF 
+1217 centre   1D  8A  0F  00  39  02  00  00  FF 
+1218 centre   1E  8A  0F  00  39  02  00  00  FF 
+1219 centre   1F  8B  0F  00  39  03  00  00  FF 
+1220 centre   20  8B  0F  00  39  03  00  00  FF 
+1221 centre   21  8C  0F  00  39  03  00  00  FF 
+1222 centre   22  8C  0F  00  39  03  00  00  FF 
+1223 centre   23  8D  0F  00  39  04  00  00  FF 
+1224 centre   24  8D  0F  00  39  04  00  00  FF 
+1225 centre   25  8E  0F  00  39  04  00  00  FF 
+1226 centre   26  8E  0F  00  39  04  00  00  FF 
+1227 centre   27  8F  0F  00  39  05  00  00  FF 
+1228 centre   28  8F  0F  00  39  05  00  00  FF 
+1229 centre   29  90  0F  00  39  05  00  00  FF 
+1230 centre   2A  90  0F  00  39  05  00  00  FF 
+1231 centre   2B  91  0F  00  39  01  00  00  FF 
+1232 centre   2C  91  0F  00  39  01  00  00  FF 
+1233 centre   2D  92  0F  00  39  01  00  00  FF 
+1234 centre   2E  92  0F  00  39  01  00  00  FF 
+1235 centre   2F  93  0F  00  39  02  00  00  FF 
+1236 centre   30  93  0F  00  39  02  00  00  FF 
+1237 centre   31  94  0F  00  39  02  00  00  FF 
+1238 centre   32  94  0F  00  39  02  00  00  FF 
+1239 centre   33  95  0F  00  39  03  00  00  FF 
+1240 centre   34  95  0F  00  39  03  00  00  FF 
+1241 centre   35  96  0F  00  39  03  00  00  FF 
+1242 centre   36  96  0F  00  39  03  00  00  FF 
+1243 centre   37  97  0F  00  39  04  00  00  FF 
+1244 centre   38  97  0F  00  39  04  00  00  FF 
+1245 centre   39  98  0F  00  39  04  00  00  FF 
+1246 centre   3A  98  0F  00  39  04  00  00  FF 
+1247 centre   3B  99  0F  00  39  05  00  00  FF 
+1248 centre   3C  99  0F  00  39  05  00  00  FF 
+1249 centre   3D  9A  0F  00  39  05  00  00  FF 
+1250 centre   3E  9A  0F  00  39  05  00  00  FF 
+1251 centre   3F  9B  0F  00  39  01  00  00  FF 
+1252 centre   40  9B  0F  00  39  01  00  00  FF 
+1253 centre   41  9C  0F  00  39  01  00  00  FF 
+1254 centre   42  9C  0F  00  39  01  00  00  FF 
+1255 centre   43  9D  0F  00  39  02  00  00  FF 
+1256 centre   44  9D  0F  00  39  02  00  00  FF 
+1257 centre   45  9E  0F  00  39  02  00  00  FF 
+1258 centre   46  9E  0F  00  39  02  00  00  FF 
+1259 centre   47  9F  0F  00  39  03  00  00  FF 
+1260 centre   48  9F  0F  00  39  03  00  00  FF 
+1261 centre   49  A0  0F  00  39  03  00  00  FF 
+1262 centre   4A  A0  0F  00  39  03  00  00  FF 
+1263 centre   4B  A1  0F  00  39  04  00  00  FF 
+1264 centre   4C  A1  0F  00  39  04  00  00  FF 
+1265 centre   4D  A2  0F  00  39  04  00  00  FF 
+1266 centre   4E  A2  0F  00  39  04  00  00  FF 
+1267 centre   4F  A3  0F  00  39  05  00  00  FF 
+1268 centre   50  A3  0F  00  39  05  00  00  FF 
+1269 centre   51  A4  0F  00  39  05  00  00  FF 
+1270 centre   52  A4  0F  00  39  05  00  00  FF 
+1271 centre   53  A5  0F  00  39  01  00  00  FF 
+1272 centre   54  A5  0F  00  39  01  00  00  FF 
+1273 centre   55  A6  0F  00  39  01  00  00  FF 
+1274 centre   56  A6  0F  00  39  01  00  00  FF 
+1275 centre   57  A7  0F  00  39  02  00  00  FF 
+1276 centre   58  A7  0F  00  39  02  00  00  FF 
+1277 centre   59  A8  0F  00  39  02  00  00  FF 
+1278 centre   5A  A8  0F  00  39  02  00  00  FF 
+1279 centre   5B  A9  0F  00  39  03  00  00  FF 
+1280 centre   5C  A9  0F  00  39  03  00  00  FF 
+1281 centre   5D  AA  0F  00  39  03  00  00  FF 
+1282 centre   5E  AA  0F  00  39  03  00  00  FF 
+1283 centre   5F  AB  0F  00  39  04  00  00  FF 
+1284 centre   60  AB  0F  00  39  04  00  00  FF 
+1285 centre   61  AC  0F  00  39  04  00  00  FF 
+1286 centre   62  AC  0F  00  39  04  00  00  FF 
+1287 centre   63  AD  0F  00  39  05  00  00  FF 
+1288 centre   64  AD  0F  00  39  05  00  00  FF 
+1289 centre   65  AE  0F  00  39  05  00  00  FF 
+1290 centre   66  AE  0F  00  39  05  00  00  FF 
+1291 centre   67  AF  0F  00  39  01  00  00  FF 
+1292 centre   68  AF  0F  00  39  01  00  00  FF 
+1293 centre   69  B0  0F  00  39  01  00  00  FF 
+1294 centre   6A  B0  0F  00  39  01  00  00  FF 
+1295 centre   6B  B1  0F  00  39  02  00  00  FF 
+1296 centre   6C  B1  0F  00  39  02  00  00  FF 
+1297 centre   6D  B2  0F  00  39  02  00  00  FF 
+1298 centre   6E  B2  0F  00  39  02  00  00  FF 
+1299 centre   6F  B3  0F  00  39  03  00  00  FF 
+1300 centre   70  B3  0F  00  39  03  00  00  FF 
+1301 centre   71  B4  0F  00  39  03  00  00  FF 
+1302 centre   72  B4  0F  00  39  03  00  00  FF 
+1303 centre   73  B5  0F  00  39  04  00  00  FF 
+1304 centre   74  B5  0F  00  39  04  00  00  FF 
+1305 centre   75  B6  0F  00  39  04  00  00  FF 
+1306 centre   76  B6  0F  00  39  04  00  00  FF 
+1307 centre   77  B7  0F  00  39  05  00  00  FF 
+1308 centre   78  B7  0F  00  39  05  00  00  FF 
+1309 centre   79  B8  0F  00  39  05  00  00  FF 
+1310 centre   7A  B8  0F  00  39  05  00  00  FF 
+1311 centre   7B  B9  0F  00  39  01  00  00  FF 
+1312 centre   7C  B9  0F  00  39  01  00  00  FF 
+1313 centre   7D  BA  0F  00  39  01  00  00  FF 
+1314 centre   7E  BA  0F  00  39  01  00  00  FF 
+1315 centre   7F  BB  0F  00  39  02  00  00  FF 
+1316 centre   80  BB  0F  00  39  02  00  00  FF 
+1317 centre   81  BC  0F  00  38  02  00  00  FF 
+1318 centre   82  BC  0F  00  38  02  00  00  FF 
+1319 centre   83  BD  0F  00  38  03  00  00  FF 
+1320 centre   84  BD  0F  00  38  03  00  00  FF 
+1321 centre   85  BE  0F  00  38  03  00  00  FF 
+1322 centre   86  BE  0F  00  38  03  00  00  FF 
+1323 centre   87  BF  0F  00  38  04  00  00  FF 
+1324 centre   88  BF  0F  00  38  04  00  00  FF 
+1325 centre   89  C0  0F  00  38  04  00  00  FF 
+1326 centre   8A  C0  0F  00  38  04  00  00  FF 
+1327 centre   8B  C1  0F  00  38  05  00  00  FF 
+1328 centre   8C  C1  0F  00  38  05  00  00  FF 
+1329 centre   8D  C2  0F  00  38  05  00  00  FF 
+1330 centre   8E  C2  0F  00  38  05  00  00  FF 
+1331 centre   8F  C3  0F  00  38  01  00  00  FF 
+1332 centre   90  C3  0F  00  38  01  00  00  FF 
+1333 centre   91  C4  0F  00  38  01  00  00  FF 
+1334 centre   92  C4  0F  00  38  01  00  00  FF 
+1335 centre   93  C5  0F  00  38  02  00  00  FF 
+1336 centre   94  C5  0F  00  38  02  00  00  FF 
+1337 centre   95  C6  0F  00  38  02  00  00  FF 
+1338 centre   96  C6  0F  00  38  02  00  00  FF 
+1339 centre   97  C7  0F  00  38  03  00  00  FF 
+1340 centre   98  C7  0F  00  38  03  00  00  FF 
+1341 centre   99  C8  0F  00  38  03  00  00  FF 
+1342 centre   9A  C8  0F  00  38  03  00  00  FF 
+1343 centre   9B  C9  0F  00  38  04  00  00  FF 
+1344 centre   9C  C9  0F  00  38  04  00  00  FF 
+1345 centre   9D  CA  0F  00  38  04  00  00  FF 
+1346 centre   9E  CA  0F  00  38  04  00  00  FF 
+1347 centre   9F  CB  0F  00  38  05  00  00  FF 
+1348 centre   A0  CB  0F  00  38  05  00  00  FF 
+1349 centre   A1  CC  0F  00  38  05  00  00  FF 
+1350 centre   A2  CC  0F  00  38  05  00  00  FF 
+1351 centre   A3  CD  10  00  38  01  18  00  FF 
+1352 centre   A4  CD  10  00  38  01  18  00  FF 
+1353 centre   A5  CC  10  00  38  01  18  00  FF 
+1354 centre   A6  CC  10  00  38  01  18  00  FF 
+1355 centre   A7  CB  10  00  38  02  18  00  FF 
+1356 centre   A8  CB  10  00  38  02  18  00  FF 
+1357 centre   A9  CA  10  00  38  02  18  00  FF 
+1358 centre   AA  CA  10  00  38  02  18  00  FF 
+1359 centre   AB  C9  10  00  38  03  18  00  FF 
+1360 centre   AC  C9  10  00  38  03  18  00  FF 
+1361 centre   AD  C8  10  00  38  03  18  00  FF 
+1362 centre   AE  C8  10  00  38  03  18  00  FF 
+1363 centre   AF  C7  10  00  38  04  18  00  FF 
+1364 centre   B0  C7  10  00  38  04  18  00  FF 
+1365 centre   B1  C6  10  00  38  04  18  00  FF 
+1366 centre   B2  C6  10  00  38  04  18  00  FF 
+1367 centre   B3  C5  10  00  38  05  18  00  FF 
+1368 centre   B4  C5  10  00  38  05  18  00  FF 
+1369 centre   B5  C4  10  00  38  05  18  00  FF 
+1370 centre   B6  C4  10  00  38  05  18  00  FF 
+1371 centre   B7  C3  10  00  38  01  18  00  FF 
+1372 centre   B8  C3  10  00  38  01  18  00  FF 
+1373 centre   B9  C2  10  00  38  01  18  00  FF 
+1374 centre   BA  C2  10  00  38  01  18  00  FF 
+1375 centre   BB  C1  10  00  38  02  18  00  FF 
+1376 centre   BC  C1  10  00  38  02  18  00  FF 
+1377 centre   BD  C0  10  00  38  02  18  00  FF 
+1378 centre   BE  C0  10  00  38  02  18  00  FF 
+1379 centre   BF  BF  10  00  38  03  18  00  FF 
+1380 centre   C0  BF  10  00  38  03  18  00  FF 
+1381 centre   C1  BE  10  00  38  03  18  00  FF 
+1382 centre   C2  BE  10  00  38  03  18  00  FF 
+1383 centre   C3  BD  10  00  38  04  18  00  FF 
+1384 centre   C4  BD  10  00  38  04  18  00  FF 
+1385 centre   C5  BC  10  00  38  04  18  00  FF 
+1386 centre   C6  BC  10  00  38  04  18  00  FF 
+1387 centre   C7  BB  10  00  38  05  18  00  FF 
+1388 centre   C8  BB  10  00  38  05  18  00  FF 
+1389 centre   C9  BA  10  00  38  05  18  00  FF 
+1390 centre   CA  BA  10  00  38  05  18  00  FF 
+1391 centre   CB  B9  10  00  38  01  18  00  FF 
+1392 centre   CC  B9  10  00  38  01  18  00  FF 
+1393 centre   CD  B8  10  00  38  01  18  00  FF 
+1394 centre   CE  B8  10  00  38  01  18  00  FF 
+1395 centre   CF  B7  10  00  38  02  18  00  FF 
+1396 centre   D0  B7  10  00  38  02  18  00  FF 
+1397 centre   D1  B6  10  00  38  02  18  00  FF 
+1398 centre   D2  B6  10  00  38  02  18  00  FF 
+1399 centre   D3  B5  10  00  38  03  18  00  FF 
+1400 centre   D4  B5  10  00  38  03  18  00  FF 
+1401 centre   D5  B4  10  00  38  03  18  00  FF 
+1402 centre   D6  B4  10  00  38  03  18  00  FF 
+1403 centre   D7  B3  10  00  38  04  18  00  FF 
+1404 centre   D8  B3  10  00  38  04  18  00  FF 
+1405 centre   D9  B2  10  00  38  04  18  00  FF 
+1406 centre   DA  B2  10  00  38  04  18  00  FF 
+1407 centre   DB  B1  10  00  38  05  18  00  FF 
+1408 centre   DC  B1  10  00  38  05  18  00  FF 
+1409 centre   DD  B0  10  00  38  05  18  00  FF 
+1410 centre   DE  B0  10  00  38  05  18  00  FF 
+1411 centre   DF  AF  10  00  38  01  18  00  FF 
+1412 centre   E0  AF  10  00  38  01  18  00  FF 
+1413 centre   E1  AE  10  00  38  01  18  00  FF 
+1414 centre   E2  AE  10  00  38  01  18  00  FF 
+1415 centre   E3  AD  10  00  38  02  18  00  FF 
+1416 centre   E4  AD  10  00  38  02  18  00  FF 
+1417 centre   E5  AC  10  00  38  02  18  00  FF 
+1418 centre   E6  AC  10  00  38  02  18  00  FF 
+1419 centre   E7  AB  10  00  38  03  18  00  FF 
+1420 centre   E8  AB  10  00  38  03  18  00  FF 
+1421 centre   E9  AA  10  00  38  03  18  00  FF 
+1422 centre   EA  AA  10  00  38  03  18  00  FF 
+1423 centre   EB  A9  10  00  38  04  18  00  FF 
+1424 centre   EC  A9  10  00  38  04  18  00  FF 
+1425 centre   ED  A8  10  00  38  04  18  00  FF 
+1426 centre   EE  A8  10  00  38  04  18  00  FF 
+1427 centre   EF  A7  10  00  38  05  18  00  FF 
+1428 centre   F0  A7  10  00  38  05  18  00  FF 
+1429 centre   F1  A6  10  00  38  05  18  00  FF 
+1430 centre   F2  A6  10  00  38  05  18  00  FF 
+1431 centre   F3  A5  10  00  38  01  18  00  FF 
+1432 centre   F4  A5  10  00  38  01  18  00  FF 
+1433 centre   F5  A4  10  00  38  01  18  00  FF 
+1434 centre   F6  A4  10  00  38  01  18  00  FF 
+1435 centre   F7  A3  10  00  38  02  18  00  FF 
+1436 centre   F8  A3  10  00  38  02  18  00  FF 
+1437 centre   F9  A2  10  00  38  02  18  00  FF 
+1438 centre   FA  A2  10  00  38  02  18  00  FF 
+1439 centre   FB  A1  10  00  38  03  18  00  FF 
+1440 centre   FC  A1  10  00  38  03  18  00  FF 
+1441 centre   FD  A0  10  00  38  03  18  00  FF 
+1442 centre   FE  A0  10  00  38  03  18  00  FF 
+1443 centre   FF  9F  10  00  38  04  18  00  FF 
+1444 centre   00  9F  10  00  38  04  18  00  FF 
+1445 centre   01  9E  10  00  37  04  18  00  FF 
+1446 centre   02  9E  10  00  37  04  18  00  FF 
+1447 centre   03  9D  10  00  37  05  18  00  FF 
+1448 centre   04  9D  10  00  37  05  18  00  FF 
+1449 centre   05  9C  10  00  37  05  18  00  FF 
+1450 centre   06  9C  10  00  37  05  18  00  FF 
+1451 centre   07  9B  10  00  37  01  18  00  FF 
+1452 centre   08  9B  10  00  37  01  18  00  FF 
+1453 centre   09  9A  10  00  37  01  18  00  FF 
+1454 centre   0A  9A  10  00  37  01  18  00  FF 
+1455 centre   0B  99  10  00  37  02  18  00  FF 
+1456 centre   0C  99  10  00  37  02  18  00  FF 
+1457 centre   0D  98  10  00  37  02  18  00  FF 
+1458 centre   0E  98  10  00  37  02  18  00  FF 
+1459 centre   0F  97  10  00  37  03  18  00  FF 
+1460 centre   10  97  10  00  37  03  18  00  FF 
+1461 centre   11  96  10  00  37  03  18  00  FF 
+1462 centre   12  96  10  00  37  03  18  00  FF 
+1463 centre   13  95  10  00  37  04  18  00  FF 
+1464 centre   14  95  10  00  37  04  18  00  FF 
+1465 centre   15  94  10  00  37  04  18  00  FF 
+1466 centre   16  94  10  00  37  04  18  00  FF 
+1467 centre   17  93  10  00  37  05  18  00  FF 
+1468 centre   18  93  10  00  37  05  18  00  FF 
+1469 centre   19  92  10  00  37  05  18  00  FF 
+1470 centre   1A  92  10  00  37  05  18  00  FF 
+1471 centre   1B  91  10  00  37  01  18  00  FF 
+1472 centre   1C  91  10  00  37  01  18  00  FF 
+1473 centre   1D  90  10  00  37  01  18  00  FF 
+1474 centre   1E  90  10  00  37  01  18  00  FF 
+1475 centre   1F  8F  10  00  37  02  18  00  FF 
+1476 centre   20  8F  10  00  37  02  18  00  FF 
+1477 centre   21  8E  10  00  37  02  18  00  FF 
+1478 centre   22  8E  10  00  37  02  18  00  FF 
+1479 centre   23  8D  10  00  37  03  18  00  FF 
+1480 centre   24  8D  10  00  37  03  18  00  FF 
+1481 centre   25  8C  10  00  37  03  18  00  FF 
+1482 centre   26  8C  10  00  37  03  18  00  FF 
+1483 centre   27  8B  10  00  37  04  18  00  FF 
+1484 centre   28  8B  10  00  37  04  18  00  FF 
+1485 centre   29  8A  10  00  37  04  18  00  FF 
+1486 centre   2A  8A  10  00  37  04  18  00  FF 
+1487 centre   2B  89  10  00  37  05  18  00  FF 
+1488 centre   2C  89  10  00  37  05  18  00  FF 
+1489 centre   2D  88  10  00  37  05  18  00  FF 
+1490 centre   2E  88  10  00  37  05  18  00  FF 
+1491 centre   2F  87  10  00  37  01  18  00  FF 
+1492 centre   30  87  10  00  37  01  18  00  FF 
+1493 centre   31  86  10  00  37  01  18  00  FF 
+1494 centre   32  86  10  00  37  01  18  00  FF 
+1495 centre   33  85  10  00  37  02  18  00  FF 
+1496 centre   34  85  10  00  37  02  18  00  FF 
+1497 centre   35  84  10  00  37  02  18  00  FF 
+1498 centre   36  84  10  00  37  02  18  00  FF 
+1499 centre   37  83  10  00  37  03  18  00  FF 
+1500 centre   38  83  10  00  37  03  18  00  FF 
+1501 centre   39  82  10  00  37  03  18  00  FF 
+1502 centre   3A  82  10  00  37  03  18  00  FF 
+1503 centre   3B  81  10  00  37  04  18  00  FF 
+1504 centre   3C  81  10  00  37  04  18  00  FF 
+1505 centre   3D  80  10  00  37  04  18  00  FF 
+1506 centre   3E  80  10  00  37  04  18  00  FF 
+1507 centre   3F  7F  10  00  37  05  18  00  FF 
+1508 centre   40  7F  10  00  37  05  18  00  FF 
+1509 centre   41  7E  10  00  37  05  18  00  FF 
+1510 centre   42  7E  10  00  37  05  18  00  FF 
+1511 centre   43  7D  10  00  37  01  18  00  FF 
+1512 centre   44  7D  10  00  37  01  18  00  FF 
+1513 centre   45  7C  10  00  37  01  18  00  FF 
+1514 centre   46  7C  10  00  37  01  18  00  FF 
+1515 centre   47  7B  10  00  37  02  18  00  FF 
+1516 centre   48  7B  10  00  37  02  18  00  FF 
+1517 centre   49  7A  10  00  37  02  18  00  FF 
+1518 centre   4A  7A  10  00  37  02  18  00  FF 
+1519 centre   4B  79  10  00  37  03  18  00  FF 
+1520 centre   4C  79  10  00  37  03  18  00  FF 
+1521 centre   4D  78  10  00  37  03  18  00  FF 
+1522 centre   4E  78  10  00  37  03  18  00  FF 
+1523 centre   4F  77  10  00  37  04  18  00  FF 
+1524 centre   50  77  10  00  37  04  18  00  FF 
+1525 centre   51  76  10  00  37  04  18  00  FF 
+1526 centre   52  76  10  00  37  04  18  00  FF 
+1527 centre   53  75  10  00  37  05  18  00  FF 
+1528 centre   54  75  10  00  37  05  18  00  FF 
+1529 centre   55  74  10  00  37  05  18  00  FF 
+1530 centre   56  74  10  00  37  05  18  00  FF 
+1531 centre   57  73  10  00  37  01  18  00  FF 
+1532 centre   58  73  10  00  37  01  18  00  FF 
+1533 centre   59  72  10  00  37  01  18  00  FF 
+1534 centre   5A  72  10  00  37  01  18  00  FF 
+1535 centre   5B  71  10  00  37  02  18  00  FF 
+1536 centre   5C  71  10  00  37  02  18  00  FF 
+1537 centre   5D  70  10  00  37  02  18  00  FF 
+1538 centre   5E  70  10  00  37  02  18  00  FF 
+1539 centre   5F  6F  10  00  37  03  18  00  FF 
+1540 centre   60  6F  10  00  37  03  18  00  FF 
+1541 centre   61  6E  10  00  37  03  18  00  FF 
+1542 centre   62  6E  10  00  37  03  18  00  FF 
+1543 centre   63  6D  10  00  37  04  18  00  FF 
+1544 centre   64  6D  10  00  37  04  18  00  FF 
+1545 centre   65  6C  10  00  37  04  18  00  FF 
+1546 centre   66  6C  10  00  37  04  18  00  FF 
+1547 centre   67  6B  10  00  37  05  18  00  FF 
+1548 centre   68  6B  10  00  37  05  18  00  FF 
+1549 centre   69  6A  10  00  37  05  18  00  FF 
+1550 centre   6A  6A  10  00  37  05  18  00  FF 
+1551 centre   6B  69  10  00  37  01  18  00  FF 
+1552 centre   6C  69  10  00  37  01  18  00  FF 
+1553 centre   6D  68  10  00  37  01  18  00  FF 
+1554 centre   6E  68  10  00  37  01  18  00  FF 
+1555 centre   6F  67  10  00  37  02  18  00  FF 
+1556 centre   70  67  10  00  37  02  18  00  FF 
+1557 centre   71  66  10  00  37  02  18  00  FF 
+1558 centre   72  66  10  00  37  02  18  00  FF 
+1559 centre   73  65  10  00  37  03  18  00  FF 
+1560 centre   74  65  10  00  37  03  18  00  FF 
+1561 centre   75  64  10  00  37  03  18  00  FF 
+1562 centre   76  64  10  00  37  03  18  00  FF 
+1563 centre   77  63  10  00  37  04  18  00  FF 
+1564 centre   78  63  10  00  37  04  18  00  FF 
+1565 centre   79  62  10  00  37  04  18  00  FF 
+1566 centre   7A  62  10  00  37  04  18  00  FF 
+1567 centre   7B  61  10  00  37  05  18  00  FF 
+1568 centre   7C  61  10  00  37  05  18  00  FF 
+1569 centre   7D  60  10  00  37  05  18  00  FF 
+1570 centre   7E  60  10  00  37  05  18  00  FF 
+1571 centre   7F  5F  10  00  37  01  18  00  FF 
+1572 centre   80  5F  10  00  37  01  18  00  FF 
+1573 centre   81  5E  10  00  36  01  18  00  FF 
+1574 centre   82  5E  10  00  36  01  18  00  FF 
+1575 centre   83  5D  10  00  36  02  18  00  FF 
+1576 centre   84  5D  10  00  36  02  18  00  FF 
+1577 centre   85  5C  10  00  36  02  18  00  FF 
+1578 centre   86  5C  10  00  36  02  18  00  FF 
+1579 centre   87  5B  10  00  36  03  18  00  FF 
+1580 centre   88  5B  10  00  36  03  18  00  FF 
+1581 centre   89  5A  10  00  36  03  18  00  FF 
+1582 centre   8A  5A  10  00  36  03  18  00  FF 
+1583 centre   8B  59  10  00  36  04  18  00  FF 
+1584 centre   8C  59  10  00  36  04  18  00  FF 
+1585 centre   8D  58  10  00  36  04  18  00  FF 
+1586 centre   8E  58  10  00  36  04  18  00  FF 
+1587 centre   8F  57  10  00  36  05  18  00  FF 
+1588 centre   90  57  10  00  36  05  18  00  FF 
+1589 centre   91  56  10  00  36  05  18  00  FF 
+1590 centre   92  56  10  00  36  05  18  00  FF 
+1591 centre   93  55  10  00  36  01  18  00  FF 
+1592 centre   94  55  10  00  36  01  18  00  FF 
+1593 centre   95  54  10  00  36  01  18  00  FF 
+1594 centre   96  54  10  00  36  01  18  00  FF 
+1595 centre   97  53  10  00  36  02  18  00  FF 
+1596 centre   98  53  10  00  36  02  18  00  FF 
+1597 centre   99  52  10  00  36  02  18  00  FF 
+1598 centre   9A  52  10  00  36  02  18  00  FF 
+1599 centre   9B  51  10  00  36  03  18  00  FF 
+1600 centre   9C  51  10  00  36  03  18  00  FF 
+1601 centre   9D  50  10  00  36  03  18  00  FF 
+1602 centre   9E  50  10  00  36  03  18  00  FF 
+1603 centre   9F  4F  10  00  36  04  18  00  FF 
+1604 centre   A0  4F  10  00  36  04  18  00  FF 
+1605 centre   A1  4E  10  00  36  04  18  00  FF 
+1606 centre   A2  4E  10  00  36  04  18  00  FF 
+1607 centre   A3  4D  10  00  36  05  18  00  FF 
+1608 centre   A4  4D  10  00  36  05  18  00  FF 
+1609 centre   A5  4C  10  00  36  05  18  00  FF 
+1610 centre   A6  4C  10  00  36  05  18  00  FF 
+1611 centre   A7  4B  10  00  36  01  18  00  FF 
+1612 centre   A8  4B  10  00  36  01  18  00  FF 
+1613 centre   A9  4A  10  00  36  01  18  00  FF 
+1614 centre   AA  4A  10  00  36  01  18  00  FF 
+1615 centre   AB  49  10  00  36  02  18  00  FF 
+1616 centre   AC  49  10  00  36  02  18  00  FF 
+1617 centre   AD  48  10  00  36  02  18  00  FF 
+1618 centre   AE  48  10  00  36  02  18  00  FF 
+1619 centre   AF  47  10  00  36  03  18  00  FF 
+1620 centre   B0  47  10  00  36  03  18  00  FF 
+1621 centre   B1  46  10  00  36  03  18  00  FF 
+1622 centre   B2  46  10  00  36  03  18  00  FF 
+1623 centre   B3  45  10  00  36  04  18  00  FF 
+1624 centre   B4  45  10  00  36  04  18  00  FF 
+1625 centre   B5  44  10  00  36  04  18  00  FF 
+1626 centre   B6  44  10  00  36  04  18  00  FF 
+1627 centre   B7  43  10  00  36  05  18  00  FF 
+1628 centre   B8  43  10  00  36  05  18  00  FF 
+1629 centre   B9  42  10  00  36  05  18  00  FF 
+1630 centre   BA  42  10  00  36  05  18  00  FF 
+1631 centre   BB  41  10  00  36  01  18  00  FF 
+1632 centre   BC  41  10  00  36  01  18  00  FF 
+1633 centre   BD  40  10  00  36  01  18  00  FF 
+1634 centre   BE  40  10  00  36  01  18  00  FF 
+1635 centre   BF  3F  10  00  36  02  18  00  FF 
+1636 centre   C0  3F  10  00  36  02  18  00  FF 
+1637 centre   C1  3E  10  00  36  02  18  00  FF 
+1638 centre   C2  3E  10  00  36  02  18  00  FF 
+1639 centre   C3  3D  10  00  36  03  18  00  FF 
+1640 centre   C4  3D  10  00  36  03  18  00  FF 
+1641 centre   C5  3C  10  00  36  03  18  00  FF 
+1642 centre   C6  3C  10  00  36  03  18  00  FF 
+1643 centre   C7  3B  10  00  36  04  18  00  FF 
+1644 centre   C8  3B  10  00  36  04  18  00  FF 
+1645 centre   C9  3A  10  00  36  04  18  00  FF 
+1646 centre   CA  3A  10  00  36  04  18  00  FF 
+1647 centre   CB  39  10  00  36  05  18  00  FF 
+1648 centre   CC  39  10  00  36  05  18  00  FF 
+1649 centre   CD  38  10  00  36  05  18  00  FF 
+1650 centre   CE  38  10  00  36  05  18  00  FF 
+1651 centre   CF  37  10  00  36  01  18  00  FF 
+1652 centre   D0  37  10  00  36  01  18  00  FF 
+1653 centre   D1  36  10  00  36  01  18  00  FF 
+1654 centre   D2  36  10  00  36  01  18  00  FF 
+1655 centre   D3  35  10  00  36  02  18  00  FF 
+1656 centre   D4  35  10  00  36  02  18  00  FF 
+1657 centre   D5  34  10  00  36  02  18  00  FF 
+1658 centre   D6  34  10  00  36  02  18  00  FF 
+1659 centre   D7  33  10  00  36  03  18  00  FF 
+1660 centre   D8  33  10  00  36  03  18  00  FF 
+1661 centre   D9  32  10  00  36  03  18  00  FF 
+1662 centre   DA  32  10  00  36  03  18  00  FF 
+1663 centre   DB  31  10  00  36  04  18  00  FF 
+1664 centre   DC  31  10  00  36  04  18  00  FF 
+1665 centre   DD  30  10  00  36  04  18  00  FF 
+1666 centre   DE  30  10  00  36  04  18  00  FF 
+1667 centre   DF  2F  10  00  36  05  18  00  FF 
+1668 centre   E0  2F  10  00  36  05  18  00  FF 
+1669 centre   E1  2E  10  00  36  05  18  00  FF 
+1670 centre   E2  2E  10  00  36  05  18  00  FF 
+1671 centre   E3  2D  10  00  36  01  18  00  FF 
+1672 centre   E4  2D  10  00  36  01  18  00  FF 
+1673 centre   E5  2C  10  00  36  01  18  00  FF 
+1674 centre   E6  2C  10  00  36  01  18  00  FF 
+1675 centre   E7  2B  10  00  36  02  18  00  FF 
+1676 centre   E8  2B  10  00  36  02  18  00  FF 
+1677 centre   E9  2A  10  00  36  02  18  00  FF 
+1678 centre   EA  2A  10  00  36  02  18  00  FF 
+1679 centre   EB  29  10  00  36  03  18  00  FF 
+1680 centre   EC  29  10  00  36  03  18  00  FF 
+1681 centre   ED  CF  11  01  36  04  18  00  FF 
+1682 centre   EE  CF  11  01  36  04  18  00  FF 
+1683 centre   EF  CE  11  01  36  04  18  00  FF 
+1684 centre   F0  CE  11  01  36  04  18  00  FF 
+1685 centre   F1  CD  11  01  36  05  18  00  FF 
+1686 centre   F2  CD  11  01  36  05  18  00  FF 
+1687 centre   F3  CC  11  01  36  05  18  00  FF 
+1688 centre   F4  CC  11  01  36  05  18  00  FF 
+1689 centre   F5  CB  11  01  36  01  18  00  FF 
+1690 centre   F6  CB  11  01  36  01  18  00  FF 
+1691 centre   F7  CA  11  01  36  01  18  00  FF 
+1692 centre   F8  CA  11  01  36  01  18  00  FF 
+1693 centre   F9  C9  11  01  36  02  18  00  FF 
+1694 centre   FA  C9  11  01  36  02  18  00  FF 
+1695 centre   FB  C8  11  01  36  02  18  00  FF 
+1696 centre   FC  C8  11  01  36  02  18  00  FF 
+1697 centre   FD  C7  11  01  36  03  18  00  FF 
+1698 centre   FE  C7  11  01  36  03  18  00  FF 
+1699 centre   FF  C6  11  01  36  03  18  00  FF 
+1700 centre   00  C6  11  01  36  03  18  00  FF 
+1701 centre   01  C5  11  01  35  04  18  00  FF 
+1702 centre   02  C5  11  01  35  04  18  00  FF 
+1703 centre   03  C4  11  01  35  04  18  00  FF 
+1704 centre   04  C4  11  01  35  04  18  00  FF 
+1705 centre   05  C3  11  01  35  05  18  00  FF 
+1706 centre   06  C3  11  01  35  05  18  00  FF 
+1707 centre   07  C2  11  01  35  05  18  00  FF 
+1708 centre   08  C2  11  01  35  05  18  00  FF 
+1709 centre   09  C1  11  01  35  01  18  00  FF 
+1710 centre   0A  C1  11  01  35  01  18  00  FF 
+1711 centre   0B  C0  11  01  35  01  18  00  FF 
+1712 centre   0C  C0  11  01  35  01  18  00  FF 
+1713 centre   0D  BF  11  01  35  02  18  00  FF 
+1714 centre   0E  BF  11  01  35  02  18  00  FF 
+1715 centre   0F  BE  11  01  35  02  18  00  FF 
+1716 centre   10  BE  11  01  35  02  18  00  FF 
+1717 centre   11  BD  11  01  35  03  18  00  FF 
+1718 centre   12  BD  11  01  35  03  18  00  FF 
+1719 centre   13  BC  11  01  35  03  18  00  FF 
+1720 centre   14  BC  11  01  35  03  18  00  FF 
+1721 centre   15  BB  11  01  35  04  18  00  FF 
+1722 centre   16  BB  11  01  35  04  18  00  FF 
+1723 centre   17  BA  11  01  35  04  18  00  FF 
+1724 centre   18  BA  11  01  35  04  18  00  FF 
+1725 centre   19  B9  11  01  35  05  18  00  FF 
+1726 centre   1A  B9  11  01  35  05  18  00  FF 
+1727 centre   1B  B8  11  01  35  05  18  00  FF 
+1728 centre   1C  B8  11  01  35  05  18  00  FF 
+1729 centre   1D  B7  11  01  35  01  18  00  FF 
+1730 centre   1E  B7  11  01  35  01  18  00  FF 
+1731 centre   1F  B6  11  01  35  01  18  00  FF 
+1732 centre   20  B6  11  01  35  01  18  00  FF 
+1733 centre   21  B5  11  01  35  02  18  00  FF 
+1734 centre   22  B5  11  01  35  02  18  00  FF 
+1735 centre   23  B4  11  01  35  02  18  00  FF 
+1736 centre   24  B4  11  01  35  02  18  00  FF 
+1737 centre   25  B3  11  01  35  03  18  00  FF 
+1738 centre   26  B3  11  01  35  03  18  00  FF 
+1739 centre   27  B2  11  01  35  03  18  00  FF 
+1740 centre   28  B2  11  01  35  03  18  00  FF 
+1741 centre   29  B1  11  01  35  04  18  00  FF 
+1742 centre   2A  B1  11  01  35  04  18  00  FF 
+1743 centre   2B  B0  11  01  35  04  18  00  FF 
+1744 centre   2C  B0  11  01  35  04  18  00  FF 
+1745 centre   2D  AF  11  01  35  05  18  00  FF 
+1746 centre   2E  AF  11  01  35  05  18  00  FF 
+1747 centre   2F  AE  11  01  35  05  18  00  FF 
+1748 centre   30  AE  11  01  35  05  18  00  FF 
+1749 centre   31  AD  11  01  35  01  18  00  FF 
+1750 centre   32  AD  11  01  35  01  18  00  FF 
+1751 centre   33  AC  11  01  35  01  18  00  FF 
+1752 centre   34  AC  11  01  35  01  18  00  FF 
+1753 centre   35  AB  11  01  35  02  18  00  FF 
+1754 centre   36  AB  11  01  35  02  18  00  FF 
+1755 centre   37  AA  11  01  35  02  18  00  FF 
+1756 centre   38  AA  11  01  35  02  18  00  FF 
+1757 centre   39  A9  11  01  35  03  18  00  FF 
+1758 centre   3A  A9  11  01  35  03  18  00  FF 
+1759 centre   3B  A8  11  01  35  03  18  00  FF 
+1760 centre   3C  A8  11  01  35  03  18  00  FF 
+1761 centre   3D  A7  11  01  35  04  18  00  FF 
+1762 centre   3E  A7  11  01  35  04  18  00  FF 
+1763 centre   3F  A6  11  01  35  04  18  00  FF 
+1764 centre   40  A6  11  01  35  04  18  00  FF 
+1765 centre   41  A5  11  01  35  05  18  00  FF 
+1766 centre   42  A5  11  01  35  05  18  00  FF 
+1767 centre   43  A4  11  01  35  05  18  00  FF 
+1768 centre   44  A4  11  01  35  05  18  00  FF 
+1769 centre   45  A3  11  01  35  01  18  00  FF 
+1770 centre   46  A3  11  01  35  01  18  00  FF 
+1771 centre   47  A2  11  01  35  01  18  00  FF 
+1772 centre   48  A2  11  01  35  01  18  00  FF 
+1773 centre   49  A1  11  01  35  02  18  00  FF 
+1774 centre   4A  A1  11  01  35  02  18  00  FF 
+1775 centre   4B  A0  11  01  35  02  18  00  FF 
+1776 centre   4C  A0  11  01  35  02  18  00  FF 
+1777 centre   4D  9F  11  01  35  03  18  00  FF 
+1778 centre   4E  9F  11  01  35  03  18  00  FF 
+1779 centre   4F  9E  11  01  35  03  18  00  FF 
+1780 centre   50  9E  11  01  35  03  18  00  FF 
+1781 centre   51  9D  11  01  35  04  18  00  FF 
+1782 centre   52  9D  11  01  35  04  18  00  FF 
+1783 centre   53  9C  11  01  35  04  18  00  FF 
+1784 centre   54  9C  11  01  35  04  18  00  FF 
+1785 centre   55  9B  11  01  35  05  18  00  FF 
+1786 centre   56  9B  11  01  35  05  18  00  FF 
+1787 centre   57  9A  11  01  35  05  18  00  FF 
+1788 centre   58  9A  11  01  35  05  18  00  FF 
+1789 centre   59  99  11  01  35  01  18  00  FF 
+1790 centre   5A  99  11  01  35  01  18  00  FF 
+1791 centre   5B  98  11  01  35  01  18  00  FF 
+1792 centre   5C  98  11  01  35  01  18  00  FF 
+1793 centre   5D  97  11  01  35  02  18  00  FF 
+1794 centre   5E  97  11  01  35  02  18  00  FF 
+1795 centre   5F  96  11  01  35  02  18  00  FF 
+1796 centre   60  96  11  01  35  02  18  00  FF 
+1797 centre   61  95  11  01  35  03  18  00  FF 
+1798 centre   62  95  11  01  35  03  18  00  FF 
+1799 centre   63  94  11  01  35  03  18  00  FF 
+1800 centre   64  94  11  01  35  03  18  00  FF 
+1801 centre   65  93  11  01  35  04  18  00  FF 
+1802 centre   66  93  11  01  35  04  18  00  FF 
+1803 centre   67  92  11  01  35  04  18  00  FF 
+1804 centre   68  92  11  01  35  04  18  00  FF 
+1805 centre   69  91  11  01  35  05  18  00  FF 
+1806 centre   6A  91  11  01  35  05  18  00  FF 
+1807 centre   6B  90  11  01  35  05  18  00  FF 
+1808 centre   6C  90  11  01  35  05  18  00  FF 
+1809 centre   6D  8F  11  01  35  01  18  00  FF 
+1810 centre   6E  8F  11  01  35  01  18  00  FF 
+1811 centre   6F  8E  11  01  35  01  18  00  FF 
+1812 centre   70  8E  11  01  35  01  18  00  FF 
+1813 centre   71  8D  11  01  35  02  18  00  FF 
+1814 centre   72  8D  11  01  35  02  18  00  FF 
+1815 centre   73  8C  11  01  35  02  18  00  FF 
+1816 centre   74  8C  11  01  35  02  18  00  FF 
+1817 centre   75  8B  11  01  35  03  18  00  FF 
+1818 centre   76  8B  11  01  35  03  18  00  FF 
+1819 centre   77  8A  11  01  35  03  18  00  FF 
+1820 centre   78  8A  11  01  35  03  18  00  FF 
+1821 centre   79  89  11  01  35  04  18  00  FF 
+1822 centre   7A  89  11  01  35  04  18  00  FF 
+1823 centre   7B  88  11  01  35  04  18  00  FF 
+1824 centre   7C  88  11  01  35  04  18  00  FF 
+1825 centre   7D  87  11  01  35  05  18  00  FF 
+1826 centre   7E  87  11  01  35  05  18  00  FF 
+1827 centre   7F  86  11  01  35  05  18  00  FF 
+1828 centre   80  86  11  01  35  05  18  00  FF 
+1829 centre   81  85  11  01  34  01  18  00  FF 
+1830 centre   82  85  11  01  34  01  18  00  FF 
+1831 centre   83  84  11  01  34  01  18  00  FF 
+1832 centre   84  84  11  01  34  01  18  00  FF 
+1833 centre   85  83  11  01  34  02  18  00  FF 
+1834 centre   86  83  11  01  34  02  18  00  FF 
+1835 centre   87  82  11  01  34  02  18  00  FF 
+1836 centre   88  82  11  01  34  02  18  00  FF 
+1837 centre   89  81  11  01  34  03  18  00  FF 
+1838 centre   8A  81  11  01  34  03  18  00  FF 
+1839 centre   8B  80  11  01  34  03  18  00  FF 
+1840 centre   8C  80  11  01  34  03  18  00  FF 
+1841 centre   8D  7F  11  01  34  04  18  00  FF 
+1842 centre   8E  7F  11  01  34  04  18  00  FF 
+1843 centre   8F  7E  11  01  34  04  18  00  FF 
+1844 centre   90  7E  11  01  34  04  18  00  FF 
+1845 centre   91  7D  11  01  34  05  18  00  FF 
+1846 centre   92  7D  11  01  34  05  18  00  FF 
+1847 centre   93  7C  11  01  34  05  18  00  FF 
+1848 centre   94  7C  11  01  34  05  18  00  FF 
+1849 centre   95  7B  11  01  34  01  18  00  FF 
+1850 centre   96  7B  11  01  34  01  18  00  FF 
+1851 centre   97  7A  11  01  34  01  18  00  FF 
+1852 centre   98  7A  11  01  34  01  18  00  FF 
+1853 centre   99  79  11  01  34  02  18  00  FF 
+1854 centre   9A  79  11  01  34  02  18  00  FF 
+1855 centre   9B  78  11  01  34  02  18  00  FF 
+1856 centre   9C  78  11  01  34  02  18  00  FF 
+1857 centre   9D  77  11  01  34  03  18  00  FF 
+1858 centre   9E  77  11  01  34  03  18  00  FF 
+1859 centre   9F  76  11  01  34  03  18  00  FF 
+1860 centre   A0  76  11  01  34  03  18  00  FF 
+1861 centre   A1  75  11  01  34  04  18  00  FF 
+1862 centre   A2  75  11  01  34  04  18  00  FF 
+1863 centre   A3  74  11  01  34  04  18  00  FF 
+1864 centre   A4  74  11  01  34  04  18  00  FF 
+1865 centre   A5  73  11  01  34  05  18  00  FF 
+1866 centre   A6  73  11  01  34  05  18  00  FF 
+1867 centre   A7  72  11  01  34  05  18  00  FF 
+1868 centre   A8  72  11  01  34  05  18  00  FF 
+1869 centre   A9  71  11  01  34  01  18  00  FF 
+1870 centre   AA  71  11  01  34  01  18  00  FF 
+1871 centre   AB  70  11  01  34  01  18  00  FF 
+1872 centre   AC  70  11  01  34  01  18  00  FF 
+1873 centre   AD  6F  11  01  34  02  18  00  FF 
+1874 centre   AE  6F  11  01  34  02  18  00  FF 
+1875 centre   AF  6E  11  01  34  02  18  00  FF 
+1876 centre   B0  6E  11  01  34  02  18  00  FF 
+1877 centre   B1  6D  11  01  34  03  18  00  FF 
+1878 centre   B2  6D  11  01  34  03  18  00  FF 
+1879 centre   B3  6C  11  01  34  03  18  00  FF 
+1880 centre   B4  6C  11  01  34  03  18  00  FF 
+1881 centre   B5  6B  11  01  34  04  18  00  FF 
+1882 centre   B6  6B  11  01  34  04  18  00  FF 
+1883 centre   B7  6A  11  01  34  04  18  00  FF 
+1884 centre   B8  6A  11  01  34  04  18  00  FF 
+1885 centre   B9  69  11  01  34  05  18  00  FF 
+1886 centre   BA  69  11  01  34  05  18  00  FF 
+1887 centre   BB  68  11  01  34  05  18  00  FF 
+1888 centre   BC  68  11  01  34  05  18  00  FF 
+1889 centre   BD  67  11  01  34  01  18  00  FF 
+1890 centre   BE  67  11  01  34  01  18  00  FF 
+1891 centre   BF  66  11  01  34  01  18  00  FF 
+1892 centre   C0  66  11  01  34  01  18  00  FF 
+1893 centre   C1  65  11  01  34  02  18  00  FF 
+1894 centre   C2  65  11  01  34  02  18  00  FF 
+1895 centre   C3  64  11  01  34  02  18  00  FF 
+1896 centre   C4  64  11  01  34  02  18  00  FF 
+1897 centre   C5  63  11  01  34  03  18  00  FF 
+1898 centre   C6  63  11  01  34  03  18  00  FF 
+1899 centre   C7  62  11  01  34  03  18  00  FF 
+1900 centre   C8  62  11  01  34  03  18  00  FF 
+1901 centre   C9  61  11  01  34  04  18  00  FF 
+1902 centre   CA  61  11  01  34  04  18  00  FF 
+1903 centre   CB  60  11  01  34  04  18  00  FF 
+1904 centre   CC  60  11  01  34  04  18  00  FF 
+1905 centre   CD  5F  11  01  34  05  18  00  FF 
+1906 centre   CE  5F  11  01  34  05  18  00  FF 
+1907 centre   CF  5E  11  01  34  05  18  00  FF 
+1908 centre   D0  5E  11  01  34  05  18  00  FF 
+1909 centre   D1  5D  11  01  34  01  18  00  FF 
+1910 centre   D2  5D  11  01  34  01  18  00  FF 
+1911 centre   D3  5C  11  01  34  01  18  00  FF 
+1912 centre   D4  5C  11  01  34  01  18  00  FF 
+1913 centre   D5  5B  11  01  34  02  18  00  FF 
+1914 centre   D6  5B  11  01  34  02  18  00  FF 
+1915 centre   D7  5A  11  01  34  02  18  00  FF 
+1916 centre   D8  5A  11  01  34  02  18  00  FF 
+1917 centre   D9  59  11  01  34  03  18  00  FF 
+1918 centre   DA  59  11  01  34  03  18  00  FF 
+1919 centre   DB  58  11  01  34  03  18  00  FF 
+1920 centre   DC  58  11  01  34  03  18  00  FF 
+1921 centre   DD  57  11  01  34  04  18  00  FF 
+1922 centre   DE  57  11  01  34  04  18  00  FF 
+1923 centre   DF  56  11  01  34  04  18  00  FF 
+1924 centre   E0  56  11  01  34  04  18  00  FF 
+1925 centre   E1  55  11  01  34  05  18  00  FF 
+1926 centre   E2  55  11  01  34  05  18  00  FF 
+1927 centre   E3  54  11  01  34  05  18  00  FF 
+1928 centre   E4  54  11  01  34  05  18  00  FF 
+1929 centre   E5  53  11  01  34  01  18  00  FF 
+1930 centre   E6  53  11  01  34  01  18  00  FF 
+1931 centre   E7  52  11  01  34  01  18  00  FF 
+1932 centre   E8  52  11  01  34  01  18  00  FF 
+1933 centre   E9  51  11  01  34  02  18  00  FF 
+1934 centre   EA  51  11  01  34  02  18  00  FF 
+1935 centre   EB  50  11  01  34  02  18  00  FF 
+1936 centre   EC  50  11  01  34  02  18  00  FF 
+1937 centre   ED  4F  11  01  34  03  18  00  FF 
+1938 centre   EE  4F  11  01  34  03  18  00  FF 
+1939 centre   EF  4E  11  01  34  03  18  00  FF 
+1940 centre   F0  4E  11  01  34  03  18  00  FF 
+1941 centre   F1  4D  11  01  34  04  18  00  FF 
+1942 centre   F2  4D  11  01  34  04  18  00  FF 
+1943 centre   F3  4C  11  01  34  04  18  00  FF 
+1944 centre   F4  4C  11  01  34  04  18  00  FF 
+1945 centre   F5  4B  11  01  34  05  18  00  FF 
+1946 centre   F6  4B  11  01  34  05  18  00  FF 
+1947 centre   F7  4A  11  01  34  05  18  00  FF 
+1948 centre   F8  4A  11  01  34  05  18  00  FF 
+1949 centre   F9  49  11  01  34  01  18  00  FF 
+1950 centre   FA  49  11  01  34  01  18  00  FF 
+1951 centre   FB  48  11  01  34  01  18  00  FF 
+1952 centre   FC  48  11  01  34  01  18  00  FF 
+1953 centre   FD  47  11  01  34  02  18  00  FF 
+1954 centre   FE  47  11  01  34  02  18  00  FF 
+1955 centre   FF  46  11  01  34  02  18  00  FF 
+1956 centre   00  46  11  01  34  02  18  00  FF 
+1957 centre   01  45  11  01  33  03  18  00  FF 
+1958 centre   02  45  11  01  33  03  18  00  FF 
+1959 centre   03  44  11  01  33  03  18  00  FF 
+1960 centre   04  44  11  01  33  03  18  00  FF 
+1961 centre   05  43  11  01  33  04  18  00  FF 
+1962 centre   06  43  11  01  33  04  18  00  FF 
+1963 centre   07  42  11  01  33  04  18  00  FF 
+1964 centre   08  42  11  01  33  04  18  00  FF 
+1965 centre   09  41  11  01  33  05  18  00  FF 
+1966 centre   0A  41  11  01  33  05  18  00  FF 
+1967 centre   0B  40  11  01  33  05  18  00  FF 
+1968 centre   0C  40  11  01  33  05  18  00  FF 
+1969 centre   0D  3F  11  01  33  01  18  00  FF 
+1970 centre   0E  3F  11  01  33  01  18  00  FF 
+1971 centre   0F  3E  11  01  33  01  18  00  FF 
+1972 centre   10  3E  11  01  33  01  18  00  FF 
+1973 centre   11  3D  11  01  33  02  18  00  FF 
+1974 centre   12  3D  11  01  33  02  18  00  FF 
+1975 centre   13  3C  11  01  33  02  18  00  FF 
+1976 centre   14  3C  11  01  33  02  18  00  FF 
+1977 centre   15  3B  11  01  33  03  18  00  FF 
+1978 centre   16  3B  11  01  33  03  18  00  FF 
+1979 centre   17  3A  11  01  33  03  18  00  FF 
+1980 centre   18  3A  11  01  33  03  18  00  FF 
+1981 centre   19  39  11  01  33  04  18  00  FF 
+1982 centre   1A  39  11  01  33  04  18  00  FF 
+1983 centre   1B  38  11  01  33  04  18  00  FF 
+1984 centre   1C  38  11  01  33  04  18  00  FF 
+1985 centre   1D  37  11  01  33  05  18  00  FF 
+1986 centre   1E  37  11  01  33  05  18  00  FF 
+1987 centre   1F  36  11  01  33  05  18  00  FF 
+1988 centre   20  36  11  01  33  05  18  00  FF 
+1989 centre   21  35  11  01  33  01  18  00  FF 
+1990 centre   22  35  11  01  33  01  18  00  FF 
+1991 centre   23  34  11  01  33  01  18  00  FF 
+1992 centre   24  34  11  01  33  01  18  00  FF 
+1993 centre   25  33  11  01  33  02  18  00  FF 
+1994 centre   26  33  11  01  33  02  18  00  FF 
+1995 centre   27  32  11  01  33  02  18  00  FF 
+1996 centre   28  32  11  01  33  02  18  00  FF 
+1997 centre   29  31  11  01  33  03  18  00  FF 
+1998 centre   2A  31  11  01  33  03  18  00  FF 
+1999 centre   2B  30  11  01  33  03  18  00  FF 
+2000 centre   2C  30  11  01  33  03  18  00  FF 
+2001 centre   2D  2F  11  01  33  04  18  00  FF 
+2002 centre   2E  2F  11  01  33  04  18  00  FF 
+2003 centre   2F  2E  11  01  33  04  18  00  FF 
+2004 centre   30  2E  11  01  33  04  18  00  FF 
+2005 centre   31  2D  11  01  33  05  18  00  FF 
+2006 centre   32  2D  11  01  33  05  18  00  FF 
+2007 centre   33  2C  11  01  33  05  18  00  FF 
+2008 centre   34  2C  11  01  33  05  18  00  FF 
+2009 centre   35  2B  11  01  33  01  18  00  FF 
+2010 centre   36  2B  11  01  33  01  18  00  FF 
+2011 centre   37  2A  11  01  33  01  18  00  FF 
+2012 centre   38  2A  11  01  33  01  18  00  FF 
+2013 centre   39  29  11  01  33  02  18  00  FF 
+2014 centre   3A  29  11  01  33  02  18  00  FF 
+2015 centre   3B  CF  12  02  33  03  18  00  FF 
+2016 centre   3C  CF  12  02  33  03  18  00  FF 
+2017 centre   3D  CE  12  02  33  03  18  00  FF 
+2018 centre   3E  CE  12  02  33  03  18  00  FF 
+2019 centre   3F  CD  12  02  33  04  18  00  FF 
+2020 centre   40  CD  12  02  33  04  18  00  FF 
+2021 centre   41  CC  12  02  33  04  18  00  FF 
+2022 centre   42  CC  12  02  33  04  18  00  FF 
+2023 centre   43  CB  12  02  33  05  18  00  FF 
+2024 centre   44  CB  12  02  33  05  18  00  FF 
+2025 centre   45  CA  12  02  33  05  18  00  FF 
+2026 centre   46  CA  12  02  33  05  18  00  FF 
+2027 centre   47  C9  12  02  33  01  18  00  FF 
+2028 centre   48  C9  12  02  33  01  18  00  FF 
+2029 centre   49  C8  12  02  33  01  18  00  FF 
+2030 centre   4A  C8  12  02  33  01  18  00  FF 
+2031 centre   4B  C7  12  02  33  02  18  00  FF 
+2032 centre   4C  C7  12  02  33  02  18  00  FF 
+2033 centre   4D  C6  12  02  33  02  18  00  FF 
+2034 centre   4E  C6  12  02  33  02  18  00  FF 
+2035 centre   4F  C5  12  02  33  03  18  00  FF 
+2036 centre   50  C5  12  02  33  03  18  00  FF 
+2037 centre   51  C4  12  02  33  03  18  00  FF 
+2038 centre   52  C4  12  02  33  03  18  00  FF 
+2039 centre   53  C3  12  02  33  04  18  00  FF 
+2040 centre   54  C3  12  02  33  04  18  00  FF 
+2041 centre   55  C2  12  02  33  04  18  00  FF 
+2042 centre   56  C2  12  02  33  04  18  00  FF 
+2043 centre   57  C1  12  02  33  05  18  00  FF 
+2044 centre   58  C1  12  02  33  05  18  00  FF 
+2045 centre   59  C0  12  02  33  05  18  00  FF 
+2046 centre   5A  C0  12  02  33  05  18  00  FF 
+2047 centre   5B  BF  12  02  33  01  18  00  FF 
+2048 centre   5C  BF  12  02  33  01  18  00  FF 
+2049 centre   5D  BE  12  02  33  01  18  00  FF 
+2050 centre   5E  BE  12  02  33  01  18  00  FF 
+2051 centre   5F  BD  12  02  33  02  18  00  FF 
+2052 centre   60  BD  12  02  33  02  18  00  FF 
+2053 centre   61  BC  12  02  33  02  18  00  FF 
+2054 centre   62  BC  12  02  33  02  18  00  FF 
+2055 centre   63  BB  12  02  33  03  18  00  FF 
+2056 centre   64  BB  12  02  33  03  18  00  FF 
+2057 centre   65  BA  12  02  33  03  18  00  FF 
+2058 centre   66  BA  12  02  33  03  18  00  FF 
+2059 centre   67  B9  12  02  33  04  18  00  FF 
+2060 centre   68  B9  12  02  33  04  18  00  FF 
+2061 centre   69  B8  12  02  33  04  18  00  FF 
+2062 centre   6A  B8  12  02  33  04  18  00  FF 
+2063 centre   6B  B7  12  02  33  05  18  00  FF 
+2064 centre   6C  B7  12  02  33  05  18  00  FF 
+2065 centre   6D  B6  12  02  33  05  18  00  FF 
+2066 centre   6E  B6  12  02  33  05  18  00  FF 
+2067 centre   6F  B5  12  02  33  01  18  00  FF 
+2068 centre   70  B5  12  02  33  01  18  00  FF 
+2069 centre   71  B4  12  02  33  01  18  00  FF 
+2070 centre   72  B4  12  02  33  01  18  00  FF 
+2071 centre   73  B3  12  02  33  02  18  00  FF 
+2072 centre   74  B3  12  02  33  02  18  00  FF 
+2073 centre   75  B2  12  02  33  02  18  00  FF 
+2074 centre   76  B2  12  02  33  02  18  00  FF 
+2075 centre   77  B1  12  02  33  03  18  00  FF 
+2076 centre   78  B1  12  02  33  03  18  00  FF 
+2077 centre   79  B0  12  02  33  03  18  00  FF 
+2078 centre   7A  B0  12  02  33  03  18  00  FF 
+2079 centre   7B  AF  12  02  33  04  18  00  FF 
+2080 centre   7C  AF  12  02  33  04  18  00  FF 
+2081 centre   7D  AE  12  02  33  04  18  00  FF 
+2082 centre   7E  AE  12  02  33  04  18  00  FF 
+2083 centre   7F  AD  12  02  33  05  18  00  FF 
+2084 centre   80  AD  12  02  33  05  18  00  FF 
+2085 centre   81  AC  12  02  32  05  18  00  FF 
+2086 centre   82  AC  12  02  32  05  18  00  FF 
+2087 centre   83  AB  12  02  32  01  18  00  FF 
+2088 centre   84  AB  12  02  32  01  18  00  FF 
+2089 centre   85  AA  12  02  32  01  18  00  FF 
+2090 centre   86  AA  12  02  32  01  18  00  FF 
+2091 centre   87  A9  12  02  32  02  18  00  FF 
+2092 centre   88  A9  12  02  32  02  18  00  FF 
+2093 centre   89  A8  12  02  32  02  18  00  FF 
+2094 centre   8A  A8  12  02  32  02  18  00  FF 
+2095 centre   8B  A7  12  02  32  03  18  00  FF 
+2096 centre   8C  A7  12  02  32  03  18  00  FF 
+2097 centre   8D  A6  12  02  32  03  18  00  FF 
+2098 centre   8E  A6  12  02  32  03  18  00  FF 
+2099 centre   8F  A5  12  02  32  04  18  00  FF 
+2100 centre   90  A5  12  02  32  04  18  00  FF 
+2101 centre   91  A4  12  02  32  04  18  00  FF 
+2102 centre   92  A4  12  02  32  04  18  00  FF 
+2103 centre   93  A3  12  02  32  05  18  00  FF 
+2104 centre   94  A3  12  02  32  05  18  00  FF 
+2105 centre   95  A2  12  02  32  05  18  00  FF 
+2106 centre   96  A2  12  02  32  05  18  00  FF 
+2107 centre   97  A1  12  02  32  01  18  00  FF 
+2108 centre   98  A1  12  02  32  01  18  00  FF 
+2109 centre   99  A0  12  02  32  01  18  00  FF 
+2110 centre   9A  A0  12  02  32  01  18  00  FF 
+2111 centre   9B  9F  12  02  32  02  18  00  FF 
+2112 centre   9C  9F  12  02  32  02  18  00  FF 
+2113 centre   9D  9E  12  02  32  02  18  00  FF 
+2114 centre   9E  9E  12  02  32  02  18  00  FF 
+2115 centre   9F  9D  12  02  32  03  18  00  FF 
+2116 centre   A0  9D  12  02  32  03  18  00  FF 
+2117 centre   A1  9C  12  02  32  03  18  00  FF 
+2118 centre   A2  9C  12  02  32  03  18  00  FF 
+2119 centre   A3  9B  12  02  32  04  18  00  FF 
+2120 centre   A4  9B  12  02  32  04  18  00  FF 
+2121 centre   A5  9A  12  02  32  04  18  00  FF 
+2122 centre   A6  9A  12  02  32  04  18  00  FF 
+2123 centre   A7  99  12  02  32  05  18  00  FF 
+2124 centre   A8  99  12  02  32  05  18  00  FF 
+2125 centre   A9  98  12  02  32  05  18  00  FF 
+2126 centre   AA  98  12  02  32  05  18  00  FF 
+2127 centre   AB  97  12  02  32  01  18  00  FF 
+2128 centre   AC  97  12  02  32  01  18  00  FF 
+2129 centre   AD  96  12  02  32  01  18  00  FF 
+2130 centre   AE  96  12  02  32  01  18  00  FF 
+2131 centre   AF  95  12  02  32  02  18  00  FF 
+2132 centre   B0  95  12  02  32  02  18  00  FF 
+2133 centre   B1  94  12  02  32  02  18  00  FF 
+2134 centre   B2  94  12  02  32  02  18  00  FF 
+2135 centre   B3  93  12  02  32  03  18  00  FF 
+2136 centre   B4  93  12  02  32  03  18  00  FF 
+2137 centre   B5  92  12  02  32  03  18  00  FF 
+2138 centre   B6  92  12  02  32  03  18  00  FF 
+2139 centre   B7  91  12  02  32  04  18  00  FF 
+2140 centre   B8  91  12  02  32  04  18  00  FF 
+2141 centre   B9  90  12  02  32  04  18  00  FF 
+2142 centre   BA  90  12  02  32  04  18  00  FF 
+2143 centre   BB  8F  12  02  32  05  18  00  FF 
+2144 centre   BC  8F  12  02  32  05  18  00  FF 
+2145 centre   BD  8E  12  02  32  05  18  00  FF 
+2146 centre   BE  8E  12  02  32  05  18  00  FF 
+2147 centre   BF  8D  12  02  32  01  18  00  FF 
+2148 centre   C0  8D  12  02  32  01  18  00  FF 
+2149 centre   C1  8C  12  02  32  01  18  00  FF 
+2150 centre   C2  8C  12  02  32  01  18  00  FF 
+2151 centre   C3  8B  12  02  32  02  18  00  FF 
+2152 centre   C4  8B  12  02  32  02  18  00  FF 
+2153 centre   C5  8A  12  02  32  02  18  00  FF 
+2154 centre   C6  8A  12  02  32  02  18  00  FF 
+2155 centre   C7  89  12  02  32  03  18  00  FF 
+2156 centre   C8  89  12  02  32  03  18  00  FF 
+2157 centre   C9  88  12  02  32  03  18  00  FF 
+2158 centre   CA  88  12  02  32  03  18  00  FF 
+2159 centre   CB  87  12  02  32  04  18  00  FF 
+2160 centre   CC  87  12  02  32  04  18  00  FF 
+2161 centre   CD  86  12  02  32  04  18  00  FF 
+2162 centre   CE  86  12  02  32  04  18  00  FF 
+2163 centre   CF  85  12  02  32  05  18  00  FF 
+2164 centre   D0  85  12  02  32  05  18  00  FF 
+2165 centre   D1  84  12  02  32  05  18  00  FF 
+2166 centre   D2  84  12  02  32  05  18  00  FF 
+2167 centre   D3  83  12  02  32  01  18  00  FF 
+2168 centre   D4  83  12  02  32  01  18  00  FF 
+2169 centre   D5  82  12  02  32  01  18  00  FF 
+2170 centre   D6  82  12  02  32  01  18  00  FF 
+2171 centre   D7  81  12  02  32  02  18  00  FF 
+2172 centre   D8  81  12  02  32  02  18  00  FF 
+2173 centre   D9  80  12  02  32  02  18  00  FF 
+2174 centre   DA  80  12  02  32  02  18  00  FF 
+2175 centre   DB  7F  12  02  32  03  18  00  FF 
+2176 centre   DC  7F  12  02  32  03  18  00  FF 
+2177 centre   DD  7E  12  02  32  03  18  00  FF 
+2178 centre   DE  7E  12  02  32  03  18  00  FF 
+2179 centre   DF  7D  12  02  32  04  18  00  FF 
+2180 centre   E0  7D  12  02  32  04  18  00  FF 
+2181 centre   E1  7C  12  02  32  04  18  00  FF 
+2182 centre   E2  7C  12  02  32  04  18  00  FF 
+2183 centre   E3  7B  12  02  32  05  18  00  FF 
+2184 centre   E4  7B  12  02  32  05  18  00  FF 
+2185 centre   E5  7A  12  02  32  05  18  00  FF 
+2186 centre   E6  7A  12  02  32  05  18  00  FF 
+2187 centre   E7  79  12  02  32  01  18  00  FF 
+2188 centre   E8  79  12  02  32  01  18  00  FF 
+2189 centre   E9  78  12  02  32  01  18  00  FF 
+2190 centre   EA  78  12  02  32  01  18  00  FF 
+2191 centre   EB  77  12  02  32  02  18  00  FF 
+2192 centre   EC  77  12  02  32  02  18  00  FF 
+2193 centre   ED  76  12  02  32  02  18  00  FF 
+2194 centre   EE  76  12  02  32  02  18  00  FF 
+2195 centre   EF  75  12  02  32  03  18  00  FF 
+2196 centre   F0  75  12  02  32  03  18  00  FF 
+2197 centre   F1  74  12  02  32  03  18  00  FF 
+2198 centre   F2  74  12  02  32  03  18  00  FF 
+2199 centre   F3  73  12  02  32  04  18  00  FF 
+2200 centre   F4  73  12  02  32  04  18  00  FF 
+2201 centre   F5  72  12  02  32  04  18  00  FF 
+2202 centre   F6  72  12  02  32  04  18  00  FF 
+2203 centre   F7  71  12  02  32  05  18  00  FF 
+2204 centre   F8  71  12  02  32  05  18  00  FF 
+2205 centre   F9  70  12  02  32  05  18  00  FF 
+2206 centre   FA  70  12  02  32  05  18  00  FF 
+2207 centre   FB  6F  12  02  32  01  18  00  FF 
+2208 centre   FC  6F  12  02  32  01  18  00  FF 
+2209 centre   FD  6E  12  02  32  01  18  00  FF 
+2210 centre   FE  6E  12  02  32  01  18  00  FF 
+2211 centre   FF  6D  12  02  32  02  18  00  FF 
+2212 centre   00  6D  12  02  32  02  18  00  FF 
+2213 centre   01  6C  12  02  31  02  18  00  FF 
+2214 centre   02  6C  12  02  31  02  18  00  FF 
+2215 centre   03  6B  12  02  31  03  18  00  FF 
+2216 centre   04  6B  12  02  31  03  18  00  FF 
+2217 centre   05  6A  12  02  31  03  18  00  FF 
+2218 centre   06  6A  12  02  31  03  18  00  FF 
+2219 centre   07  69  12  02  31  04  18  00  FF 
+2220 centre   08  69  12  02  31  04  18  00  FF 
+2221 centre   09  68  12  02  31  04  18  00  FF 
+2222 centre   0A  68  12  02  31  04  18  00  FF 
+2223 centre   0B  67  12  02  31  05  18  00  FF 
+2224 centre   0C  67  12  02  31  05  18  00  FF 
+2225 centre   0D  66  12  02  31  05  18  00  FF 
+2226 centre   0E  66  12  02  31  05  18  00  FF 
+2227 centre   0F  65  12  02  31  01  18  00  FF 
+2228 centre   10  65  12  02  31  01  18  00  FF 
+2229 centre   11  64  12  02  31  01  18  00  FF 
+2230 centre   12  64  12  02  31  01  18  00  FF 
+2231 centre   13  63  12  02  31  02  18  00  FF 
+2232 centre   14  63  12  02  31  02  18  00  FF 
+2233 centre   15  62  12  02  31  02  18  00  FF 
+2234 centre   16  62  12  02  31  02  18  00  FF 
+2235 centre   17  61  12  02  31  03  18  00  FF 
+2236 centre   18  61  12  02  31  03  18  00  FF 
+2237 centre   19  60  12  02  31  03  18  00  FF 
+2238 centre   1A  60  12  02  31  03  18  00  FF 
+2239 centre   1B  5F  12  02  31  04  18  00  FF 
+2240 centre   1C  5F  12  02  31  04  18  00  FF 
+2241 centre   1D  5E  12  02  31  04  18  00  FF 
+2242 centre   1E  5E  12  02  31  04  18  00  FF 
+2243 centre   1F  5D  12  02  31  05  18  00  FF 
+2244 centre   20  5D  12  02  31  05  18  00  FF 
+2245 centre   21  5C  12  02  31  05  18  00  FF 
+2246 centre   22  5C  12  02  31  05  18  00  FF 
+2247 centre   23  5B  12  02  31  01  18  00  FF 
+2248 centre   24  5B  12  02  31  01  18  00  FF 
+2249 centre   25  5A  12  02  31  01  18  00  FF 
+2250 centre   26  5A  12  02  31  01  18  00  FF 
+2251 centre   27  59  12  02  31  02  18  00  FF 
+2252 centre   28  59  12  02  31  02  18  00  FF 
+2253 centre   29  58  12  02  31  02  18  00  FF 
+2254 centre   2A  58  12  02  31  02  18  00  FF 
+2255 centre   2B  57  12  02  31  03  18  00  FF 
+2256 centre   2C  57  12  02  31  03  18  00  FF 
+2257 centre   2D  56  12  02  31  03  18  00  FF 
+2258 centre   2E  56  12  02  31  03  18  00  FF 
+2259 centre   2F  55  12  02  31  04  18  00  FF 
+2260 centre   30  55  12  02  31  04  18  00  FF 
+2261 centre   31  54  12  02  31  04  18  00  FF 
+2262 centre   32  54  12  02  31  04  18  00  FF 
+2263 centre   33  53  12  02  31  05  18  00  FF 
+2264 centre   34  53  12  02  31  05  18  00  FF 
+2265 centre   35  52  12  02  31  05  18  00  FF 
+2266 centre   36  52  12  02  31  05  18  00  FF 
+2267 centre   37  51  12  02  31  01  18  00  FF 
+2268 centre   38  51  12  02  31  01  18  00  FF 
+2269 centre   39  50  12  02  31  01  18  00  FF 
+2270 centre   3A  50  12  02  31  01  18  00  FF 
+2271 centre   3B  4F  12  02  31  02  18  00  FF 
+2272 centre   3C  4F  12  02  31  02  18  00  FF 
+2273 centre   3D  4E  12  02  31  02  18  00  FF 
+2274 centre   3E  4E  12  02  31  02  18  00  FF 
+2275 centre   3F  4D  12  02  31  03  18  00  FF 
+2276 centre   40  4D  12  02  31  03  18  00  FF 
+2277 centre   41  4C  12  02  31  03  18  00  FF 
+2278 centre   42  4C  12  02  31  03  18  00  FF 
+2279 centre   43  4B  12  02  31  04  18  00  FF 
+2280 centre   44  4B  12  02  31  04  18  00  FF 
+2281 centre   45  4A  12  02  31  04  18  00  FF 
+2282 centre   46  4A  12  02  31  04  18  00  FF 
+2283 centre   47  49  12  02  31  05  18  00  FF 
+2284 centre   48  49  12  02  31  05  18  00  FF 
+2285 centre   49  48  12  02  31  05  18  00  FF 
+2286 centre   4A  48  12  02  31  05  18  00  FF 
+2287 centre   4B  47  12  02  31  01  18  00  FF 
+2288 centre   4C  47  12  02  31  01  18  00  FF 
+2289 centre   4D  46  12  02  31  01  18  00  FF 
+2290 centre   4E  46  12  02  31  01  18  00  FF 
+2291 centre   4F  45  12  02  31  02  18  00  FF 
+2292 centre   50  45  12  02  31  02  18  00  FF 
+2293 centre   51  44  12  02  31  02  18  00  FF 
+2294 centre   52  44  12  02  31  02  18  00  FF 
+2295 centre   53  43  12  02  31  03  18  00  FF 
+2296 centre   54  43  12  02  31  03  18  00  FF 
+2297 centre   55  42  12  02  31  03  18  00  FF 
+2298 centre   56  42  12  02  31  03  18  00  FF 
+2299 centre   57  41  12  02  31  04  18  00  FF 
+2300 centre   58  41  12  02  31  04  18  00  FF 
+2301 centre   59  40  12  02  31  04  18  00  FF 
+2302 centre   5A  40  12  02  31  04  18  00  FF 
+2303 centre   5B  3F  12  02  31  05  18  00  FF 
+2304 centre   5C  3F  12  02  31  05  18  00  FF 
+2305 centre   5D  3E  12  02  31  05  18  00  FF 
+2306 centre   5E  3E  12  02  31  05  18  00  FF 
+2307 centre   5F  3D  12  02  31  01  18  00  FF 
+2308 centre   60  3D  12  02  31  01  18  00  FF 
+2309 centre   61  3C  12  02  31  01  18  00  FF 
+2310 centre   62  3C  12  02  31  01  18  00  FF 
+2311 centre   63  3B  12  02  31  02  18  00  FF 
+2312 centre   64  3B  12  02  31  02  18  00  FF 
+2313 centre   65  3A  12  02  31  02  18  00  FF 
+2314 centre   66  3A  12  02  31  02  18  00  FF 
+2315 centre   67  39  12  02  31  03  18  00  FF 
+2316 centre   68  39  12  02  31  03  18  00  FF 
+2317 centre   69  38  12  02  31  03  18  00  FF 
+2318 centre   6A  38  12  02  31  03  18  00  FF 
+2319 centre   6B  37  12  02  31  04  18  00  FF 
+2320 centre   6C  37  12  02  31  04  18  00  FF 
+2321 centre   6D  36  12  02  31  04  18  00  FF 
+2322 centre   6E  36  12  02  31  04  18  00  FF 
+2323 centre   6F  35  12  02  31  05  18  00  FF 
+2324 centre   70  35  12  02  31  05  18  00  FF 
+2325 centre   71  34  12  02  31  05  18  00  FF 
+2326 centre   72  34  12  02  31  05  18  00  FF 
+2327 centre   73  33  12  02  31  01  18  00  FF 
+2328 centre   74  33  12  02  31  01  18  00  FF 
+2329 centre   75  32  12  02  31  01  18  00  FF 
+2330 centre   76  32  12  02  31  01  18  00  FF 
+2331 centre   77  31  12  02  31  02  18  00  FF 
+2332 centre   78  31  12  02  31  02  18  00  FF 
+2333 centre   79  30  12  02  31  02  18  00  FF 
+2334 centre   7A  30  12  02  31  02  18  00  FF 
+2335 centre   7B  2F  12  02  31  03  18  00  FF 
+2336 centre   7C  2F  12  02  31  03  18  00  FF 
+2337 centre   7D  2E  12  02  31  03  18  00  FF 
+2338 centre   7E  2E  12  02  31  03  18  00  FF 
+2339 centre   7F  2D  12  02  31  04  18  00  FF 
+2340 centre   80  2D  12  02  31  04  18  00  FF 
+2341 centre   81  2C  12  02  30  04  18  00  FF 
+2342 centre   82  2C  12  02  30  04  18  00  FF 
+2343 centre   83  2B  12  02  30  05  18  00  FF 
+2344 centre   84  2B  12  02  30  05  18  00  FF 
+2345 centre   85  2A  12  02  30  05  18  00  FF 
+2346 centre   86  2A  12  02  30  05  18  00  FF 
+2347 centre   87  29  12  02  30  01  18  00  FF 
+2348 centre   88  29  12  02  30  01  18  00  FF 
+2349 centre   89  CF  13  03  30  02  18  00  FF 
+2350 centre   8A  CF  13  03  30  02  18  00  FF 
+2351 centre   8B  CE  13  03  30  02  18  00  FF 
+2352 centre   8C  CE  13  03  30  02  18  00  FF 
+2353 centre   8D  CD  13  03  30  03  18  00  FF 
+2354 centre   8E  CD  13  03  30  03  18  00  FF 
+2355 centre   8F  CC  13  03  30  03  18  00  FF 
+2356 centre   90  CC  13  03  30  03  18  00  FF 
+2357 centre   91  CB  13  03  30  04  18  00  FF 
+2358 centre   92  CB  13  03  30  04  18  00  FF 
+2359 centre   93  CA  13  03  30  04  18  00  FF 
+2360 centre   94  CA  13  03  30  04  18  00  FF 
+2361 centre   95  C9  13  03  30  05  18  00  FF 
+2362 centre   96  C9  13  03  30  05  18  00  FF 
+2363 centre   97  C8  13  03  30  05  18  00  FF 
+2364 centre   98  C8  13  03  30  05  18  00  FF 
+2365 centre   99  C7  13  03  30  01  18  00  FF 
+2366 centre   9A  C7  13  03  30  01  18  00  FF 
+2367 centre   9B  C6  13  03  30  01  18  00  FF 
+2368 centre   9C  C6  13  03  30  01  18  00  FF 
+2369 centre   9D  C5  13  03  30  02  18  00  FF 
+2370 centre   9E  C5  13  03  30  02  18  00  FF 
+2371 centre   9F  C4  13  03  30  02  18  00  FF 
+2372 centre   A0  C4  13  03  30  02  18  00  FF 
+2373 centre   A1  C3  13  03  30  03  18  00  FF 
+2374 centre   A2  C3  13  03  30  03  18  00  FF 
+2375 centre   A3  C2  13  03  30  03  18  00  FF 
+2376 centre   A4  C2  13  03  30  03  18  00  FF 
+2377 centre   A5  C1  13  03  30  04  18  00  FF 
+2378 centre   A6  C1  13  03  30  04  18  00  FF 
+2379 centre   A7  C0  13  03  30  04  18  00  FF 
+2380 centre   A8  C0  13  03  30  04  18  00  FF 
+2381 centre   A9  BF  13  03  30  05  18  00  FF 
+2382 centre   AA  BF  13  03  30  05  18  00  FF 
+2383 centre   AB  BE  13  03  30  05  18  00  FF 
+2384 centre   AC  BE  13  03  30  05  18  00  FF 
+2385 centre   AD  BD  13  03  30  01  18  00  FF 
+2386 centre   AE  BD  13  03  30  01  18  00  FF 
+2387 centre   AF  BC  13  03  30  01  18  00  FF 
+2388 centre   B0  BC  13  03  30  01  18  00  FF 
+2389 centre   B1  BB  13  03  30  02  18  00  FF 
+2390 centre   B2  BB  13  03  30  02  18  00  FF 
+2391 centre   B3  BA  13  03  30  02  18  00  FF 
+2392 centre   B4  BA  13  03  30  02  18  00  FF 
+2393 centre   B5  B9  13  03  30  03  18  00  FF 
+2394 centre   B6  B9  13  03  30  03  18  00  FF 
+2395 centre   B7  B8  13  03  30  03  18  00  FF 
+2396 centre   B8  B8  13  03  30  03  18  00  FF 
+2397 centre   B9  B7  13  03  30  04  18  00  FF 
+2398 centre   BA  B7  13  03  30  04  18  00  FF 
+2399 centre   BB  B6  13  03  30  04  18  00  FF 
+2400 centre   BC  B6  13  03  30  04  18  00  FF 
+2401 centre   BD  B5  13  03  30  05  18  00  FF 
+2402 centre   BE  B5  13  03  30  05  18  00  FF 
+2403 centre   BF  B4  13  03  30  05  18  00  FF 
+2404 centre   C0  B4  13  03  30  05  18  00  FF 
+2405 centre   C1  B3  13  03  30  01  18  00  FF 
+2406 centre   C2  B3  13  03  30  01  18  00  FF 
+2407 centre   C3  B2  13  03  30  01  18  00  FF 
+2408 centre   C4  B2  13  03  30  01  18  00  FF 
+2409 centre   C5  B1  13  03  30  02  18  00  FF 
+2410 centre   C6  B1  13  03  30  02  18  00  FF 
+2411 centre   C7  B0  13  03  30  02  18  00  FF 
+2412 centre   C8  B0  13  03  30  02  18  00  FF 
+2413 centre   C9  AF  13  03  30  03  18  00  FF 
+2414 centre   CA  AF  13  03  30  03  18  00  FF 
+2415 centre   CB  AE  13  03  30  03  18  00  FF 
+2416 centre   CC  AE  13  03  30  03  18  00  FF 
+2417 centre   CD  AD  13  03  30  04  18  00  FF 
+2418 centre   CE  AD  13  03  30  04  18  00  FF 
+2419 centre   CF  AC  13  03  30  04  18  00  FF 
+2420 centre   D0  AC  13  03  30  04  18  00  FF 
+2421 centre   D1  AB  13  03  30  05  18  00  FF 
+2422 centre   D2  AB  13  03  30  05  18  00  FF 
+2423 centre   D3  AA  13  03  30  05  18  00  FF 
+2424 centre   D4  AA  13  03  30  05  18  00  FF 
+2425 centre   D5  A9  13  03  30  01  18  00  FF 
+2426 centre   D6  A9  13  03  30  01  18  00  FF 
+2427 centre   D7  A8  13  03  30  01  18  00  FF 
+2428 centre   D8  A8  13  03  30  01  18  00  FF 
+2429 centre   D9  A7  13  03  30  02  18  00  FF 
+2430 centre   DA  A7  13  03  30  02  18  00  FF 
+2431 centre   DB  A6  13  03  30  02  18  00  FF 
+2432 centre   DC  A6  13  03  30  02  18  00  FF 
+2433 centre   DD  A5  13  03  30  03  18  00  FF 
+2434 centre   DE  A5  13  03  30  03  18  00  FF 
+2435 centre   DF  A4  13  03  30  03  18  00  FF 
+2436 centre   E0  A4  13  03  30  03  18  00  FF 
+2437 centre   E1  A3  13  03  30  04  18  00  FF 
+2438 centre   E2  A3  13  03  30  04  18  00  FF 
+2439 centre   E3  A2  13  03  30  04  18  00  FF 
+2440 centre   E4  A2  13  03  30  04  18  00  FF 
+2441 centre   E5  A1  13  03  30  05  18  00  FF 
+2442 centre   E6  A1  13  03  30  05  18  00  FF 
+2443 centre   E7  A0  13  03  30  05  18  00  FF 
+2444 centre   E8  A0  13  03  30  05  18  00  FF 
+2445 centre   E9  9F  13  03  30  01  18  00  FF 
+2446 centre   EA  9F  13  03  30  01  18  00  FF 
+2447 centre   EB  9E  13  03  30  01  18  00  FF 
+2448 centre   EC  9E  13  03  30  01  18  00  FF 
+2449 centre   ED  9D  13  03  30  02  18  00  FF 
+2450 centre   EE  9D  13  03  30  02  18  00  FF 
+2451 centre   EF  9C  13  03  30  02  18  00  FF 
+2452 centre   F0  9C  13  03  30  02  18  00  FF 
+2453 centre   F1  9B  13  03  30  03  18  00  FF 
+2454 centre   F2  9B  13  03  30  03  18  00  FF 
+2455 centre   F3  9A  13  03  30  03  18  00  FF 
+2456 centre   F4  9A  13  03  30  03  18  00  FF 
+2457 centre   F5  99  13  03  30  04  18  00  FF 
+2458 centre   F6  99  13  03  30  04  18  00  FF 
+2459 centre   F7  98  13  03  30  04  18  00  FF 
+2460 centre   F8  98  13  03  30  04  18  00  FF 
+2461 centre   F9  97  13  03  30  05  18  00  FF 
+2462 centre   FA  97  13  03  30  05  18  00  FF 
+2463 centre   FB  96  13  03  30  05  18  00  FF 
+2464 centre   FC  96  13  03  30  05  18  00  FF 
+2465 centre   FD  95  13  03  30  01  18  00  FF 
+2466 centre   FE  95  13  03  30  01  18  00  FF 
+2467 centre   FF  94  13  03  30  01  18  00  FF 
+2468 centre   00  94  13  03  30  01  18  00  FF 
+2469 centre   01  93  13  03  29  02  18  00  FF 
+2470 centre   02  93  13  03  29  02  18  00  FF 
+2471 centre   03  92  13  03  29  02  18  00  FF 
+2472 centre   04  92  13  03  29  02  18  00  FF 
+2473 centre   05  91  13  03  29  03  18  00  FF 
+2474 centre   06  91  13  03  29  03  18  00  FF 
+2475 centre   07  90  13  03  29  03  18  00  FF 
+2476 centre   08  90  13  03  29  03  18  00  FF 
+2477 centre   09  8F  13  03  29  04  18  00  FF 
+2478 centre   0A  8F  13  03  29  04  18  00  FF 
+2479 centre   0B  8E  13  03  29  04  18  00  FF 
+2480 centre   0C  8E  13  03  29  04  18  00  FF 
+2481 centre   0D  8D  13  03  29  05  18  00  FF 
+2482 centre   0E  8D  13  03  29  05  18  00  FF 
+2483 centre   0F  8C  13  03  29  05  18  00  FF 
+2484 centre   10  8C  13  03  29  05  18  00  FF 
+2485 centre   11  8B  13  03  29  01  18  00  FF 
+2486 centre   12  8B  13  03  29  01  18  00  FF 
+2487 centre   13  8A  13  03  29  01  18  00  FF 
+2488 centre   14  8A  13  03  29  01  18  00  FF 
+2489 centre   15  89  13  03  29  02  18  00  FF 
+2490 centre   16  89  13  03  29  02  18  00  FF 
+2491 centre   17  88  13  03  29  02  18  00  FF 
+2492 centre   18  88  13  03  29  02  18  00  FF 
+2493 centre   19  87  13  03  29  03  18  00  FF 
+2494 centre   1A  87  13  03  29  03  18  00  FF 
+2495 centre   1B  86  13  03  29  03  18  00  FF 
+2496 centre   1C  86  13  03  29  03  18  00  FF 
+2497 centre   1D  85  13  03  29  04  18  00  FF 
+2498 centre   1E  85  13  03  29  04  18  00  FF 
+2499 centre   1F  84  13  03  29  04  18  00  FF 
+2500 centre   20  84  13  03  29  04  18  00  FF 
+2501 centre   21  83  13  03  29  05  18  00  FF 
+2502 centre   22  83  13  03  29  05  18  00  FF 
+2503 centre   23  82  13  03  29  05  18  00  FF 
+2504 centre   24  82  13  03  29  05  18  00  FF 
+2505 centre   25  81  13  03  29  01  18  00  FF 
+2506 centre   26  81  13  03  29  01  18  00  FF 
+2507 centre   27  80  13  03  29  01  18  00  FF 
+2508 centre   28  80  13  03  29  01  18  00  FF 
+2509 centre   29  7F  13  03  29  02  18  00  FF 
+2510 centre   2A  7F  13  03  29  02  18  00  FF 
+2511 centre   2B  7E  13  03  29  02  18  00  FF 
+2512 centre   2C  7E  13  03  29  02  18  00  FF 
+2513 centre   2D  7D  13  03  29  03  18  00  FF 
+2514 centre   2E  7D  13  03  29  03  18  00  FF 
+2515 centre   2F  7C  13  03  29  03  18  00  FF 
+2516 centre   30  7C  13  03  29  03  18  00  FF 
+2517 centre   31  7B  13  03  29  04  18  00  FF 
+2518 centre   32  7B  13  03  29  04  18  00  FF 
+2519 centre   33  7A  13  03  29  04  18  00  FF 
+2520 centre   34  7A  13  03  29  04  18  00  FF 
+2521 centre   35  79  13  03  29  05  18  00  FF 
+2522 centre   36  79  13  03  29  05  18  00  FF 
+2523 centre   37  78  13  03  29  05  18  00  FF 
+2524 centre   38  78  13  03  29  05  18  00  FF 
+2525 centre   39  77  13  03  29  01  18  00  FF 
+2526 centre   3A  77  13  03  29  01  18  00  FF 
+2527 centre   3B  76  13  03  29  01  18  00  FF 
+2528 centre   3C  76  13  03  29  01  18  00  FF 
+2529 centre   3D  75  13  03  29  02  18  00  FF 
+2530 centre   3E  75  13  03  29  02  18  00  FF 
+2531 centre   3F  74  13  03  29  02  18  00  FF 
+2532 centre   40  74  13  03  29  02  18  00  FF 
+2533 centre   41  73  13  03  29  03  18  00  FF 
+2534 centre   42  73  13  03  29  03  18  00  FF 
+2535 centre   43  72  13  03  29  03  18  00  FF 
+2536 centre   44  72  13  03  29  03  18  00  FF 
+2537 centre   45  71  13  03  29  04  18  00  FF 
+2538 centre   46  71  13  03  29  04  18  00  FF 
+2539 centre   47  70  13  03  29  04  18  00  FF 
+2540 centre   48  70  13  03  29  04  18  00  FF 
+2541 centre   49  6F  13  03  29  05  18  00  FF 
+2542 centre   4A  6F  13  03  29  05  18  00  FF 
+2543 centre   4B  6E  13  03  29  05  18  00  FF 
+2544 centre   4C  6E  13  03  29  05  18  00  FF 
+2545 centre   4D  6D  13  03  29  01  18  00  FF 
+2546 centre   4E  6D  13  03  29  01  18  00  FF 
+2547 centre   4F  6C  13  03  29  01  18  00  FF 
+2548 centre   50  6C  13  03  29  01  18  00  FF 
+2549 centre   51  6B  13  03  29  02  18  00  FF 
+2550 centre   52  6B  13  03  29  02  18  00  FF 
+2551 centre   53  6A  13  03  29  02  18  00  FF 
+2552 centre   54  6A  13  03  29  02  18  00  FF 
+2553 centre   55  69  13  03  29  03  18  00  FF 
+2554 centre   56  69  13  03  29  03  18  00  FF 
+2555 centre   57  68  13  03  29  03  18  00  FF 
+2556 centre   58  68  13  03  29  03  18  00  FF 
+2557 centre   59  67  13  03  29  04  18  00  FF 
+2558 centre   5A  67  13  03  29  04  18  00  FF 
+2559 centre   5B  66  13  03  29  04  18  00  FF 
+2560 centre   5C  66  13  03  29  04  18  00  FF 
+2561 centre   5D  65  13  03  29  05  18  00  FF 
+2562 centre   5E  65  13  03  29  05  18  00  FF 
+2563 centre   5F  64  13  03  29  05  18  00  FF 
+2564 centre   60  64  13  03  29  05  18  00  FF 
+2565 centre   61  63  13  03  29  01  18  00  FF 
+2566 centre   62  63  13  03  29  01  18  00  FF 
+2567 centre   63  62  13  03  29  01  18  00  FF 
+2568 centre   64  62  13  03  29  01  18  00  FF 
+2569 centre   65  61  13  03  29  02  18  00  FF 
+2570 centre   66  61  13  03  29  02  18  00  FF 
+2571 centre   67  60  13  03  29  02  18  00  FF 
+2572 centre   68  60  13  03  29  02  18  00  FF 
+2573 centre   69  5F  13  03  29  03  18  00  FF 
+2574 centre   6A  5F  13  03  29  03  18  00  FF 
+2575 centre   6B  5E  13  03  29  03  18  00  FF 
+2576 centre   6C  5E  13  03  29  03  18  00  FF 
+2577 centre   6D  5D  13  03  29  04  18  00  FF 
+2578 centre   6E  5D  13  03  29  04  18  00  FF 
+2579 centre   6F  5C  13  03  29  04  18  00  FF 
+2580 centre   70  5C  13  03  29  04  18  00  FF 
+2581 centre   71  5B  13  03  29  05  18  00  FF 
+2582 centre   72  5B  13  03  29  05  18  00  FF 
+2583 centre   73  5A  13  03  29  05  18  00  FF 
+2584 centre   74  5A  13  03  29  05  18  00  FF 
+2585 centre   75  59  13  03  29  01  18  00  FF 
+2586 centre   76  59  13  03  29  01  18  00  FF 
+2587 centre   77  58  13  03  29  01  18  00  FF 
+2588 centre   78  58  13  03  29  01  18  00  FF 
+2589 centre   79  57  13  03  29  02  18  00  FF 
+2590 centre   7A  57  13  03  29  02  18  00  FF 
+2591 centre   7B  56  13  03  29  02  18  00  FF 
+2592 centre   7C  56  13  03  29  02  18  00  FF 
+2593 centre   7D  55  13  03  29  03  18  00  FF 
+2594 centre   7E  55  13  03  29  03  18  00  FF 
+2595 centre   7F  54  13  03  29  03  18  00  FF 
+2596 centre   80  54  13  03  29  03  18  00  FF 
+2597 centre   81  53  13  03  28  04  18  00  FF 
+2598 centre   82  53  13  03  28  04  18  00  FF 
+2599 centre   83  52  13  03  28  04  18  00  FF 
+2600 centre   84  52  13  03  28  04  18  00  FF 
+2601 centre   85  51  13  03  28  05  18  00  FF 
+2602 centre   86  51  13  03  28  05  18  00  FF 
+2603 centre   87  50  13  03  28  05  18  00  FF 
+2604 centre   88  50  13  03  28  05  18  00  FF 
+2605 centre   89  4F  13  03  28  01  18  00  FF 
+2606 centre   8A  4F  13  03  28  01  18  00  FF 
+2607 centre   8B  4E  13  03  28  01  18  00  FF 
+2608 centre   8C  4E  13  03  28  01  18  00  FF 
+2609 centre   8D  4D  13  03  28  02  18  00  FF 
+2610 centre   8E  4D  13  03  28  02  18  00  FF 
+2611 centre   8F  4C  13  03  28  02  18  00  FF 
+2612 centre   90  4C  13  03  28  02  18  00  FF 
+2613 centre   91  4B  13  03  28  03  18  00  FF 
+2614 centre   92  4B  13  03  28  03  18  00  FF 
+2615 centre   93  4A  13  03  28  03  18  00  FF 
+2616 centre   94  4A  13  03  28  03  18  00  FF 
+2617 centre   95  49  13  03  28  04  18  00  FF 
+2618 centre   96  49  13  03  28  04  18  00  FF 
+2619 centre   97  48  13  03  28  04  18  00  FF 
+2620 centre   98  48  13  03  28  04  18  00  FF 
+2621 centre   99  47  13  03  28  05  18  00  FF 
+2622 centre   9A  47  13  03  28  05  18  00  FF 
+2623 centre   9B  46  13  03  28  05  18  00  FF 
+2624 centre   9C  46  13  03  28  05  18  00  FF 
+2625 centre   9D  45  13  03  28  01  18  00  FF 
+2626 centre   9E  45  13  03  28  01  18  00  FF 
+2627 centre   9F  44  13  03  28  01  18  00  FF 
+2628 centre   A0  44  13  03  28  01  18  00  FF 
+2629 centre   A1  43  13  03  28  02  18  00  FF 
+2630 centre   A2  43  13  03  28  02  18  00  FF 
+2631 centre   A3  42  13  03  28  02  18  00  FF 
+2632 centre   A4  42  13  03  28  02  18  00  FF 
+2633 centre   A5  41  13  03  28  03  18  00  FF 
+2634 centre   A6  41  13  03  28  03  18  00  FF 
+2635 centre   A7  40  13  03  28  03  18  00  FF 
+2636 centre   A8  40  13  03  28  03  18  00  FF 
+2637 centre   A9  3F  13  03  28  04  18  00  FF 
+2638 centre   AA  3F  13  03  28  04  18  00  FF 
+2639 centre   AB  3E  13  03  28  04  18  00  FF 
+2640 centre   AC  3E  13  03  28  04  18  00  FF 
+2641 centre   AD  3D  13  03  28  05  18  00  FF 
+2642 centre   AE  3D  13  03  28  05  18  00  FF 
+2643 centre   AF  3C  13  03  28  05  18  00  FF 
+2644 centre   B0  3C  13  03  28  05  18  00  FF 
+2645 centre   B1  3B  13  03  28  01  18  00  FF 
+2646 centre   B2  3B  13  03  28  01  18  00  FF 
+2647 centre   B3  3A  13  03  28  01  18  00  FF 
+2648 centre   B4  3A  13  03  28  01  18  00  FF 
+2649 centre   B5  39  13  03  28  02  18  00  FF 
+2650 centre   B6  39  13  03  28  02  18  00  FF 
+2651 centre   B7  38  13  03  28  02  18  00  FF 
+2652 centre   B8  38  13  03  28  02  18  00  FF 
+2653 centre   B9  37  13  03  28  03  18  00  FF 
+2654 centre   BA  37  13  03  28  03  18  00  FF 
+2655 centre   BB  36  13  03  28  03  18  00  FF 
+2656 centre   BC  36  13  03  28  03  18  00  FF 
+2657 centre   BD  35  13  03  28  04  18  00  FF 
+2658 centre   BE  35  13  03  28  04  18  00  FF 
+2659 centre   BF  34  13  03  28  04  18  00  FF 
+2660 centre   C0  34  13  03  28  04  18  00  FF 
+2661 centre   C1  33  13  03  28  05  18  00  FF 
+2662 centre   C2  33  13  03  28  05  18  00  FF 
+2663 centre   C3  32  13  03  28  05  18  00  FF 
+2664 centre   C4  32  13  03  28  05  18  00  FF 
+2665 centre   C5  31  13  03  28  01  18  00  FF 
+2666 centre   C6  31  13  03  28  01  18  00  FF 
+2667 centre   C7  30  13  03  28  01  18  00  FF 
+2668 centre   C8  30  13  03  28  01  18  00  FF 
+2669 centre   C9  2F  13  03  28  02  18  00  FF 
+2670 centre   CA  2F  13  03  28  02  18  00  FF 
+2671 centre   CB  2E  13  03  28  02  18  00  FF 
+2672 centre   CC  2E  13  03  28  02  18  00  FF 
+2673 centre   CD  2D  13  03  28  03  18  00  FF 
+2674 centre   CE  2D  13  03  28  03  18  00  FF 
+2675 centre   CF  2C  13  03  28  03  18  00  FF 
+2676 centre   D0  2C  13  03  28  03  18  00  FF 
+2677 centre   D1  2B  13  03  28  04  18  00  FF 
+2678 centre   D2  2B  13  03  28  04  18  00  FF 
+2679 centre   D3  2A  13  03  28  04  18  00  FF 
+2680 centre   D4  2A  13  03  28  04  18  00  FF 
+2681 centre   D5  29  13  03  28  05  18  00  FF 
+2682 centre   D6  29  13  03  28  05  18  00  FF 
+2683 centre   D7  CF  14  04  28  01  18  00  FF 
+2684 centre   D8  CF  14  04  28  01  18  00  FF 
+2685 centre   D9  CE  14  04  28  01  18  00  FF 
+2686 centre   DA  CE  14  04  28  01  18  00  FF 
+2687 centre   DB  CD  14  04  28  02  18  00  FF 
+2688 centre   DC  CD  14  04  28  02  18  00  FF 
+2689 centre   DD  CC  14  04  28  02  18  00  FF 
+2690 centre   DE  CC  14  04  28  02  18  00  FF 
+2691 centre   DF  CB  14  04  28  03  18  00  FF 
+2692 centre   E0  CB  14  04  28  03  18  00  FF 
+2693 centre   E1  CA  14  04  28  03  18  00  FF 
+2694 centre   E2  CA  14  04  28  03  18  00  FF 
+2695 centre   E3  C9  14  04  28  04  18  00  FF 
+2696 centre   E4  C9  14  04  28  04  18  00  FF 
+2697 centre   E5  C8  14  04  28  04  18  00  FF 
+2698 centre   E6  C8  14  04  28  04  18  00  FF 
+2699 centre   E7  C7  14  04  28  05  18  00  FF 
+2700 centre   E8  C7  14  04  28  05  18  00  FF 
+2701 centre   E9  C6  14  04  28  05  18  00  FF 
+2702 centre   EA  C6  14  04  28  05  18  00  FF 
+2703 centre   EB  C5  14  04  28  01  18  00  FF 
+2704 centre   EC  C5  14  04  28  01  18  00  FF 
+2705 centre   ED  C4  14  04  28  01  18  00  FF 
+2706 centre   EE  C4  14  04  28  01  18  00  FF 
+2707 centre   EF  C3  14  04  28  02  18  00  FF 
+2708 centre   F0  C3  14  04  28  02  18  00  FF 
+2709 centre   F1  C2  14  04  28  02  18  00  FF 
+2710 centre   F2  C2  14  04  28  02  18  00  FF 
+2711 centre   F3  C1  14  04  28  03  18  00  FF 
+2712 centre   F4  C1  14  04  28  03  18  00  FF 
+2713 centre   F5  C0  14  04  28  03  18  00  FF 
+2714 centre   F6  C0  14  04  28  03  18  00  FF 
+2715 centre   F7  BF  14  04  28  04  18  00  FF 
+2716 centre   F8  BF  14  04  28  04  18  00  FF 
+2717 centre   F9  BE  14  04  28  04  18  00  FF 
+2718 centre   FA  BE  14  04  28  04  18  00  FF 
+2719 centre   FB  BD  14  04  28  05  18  00  FF 
+2720 centre   FC  BD  14  04  28  05  18  00  FF 
+2721 centre   FD  BC  14  04  28  05  18  00  FF 
+2722 centre   FE  BC  14  04  28  05  18  00  FF 
+2723 centre   FF  BB  14  04  28  01  18  00  FF 
+2724 centre   00  BB  14  04  28  01  18  00  FF 
+2725 centre   01  BA  14  04  27  01  18  00  FF 
+2726 centre   02  BA  14  04  27  01  18  00  FF 
+2727 centre   03  B9  14  04  27  02  18  00  FF 
+2728 centre   04  B9  14  04  27  02  18  00  FF 
+2729 centre   05  B8  14  04  27  02  18  00  FF 
+2730 centre   06  B8  14  04  27  02  18  00  FF 
+2731 centre   07  B7  14  04  27  03  18  00  FF 
+2732 centre   08  B7  14  04  27  03  18  00  FF 
+2733 centre   09  B6  14  04  27  03  18  00  FF 
+2734 centre   0A  B6  14  04  27  03  18  00  FF 
+2735 centre   0B  B5  14  04  27  04  18  00  FF 
+2736 centre   0C  B5  14  04  27  04  18  00  FF 
+2737 centre   0D  B4  14  04  27  04  18  00  FF 
+2738 centre   0E  B4  14  04  27  04  18  00  FF 
+2739 centre   0F  B3  14  04  27  05  18  00  FF 
+2740 centre   10  B3  14  04  27  05  18  00  FF 
+2741 centre   11  B2  14  04  27  05  18  00  FF 
+2742 centre   12  B2  14  04  27  05  18  00  FF 
+2743 centre   13  B1  14  04  27  01  18  00  FF 
+2744 centre   14  B1  14  04  27  01  18  00  FF 
+2745 centre   15  B0  14  04  27  01  18  00  FF 
+2746 centre   16  B0  14  04  27  01  18  00  FF 
+2747 centre   17  AF  14  04  27  02  18  00  FF 
+2748 centre   18  AF  14  04  27  02  18  00  FF 
+2749 centre   19  AE  14  04  27  02  18  00  FF 
+2750 centre   1A  AE  14  04  27  02  18  00  FF 
+2751 centre   1B  AD  14  04  27  03  18  00  FF 
+2752 centre   1C  AD  14  04  27  03  18  00  FF 
+2753 centre   1D  AC  14  04  27  03  18  00  FF 
+2754 centre   1E  AC  14  04  27  03  18  00  FF 
+2755 centre   1F  AB  14  04  27  04  18  00  FF 
+2756 centre   20  AB  14  04  27  04  18  00  FF 
+2757 centre   21  AA  14  04  27  04  18  00  FF 
+2758 centre   22  AA  14  04  27  04  18  00  FF 
+2759 centre   23  A9  14  04  27  05  18  00  FF 
+2760 centre   24  A9  14  04  27  05  18  00  FF 
+2761 centre   25  A8  14  04  27  05  18  00  FF 
+2762 centre   26  A8  14  04  27  05  18  00  FF 
+2763 centre   27  A7  14  04  27  01  18  00  FF 
+2764 centre   28  A7  14  04  27  01  18  00  FF 
+2765 centre   29  A6  14  04  27  01  18  00  FF 
+2766 centre   2A  A6  14  04  27  01  18  00  FF 
+2767 centre   2B  A5  14  04  27  02  18  00  FF 
+2768 centre   2C  A5  14  04  27  02  18  00  FF 
+2769 centre   2D  A4  14  04  27  02  18  00  FF 
+2770 centre   2E  A4  14  04  27  02  18  00  FF 
+2771 centre   2F  A3  14  04  27  03  18  00  FF 
+2772 centre   30  A3  14  04  27  03  18  00  FF 
+2773 centre   31  A2  14  04  27  03  18  00  FF 
+2774 centre   32  A2  14  04  27  03  18  00  FF 
+2775 centre   33  A1  14  04  27  04  18  00  FF 
+2776 centre   34  A1  14  04  27  04  18  00  FF 
+2777 centre   35  A0  14  04  27  04  18  00  FF 
+2778 centre   36  A0  14  04  27  04  18  00  FF 
+2779 centre   37  9F  14  04  27  05  18  00  FF 
+2780 centre   38  9F  14  04  27  05  18  00  FF 
+2781 centre   39  9E  14  04  27  05  18  00  FF 
+2782 centre   3A  9E  14  04  27  05  18  00  FF 
+2783 centre   3B  9D  14  04  27  01  18  00  FF 
+2784 centre   3C  9D  14  04  27  01  18  00  FF 
+2785 centre   3D  9C  14  04  27  01  18  00  FF 
+2786 centre   3E  9C  14  04  27  01  18  00  FF 
+2787 centre   3F  9B  14  04  27  02  18  00  FF 
+2788 centre   40  9B  14  04  27  02  18  00  FF 
+2789 centre   41  9A  14  04  27  02  18  00  FF 
+2790 centre   42  9A  14  04  27  02  18  00  FF 
+2791 centre   43  99  14  04  27  03  18  00  FF 
+2792 centre   44  99  14  04  27  03  18  00  FF 
+2793 centre   45  98  14  04  27  03  18  00  FF 
+2794 centre   46  98  14  04  27  03  18  00  FF 
+2795 centre   47  97  14  04  27  04  18  00  FF 
+2796 centre   48  97  14  04  27  04  18  00  FF 
+2797 centre   49  96  14  04  27  04  18  00  FF 
+2798 centre   4A  96  14  04  27  04  18  00  FF 
+2799 centre   4B  95  14  04  27  05  18  00  FF 
+2800 centre   4C  95  14  04  27  05  18  00  FF 
+2801 centre   4D  94  14  04  27  05  18  00  FF 
+2802 centre   4E  94  14  04  27  05  18  00  FF 
+2803 centre   4F  93  14  04  27  01  18  00  FF 
+2804 centre   50  93  14  04  27  01  18  00  FF 
+2805 centre   51  92  14  04  27  01  18  00  FF 
+2806 centre   52  92  14  04  27  01  18  00  FF 
+2807 centre   53  91  14  04  27  02  18  00  FF 
+2808 centre   54  91  14  04  27  02  18  00  FF 
+2809 centre   55  90  14  04  27  02  18  00  FF 
+2810 centre   56  90  14  04  27  02  18  00  FF 
+2811 centre   57  8F  14  04  27  03  18  00  FF 
+2812 centre   58  8F  14  04  27  03  18  00  FF 
+2813 centre   59  8E  14  04  27  03  18  00  FF 
+2814 centre   5A  8E  14  04  27  03  18  00  FF 
+2815 centre   5B  8D  14  04  27  04  18  00  FF 
+2816 centre   5C  8D  14  04  27  04  18  00  FF 
+2817 centre   5D  8C  14  04  27  04  18  00  FF 
+2818 centre   5E  8C  14  04  27  04  18  00  FF 
+2819 centre   5F  8B  14  04  27  05  18  00  FF 
+2820 centre   60  8B  14  04  27  05  18  00  FF 
+2821 centre   61  8A  14  04  27  05  18  00  FF 
+2822 centre   62  8A  14  04  27  05  18  00  FF 
+2823 centre   63  89  14  04  27  01  18  00  FF 
+2824 centre   64  89  14  04  27  01  18  00  FF 
+2825 centre   65  88  14  04  27  01  18  00  FF 
+2826 centre   66  88  14  04  27  01  18  00  FF 
+2827 centre   67  87  14  04  27  02  18  00  FF 
+2828 centre   68  87  14  04  27  02  18  00  FF 
+2829 centre   69  86  14  04  27  02  18  00  FF 
+2830 centre   6A  86  14  04  27  02  18  00  FF 
+2831 centre   6B  85  14  04  27  03  18  00  FF 
+2832 centre   6C  85  14  04  27  03  18  00  FF 
+2833 centre   6D  84  14  04  27  03  18  00  FF 
+2834 centre   6E  84  14  04  27  03  18  00  FF 
+2835 centre   6F  83  14  04  27  04  18  00  FF 
+2836 centre   70  83  14  04  27  04  18  00  FF 
+2837 centre   71  82  14  04  27  04  18  00  FF 
+2838 centre   72  82  14  04  27  04  18  00  FF 
+2839 centre   73  81  14  04  27  05  18  00  FF 
+2840 centre   74  81  14  04  27  05  18  00  FF 
+2841 centre   75  80  14  04  27  05  18  00  FF 
+2842 centre   76  80  14  04  27  05  18  00  FF 
+2843 centre   77  7F  14  04  27  01  18  00  FF 
+2844 centre   78  7F  14  04  27  01  18  00  FF 
+2845 centre   79  7E  14  04  27  01  18  00  FF 
+2846 centre   7A  7E  14  04  27  01  18  00  FF 
+2847 centre   7B  7D  14  04  27  02  18  00  FF 
+2848 centre   7C  7D  14  04  27  02  18  00  FF 
+2849 centre   7D  7C  14  04  27  02  18  00  FF 
+2850 centre   7E  7C  14  04  27  02  18  00  FF 
+2851 centre   7F  7B  14  04  27  03  18  00  FF 
+2852 centre   80  7B  14  04  27  03  18  00  FF 
+2853 centre   81  7A  14  04  26  03  18  00  FF 
+2854 centre   82  7A  14  04  26  03  18  00  FF 
+2855 centre   83  79  14  04  26  04  18  00  FF 
+2856 centre   84  79  14  04  26  04  18  00  FF 
+2857 centre   85  78  14  04  26  04  18  00  FF 
+2858 centre   86  78  14  04  26  04  18  00  FF 
+2859 centre   87  77  14  04  26  05  18  00  FF 
+2860 centre   88  77  14  04  26  05  18  00  FF 
+2861 centre   89  76  14  04  26  05  18  00  FF 
+2862 centre   8A  76  14  04  26  05  18  00  FF 
+2863 centre   8B  75  14  04  26  01  18  00  FF 
+2864 centre   8C  75  14  04  26  01  18  00  FF 
+2865 centre   8D  74  14  04  26  01  18  00  FF 
+2866 centre   8E  74  14  04  26  01  18  00  FF 
+2867 centre   8F  73  14  04  26  02  18  00  FF 
+2868 centre   90  73  14  04  26  02  18  00  FF 
+2869 centre   91  72  14  04  26  02  18  00  FF 
+2870 centre   92  72  14  04  26  02  18  00  FF 
+2871 centre   93  71  14  04  26  03  18  00  FF 
+2872 centre   94  71  14  04  26  03  18  00  FF 
+2873 centre   95  70  14  04  26  03  18  00  FF 
+2874 centre   96  70  14  04  26  03  18  00  FF 
+2875 centre   97  6F  14  04  26  04  18  00  FF 
+2876 centre   98  6F  14  04  26  04  18  00  FF 
+2877 centre   99  6E  14  04  26  04  18  00  FF 
+2878 centre   9A  6E  14  04  26  04  18  00  FF 
+2879 centre   9B  6D  14  04  26  05  18  00  FF 
+2880 centre   9C  6D  14  04  26  05  18  00  FF 
+2881 centre   9D  6C  14  04  26  05  18  00  FF 
+2882 centre   9E  6C  14  04  26  05  18  00  FF 
+2883 centre   9F  6B  14  04  26  01  18  00  FF 
+2884 centre   A0  6B  14  04  26  01  18  00  FF 
+2885 centre   A1  6A  14  04  26  01  18  00  FF 
+2886 centre   A2  6A  14  04  26  01  18  00  FF 
+2887 centre   A3  69  14  04  26  02  18  00  FF 
+2888 centre   A4  69  14  04  26  02  18  00  FF 
+2889 centre   A5  68  14  04  26  02  18  00  FF 
+2890 centre   A6  68  14  04  26  02  18  00  FF 
+2891 centre   A7  67  14  04  26  03  18  00  FF 
+2892 centre   A8  67  14  04  26  03  18  00  FF 
+2893 centre   A9  66  14  04  26  03  18  00  FF 
+2894 centre   AA  66  14  04  26  03  18  00  FF 
+2895 centre   AB  65  14  04  26  04  18  00  FF 
+2896 centre   AC  65  14  04  26  04  18  00  FF 
+2897 centre   AD  64  14  04  26  04  18  00  FF 
+2898 centre   AE  64  14  04  26  04  18  00  FF 
+2899 centre   AF  63  14  04  26  05  18  00  FF 
+2900 centre   B0  63  14  04  26  05  18  00  FF 
+2901 centre   B1  62  14  04  26  05  18  00  FF 
+2902 centre   B2  62  14  04  26  05  18  00  FF 
+2903 centre   B3  61  14  04  26  01  18  00  FF 
+2904 centre   B4  61  14  04  26  01  18  00  FF 
+2905 centre   B5  60  14  04  26  01  18  00  FF 
+2906 centre   B6  60  14  04  26  01  18  00  FF 
+2907 centre   B7  5F  14  04  26  02  18  00  FF 
+2908 centre   B8  5F  14  04  26  02  18  00  FF 
+2909 centre   B9  5E  14  04  26  02  18  00  FF 
+2910 centre   BA  5E  14  04  26  02  18  00  FF 
+2911 centre   BB  5D  14  04  26  03  18  00  FF 
+2912 centre   BC  5D  14  04  26  03  18  00  FF 
+2913 centre   BD  5C  14  04  26  03  18  00  FF 
+2914 centre   BE  5C  14  04  26  03  18  00  FF 
+2915 centre   BF  5B  14  04  26  04  18  00  FF 
+2916 centre   C0  5B  14  04  26  04  18  00  FF 
+2917 centre   C1  5A  14  04  26  04  18  00  FF 
+2918 centre   C2  5A  14  04  26  04  18  00  FF 
+2919 centre   C3  59  14  04  26  05  18  00  FF 
+2920 centre   C4  59  14  04  26  05  18  00  FF 
+2921 centre   C5  58  14  04  26  05  18  00  FF 
+2922 centre   C6  58  14  04  26  05  18  00  FF 
+2923 centre   C7  57  14  04  26  01  18  00  FF 
+2924 centre   C8  57  14  04  26  01  18  00  FF 
+2925 centre   C9  56  14  04  26  01  18  00  FF 
+2926 centre   CA  56  14  04  26  01  18  00  FF 
+2927 centre   CB  55  14  04  26  02  18  00  FF 
+2928 centre   CC  55  14  04  26  02  18  00  FF 
+2929 centre   CD  54  14  04  26  02  18  00  FF 
+2930 centre   CE  54  14  04  26  02  18  00  FF 
+2931 centre   CF  53  14  04  26  03  18  00  FF 
+2932 centre   D0  53  14  04  26  03  18  00  FF 
+2933 centre   D1  52  14  04  26  03  18  00  FF 
+2934 centre   D2  52  14  04  26  03  18  00  FF 
+2935 centre   D3  51  14  04  26  04  18  00  FF 
+2936 centre   D4  51  14  04  26  04  18  00  FF 
+2937 centre   D5  50  14  04  26  04  18  00  FF 
+2938 centre   D6  50  14  04  26  04  18  00  FF 
+2939 centre   D7  4F  14  04  26  05  18  00  FF 
+2940 centre   D8  4F  14  04  26  05  18  00  FF 
+2941 centre   D9  4E  14  04  26  05  18  00  FF 
+2942 centre   DA  4E  14  04  26  05  18  00  FF 
+2943 centre   DB  4D  14  04  26  01  18  00  FF 
+2944 centre   DC  4D  14  04  26  01  18  00  FF 
+2945 centre   DD  4C  14  04  26  01  18  00  FF 
+2946 centre   DE  4C  14  04  26  01  18  00  FF 
+2947 centre   DF  4B  14  04  26  02  18  00  FF 
+2948 centre   E0  4B  14  04  26  02  18  00  FF 
+2949 centre   E1  4A  14  04  26  02  18  00  FF 
+2950 centre   E2  4A  14  04  26  02  18  00  FF 
+2951 centre   E3  49  14  04  26  03  18  00  FF 
+2952 centre   E4  49  14  04  26  03  18  00  FF 
+2953 centre   E5  48  14  04  26  03  18  00  FF 
+2954 centre   E6  48  14  04  26  03  18  00  FF 
+2955 centre   E7  47  14  04  26  04  18  00  FF 
+2956 centre   E8  47  14  04  26  04  18  00  FF 
+2957 centre   E9  46  14  04  26  04  18  00  FF 
+2958 centre   EA  46  14  04  26  04  18  00  FF 
+2959 centre   EB  45  14  04  26  05  18  00  FF 
+2960 centre   EC  45  14  04  26  05  18  00  FF 
+2961 centre   ED  44  14  04  26  05  18  00  FF 
+2962 centre   EE  44  14  04  26  05  18  00  FF 
+2963 centre   EF  43  14  04  26  01  18  00  FF 
+2964 centre   F0  43  14  04  26  01  18  00  FF 
+2965 centre   F1  42  14  04  26  01  18  00  FF 
+2966 centre   F2  42  14  04  26  01  18  00  FF 
+2967 centre   F3  41  14  04  26  02  18  00  FF 
+2968 centre   F4  41  14  04  26  02  18  00  FF 
+2969 centre   F5  40  14  04  26  02  18  00  FF 
+2970 centre   F6  40  14  04  26  02  18  00  FF 
+2971 centre   F7  3F  14  04  26  03  18  00  FF 
+2972 centre   F8  3F  14  04  26  03  18  00  FF 
+2973 centre   F9  3E  14  04  26  03  18  00  FF 
+2974 centre   FA  3E  14  04  26  03  18  00  FF 
+2975 centre   FB  3D  14  04  26  04  18  00  FF 
+2976 centre   FC  3D  14  04  26  04  18  00  FF 
+2977 centre   FD  3C  14  04  26  04  18  00  FF 
+2978 centre   FE  3C  14  04  26  04  18  00  FF 
+2979 centre   FF  3B  14  04  26  05  18  00  FF 
+2980 centre   00  3B  14  04  26  05  18  00  FF 
+2981 centre   01  3A  14  04  25  05  18  00  FF 
+2982 centre   02  3A  14  04  25  05  18  00  FF 
+2983 centre   03  39  14  04  25  01  18  00  FF 
+2984 centre   04  39  14  04  25  01  18  00  FF 
+2985 centre   05  38  14  04  25  01  18  00  FF 
+2986 centre   06  38  14  04  25  01  18  00  FF 
+2987 centre   07  37  14  04  25  02  18  00  FF 
+2988 centre   08  37  14  04  25  02  18  00  FF 
+2989 centre   09  36  14  04  25  02  18  00  FF 
+2990 centre   0A  36  14  04  25  02  18  00  FF 
+2991 centre   0B  35  14  04  25  03  18  00  FF 
+2992 centre   0C  35  14  04  25  03  18  00  FF 
+2993 centre   0D  34  14  04  25  03  18  00  FF 
+2994 centre   0E  34  14  04  25  03  18  00  FF 
+2995 centre   0F  33  14  04  25  04  18  00  FF 
+2996 centre   10  33  14  04  25  04  18  00  FF 
+2997 centre   11  32  14  04  25  04  18  00  FF 
+2998 centre   12  32  14  04  25  04  18  00  FF 
+2999 centre   13  31  14  04  25  05  18  00  FF 
+3000 centre   14  31  14  04  25  05  18  00  FF 
+3001 centre   15  30  14  04  25  05  18  00  FF 
+3002 centre   16  30  14  04  25  05  18  00  FF 
+3003 centre   17  2F  14  04  25  01  18  00  FF 
+3004 centre   18  2F  14  04  25  01  18  00  FF 
+3005 centre   19  2E  14  04  25  01  18  00  FF 
+3006 centre   1A  2E  14  04  25  01  18  00  FF 
+3007 centre   1B  2D  14  04  25  02  18  00  FF 
+3008 centre   1C  2D  14  04  25  02  18  00  FF 
+3009 centre   1D  2C  14  04  25  02  18  00  FF 
+3010 centre   1E  2C  14  04  25  02  18  00  FF 
+3011 centre   1F  2B  14  04  25  03  18  00  FF 
+3012 centre   20  2B  14  04  25  03  18  00  FF 
+3013 centre   21  2A  14  04  25  03  18  00  FF 
+3014 centre   22  2A  14  04  25  03  18  00  FF 
+3015 centre   23  29  14  04  25  04  18  00  FF 
+3016 centre   24  29  14  04  25  04  18  00  FF 
+3017 centre   25  CF  15  05  25  05  18  00  FF 
+3018 centre   26  CF  15  05  25  05  18  00  FF 
+3019 centre   27  CE  15  05  25  05  18  00  FF 
+3020 centre   28  CE  15  05  25  05  18  00  FF 
+3021 centre   29  CD  15  05  25  01  18  00  FF 
+3022 centre   2A  CD  15  05  25  01  18  00  FF 
+3023 centre   2B  CC  15  05  25  01  18  00  FF 
+3024 centre   2C  CC  15  05  25  01  18  00  FF 
+3025 centre   2D  CB  15  05  25  02  18  00  FF 
+3026 centre   2E  CB  15  05  25  02  18  00  FF 
+3027 centre   2F  CA  15  05  25  02  18  00  FF 
+3028 centre   30  CA  15  05  25  02  18  00  FF 
+3029 centre   31  C9  15  05  25  03  18  00  FF 
+3030 centre   32  C9  15  05  25  03  18  00  FF 
+3031 centre   33  C8  15  05  25  03  18  00  FF 
+3032 centre   34  C8  15  05  25  03  18  00  FF 
+3033 centre   35  C7  15  05  25  04  18  00  FF 
+3034 centre   36  C7  15  05  25  04  18  00  FF 
+3035 centre   37  C6  15  05  25  04  18  00  FF 
+3036 centre   38  C6  15  05  25  04  18  00  FF 
+3037 centre   39  C5  15  05  25  05  18  00  FF 
+3038 centre   3A  C5  15  05  25  05  18  00  FF 
+3039 centre   3B  C4  15  05  25  05  18  00  FF 
+3040 centre   3C  C4  15  05  25  05  18  00  FF 
+3041 centre   3D  C3  15  05  25  01  18  00  FF 
+3042 centre   3E  C3  15  05  25  01  18  00  FF 
+3043 centre   3F  C2  15  05  25  01  18  00  FF 
+3044 centre   40  C2  15  05  25  01  18  00  FF 
+3045 centre   41  C1  15  05  25  02  18  00  FF 
+3046 centre   42  C1  15  05  25  02  18  00  FF 
+3047 centre   43  C0  15  05  25  02  18  00  FF 
+3048 centre   44  C0  15  05  25  02  18  00  FF 
+3049 centre   45  BF  15  05  25  03  18  00  FF 
+3050 centre   46  BF  15  05  25  03  18  00  FF 
+3051 centre   47  BE  15  05  25  03  18  00  FF 
+3052 centre   48  BE  15  05  25  03  18  00  FF 
+3053 centre   49  BD  15  05  25  04  18  00  FF 
+3054 centre   4A  BD  15  05  25  04  18  00  FF 
+3055 centre   4B  BC  15  05  25  04  18  00  FF 
+3056 centre   4C  BC  15  05  25  04  18  00  FF 
+3057 centre   4D  BB  15  05  25  05  18  00  FF 
+3058 centre   4E  BB  15  05  25  05  18  00  FF 
+3059 centre   4F  BA  15  05  25  05  18  00  FF 
+3060 centre   50  BA  15  05  25  05  18  00  FF 
+3061 centre   51  B9  15  05  25  01  18  00  FF 
+3062 centre   52  B9  15  05  25  01  18  00  FF 
+3063 centre   53  B8  15  05  25  01  18  00  FF 
+3064 centre   54  B8  15  05  25  01  18  00  FF 
+3065 centre   55  B7  15  05  25  02  18  00  FF 
+3066 centre   56  B7  15  05  25  02  18  00  FF 
+3067 centre   57  B6  15  05  25  02  18  00  FF 
+3068 centre   58  B6  15  05  25  02  18  00  FF 
+3069 centre   59  B5  15  05  25  03  18  00  FF 
+3070 centre   5A  B5  15  05  25  03  18  00  FF 
+3071 centre   5B  B4  15  05  25  03  18  00  FF 
+3072 centre   5C  B4  15  05  25  03  18  00  FF 
+3073 centre   5D  B3  15  05  25  04  18  00  FF 
+3074 centre   5E  B3  15  05  25  04  18  00  FF 
+3075 centre   5F  B2  15  05  25  04  18  00  FF 
+3076 centre   60  B2  15  05  25  04  18  00  FF 
+3077 centre   61  B1  15  05  25  05  18  00  FF 
+3078 centre   62  B1  15  05  25  05  18  00  FF 
+3079 centre   63  B0  15  05  25  05  18  00  FF 
+3080 centre   64  B0  15  05  25  05  18  00  FF 
+3081 centre   65  AF  15  05  25  01  18  00  FF 
+3082 centre   66  AF  15  05  25  01  18  00  FF 
+3083 centre   67  AE  15  05  25  01  18  00  FF 
+3084 centre   68  AE  15  05  25  01  18  00  FF 
+3085 centre   69  AD  15  05  25  02  18  00  FF 
+3086 centre   6A  AD  15  05  25  02  18  00  FF 
+3087 centre   6B  AC  15  05  25  02  18  00  FF 
+3088 centre   6C  AC  15  05  25  02  18  00  FF 
+3089 centre   6D  AB  15  05  25  03  18  00  FF 
+3090 centre   6E  AB  15  05  25  03  18  00  FF 
+3091 centre   6F  AA  15  05  25  03  18  00  FF 
+3092 centre   70  AA  15  05  25  03  18  00  FF 
+3093 centre   71  A9  15  05  25  04  18  00  FF 
+3094 centre   72  A9  15  05  25  04  18  00  FF 
+3095 centre   73  A8  15  05  25  04  18  00  FF 
+3096 centre   74  A8  15  05  25  04  18  00  FF 
+3097 centre   75  A7  15  05  25  05  18  00  FF 
+3098 centre   76  A7  15  05  25  05  18  00  FF 
+3099 centre   77  A6  15  05  25  05  18  00  FF 
+3100 centre   78  A6  15  05  25  05  18  00  FF 
+3101 centre   79  A5  15  05  25  01  18  00  FF 
+3102 centre   7A  A5  15  05  25  01  18  00  FF 
+3103 centre   7B  A4  15  05  25  01  18  00  FF 
+3104 centre   7C  A4  15  05  25  01  18  00  FF 
+3105 centre   7D  A3  15  05  25  02  18  00  FF 
+3106 centre   7E  A3  15  05  25  02  18  00  FF 
+3107 centre   7F  A2  15  05  25  02  18  00  FF 
+3108 centre   80  A2  15  05  25  02  18  00  FF 
+3109 centre   81  A1  15  05  24  03  18  00  FF 
+3110 centre   82  A1  15  05  24  03  18  00  FF 
+3111 centre   83  A0  15  05  24  03  18  00  FF 
+3112 centre   84  A0  15  05  24  03  18  00  FF 
+3113 centre   85  9F  15  05  24  04  18  00  FF 
+3114 centre   86  9F  15  05  24  04  18  00  FF 
+3115 centre   87  9E  15  05  24  04  18  00  FF 
+3116 centre   88  9E  15  05  24  04  18  00  FF 
+3117 centre   89  9D  15  05  24  05  18  00  FF 
+3118 centre   8A  9D  15  05  24  05  18  00  FF 
+3119 centre   8B  9C  15  05  24  05  18  00  FF 
+3120 centre   8C  9C  15  05  24  05  18  00  FF 
+3121 centre   8D  9B  15  05  24  01  18  00  FF 
+3122 centre   8E  9B  15  05  24  01  18  00  FF 
+3123 centre   8F  9A  15  05  24  01  18  00  FF 
+3124 centre   90  9A  15  05  24  01  18  00  FF 
+3125 centre   91  99  15  05  24  02  18  00  FF 
+3126 centre   92  99  15  05  24  02  18  00  FF 
+3127 centre   93  98  15  05  24  02  18  00  FF 
+3128 centre   94  98  15  05  24  02  18  00  FF 
+3129 centre   95  97  15  05  24  03  18  00  FF 
+3130 centre   96  97  15  05  24  03  18  00  FF 
+3131 centre   97  96  15  05  24  03  18  00  FF 
+3132 centre   98  96  15  05  24  03  18  00  FF 
+3133 centre   99  95  15  05  24  04  18  00  FF 
+3134 centre   9A  95  15  05  24  04  18  00  FF 
+3135 centre   9B  94  15  05  24  04  18  00  FF 
+3136 centre   9C  94  15  05  24  04  18  00  FF 
+3137 centre   9D  93  15  05  24  05  18  00  FF 
+3138 centre   9E  93  15  05  24  05  18  00  FF 
+3139 centre   9F  92  15  05  24  05  18  00  FF 
+3140 centre   A0  92  15  05  24  05  18  00  FF 
+3141 centre   A1  91  15  05  24  01  18  00  FF 
+3142 centre   A2  91  15  05  24  01  18  00  FF 
+3143 centre   A3  90  15  05  24  01  18  00  FF 
+3144 centre   A4  90  15  05  24  01  18  00  FF 
+3145 centre   A5  8F  15  05  24  02  18  00  FF 
+3146 centre   A6  8F  15  05  24  02  18  00  FF 
+3147 centre   A7  8E  15  05  24  02  18  00  FF 
+3148 centre   A8  8E  15  05  24  02  18  00  FF 
+3149 centre   A9  8D  15  05  24  03  18  00  FF 
+3150 centre   AA  8D  15  05  24  03  18  00  FF 
+3151 centre   AB  8C  15  05  24  03  18  00  FF 
+3152 centre   AC  8C  15  05  24  03  18  00  FF 
+3153 centre   AD  8B  15  05  24  04  18  00  FF 
+3154 centre   AE  8B  15  05  24  04  18  00  FF 
+3155 centre   AF  8A  15  05  24  04  18  00  FF 
+3156 centre   B0  8A  15  05  24  04  18  00  FF 
+3157 centre   B1  89  15  05  24  05  18  00  FF 
+3158 centre   B2  89  15  05  24  05  18  00  FF 
+3159 centre   B3  88  15  05  24  05  18  00  FF 
+3160 centre   B4  88  15  05  24  05  18  00  FF 
+3161 centre   B5  87  15  05  24  01  18  00  FF 
+3162 centre   B6  87  15  05  24  01  18  00  FF 
+3163 centre   B7  86  15  05  24  01  18  00  FF 
+3164 centre   B8  86  15  05  24  01  18  00  FF 
+3165 centre   B9  85  15  05  24  02  18  00  FF 
+3166 centre   BA  85  15  05  24  02  18  00  FF 
+3167 centre   BB  84  15  05  24  02  18  00  FF 
+3168 centre   BC  84  15  05  24  02  18  00  FF 
+3169 centre   BD  83  15  05  24  03  18  00  FF 
+3170 centre   BE  83  15  05  24  03  18  00  FF 
+3171 centre   BF  82  15  05  24  03  18  00  FF 
+3172 centre   C0  82  15  05  24  03  18  00  FF 
+3173 centre   C1  81  15  05  24  04  18  00  FF 
+3174 centre   C2  81  15  05  24  04  18  00  FF 
+3175 centre   C3  80  15  05  24  04  18  00  FF 
+3176 centre   C4  80  15  05  24  04  18  00  FF 
+3177 centre   C5  7F  15  05  24  05  18  00  FF 
+3178 centre   C6  7F  15  05  24  05  18  00  FF 
+3179 centre   C7  7E  15  05  24  05  18  00  FF 
+3180 centre   C8  7E  15  05  24  05  18  00  FF 
+3181 centre   C9  7D  15  05  24  01  18  00  FF 
+3182 centre   CA  7D  15  05  24  01  18  00  FF 
+3183 centre   CB  7C  15  05  24  01  18  00  FF 
+3184 centre   CC  7C  15  05  24  01  18  00  FF 
+3185 centre   CD  7B  15  05  24  02  18  00  FF 
+3186 centre   CE  7B  15  05  24  02  18  00  FF 
+3187 centre   CF  7A  15  05  24  02  18  00  FF 
+3188 centre   D0  7A  15  05  24  02  18  00  FF 
+3189 centre   D1  79  15  05  24  03  18  00  FF 
+3190 centre   D2  79  15  05  24  03  18  00  FF 
+3191 centre   D3  78  15  05  24  03  18  00  FF 
+3192 centre   D4  78  15  05  24  03  18  00  FF 
+3193 centre   D5  77  15  05  24  04  18  00  FF 
+3194 centre   D6  77  15  05  24  04  18  00  FF 
+3195 centre   D7  76  15  05  24  04  18  00  FF 
+3196 centre   D8  76  15  05  24  04  18  00  FF 
+3197 centre   D9  75  15  05  24  05  18  00  FF 
+3198 centre   DA  75  15  05  24  05  18  00  FF 
+3199 centre   DB  74  15  05  24  05  18  00  FF 
+3200 centre   DC  74  15  05  24  05  18  00  FF 
+3201 centre   DD  73  15  05  24  01  18  00  FF 
+3202 centre   DE  73  15  05  24  01  18  00  FF 
+3203 centre   DF  72  15  05  24  01  18  00  FF 
+3204 centre   E0  72  15  05  24  01  18  00  FF 
+3205 centre   E1  71  15  05  24  02  18  00  FF 
+3206 centre   E2  71  15  05  24  02  18  00  FF 
+3207 centre   E3  70  15  05  24  02  18  00  FF 
+3208 centre   E4  70  15  05  24  02  18  00  FF 
+3209 centre   E5  6F  15  05  24  03  18  00  FF 
+3210 centre   E6  6F  15  05  24  03  18  00  FF 
+3211 centre   E7  6E  15  05  24  03  18  00  FF 
+3212 centre   E8  6E  15  05  24  03  18  00  FF 
+3213 centre   E9  6D  15  05  24  04  18  00  FF 
+3214 centre   EA  6D  15  05  24  04  18  00  FF 
+3215 centre   EB  6C  15  05  24  04  18  00  FF 
+3216 centre   EC  6C  15  05  24  04  18  00  FF 
+3217 centre   ED  6B  15  05  24  05  18  00  FF 
+3218 centre   EE  6B  15  05  24  05  18  00  FF 
+3219 centre   EF  6A  15  05  24  05  18  00  FF 
+3220 centre   F0  6A  15  05  24  05  18  00  FF 
+3221 centre   F1  69  15  05  24  01  18  00  FF 
+3222 centre   F2  69  15  05  24  01  18  00  FF 
+3223 centre   F3  68  15  05  24  01  18  00  FF 
+3224 centre   F4  68  15  05  24  01  18  00  FF 
+3225 centre   F5  67  15  05  24  02  18  00  FF 
+3226 centre   F6  67  15  05  24  02  18  00  FF 
+3227 centre   F7  66  15  05  24  02  18  00  FF 
+3228 centre   F8  66  15  05  24  02  18  00  FF 
+3229 centre   F9  65  15  05  24  03  18  00  FF 
+3230 centre   FA  65  15  05  24  03  18  00  FF 
+3231 centre   FB  64  15  05  24  03  18  00  FF 
+3232 centre   FC  64  15  05  24  03  18  00  FF 
+3233 centre   FD  63  15  05  24  04  18  00  FF 
+3234 centre   FE  63  15  05  24  04  18  00  FF 
+3235 centre   FF  62  15  05  24  04  18  00  FF 
+3236 centre   00  62  15  05  24  04  18  00  FF 
+3237 centre   01  61  15  05  23  05  18  00  FF 
+3238 centre   02  61  15  05  23  05  18  00  FF 
+3239 centre   03  60  15  05  23  05  18  00  FF 
+3240 centre   04  60  15  05  23  05  18  00  FF 
+3241 centre   05  5F  15  05  23  01  18  00  FF 
+3242 centre   06  5F  15  05  23  01  18  00  FF 
+3243 centre   07  5E  15  05  23  01  18  00  FF 
+3244 centre   08  5E  15  05  23  01  18  00  FF 
+3245 centre   09  5D  15  05  23  02  18  00  FF 
+3246 centre   0A  5D  15  05  23  02  18  00  FF 
+3247 centre   0B  5C  15  05  23  02  18  00  FF 
+3248 centre   0C  5C  15  05  23  02  18  00  FF 
+3249 centre   0D  5B  15  05  23  03  18  00  FF 
+3250 centre   0E  5B  15  05  23  03  18  00  FF 
+3251 centre   0F  5A  15  05  23  03  18  00  FF 
+3252 centre   10  5A  15  05  23  03  18  00  FF 
+3253 centre   11  59  15  05  23  04  18  00  FF 
+3254 centre   12  59  15  05  23  04  18  00  FF 
+3255 centre   13  58  15  05  23  04  18  00  FF 
+3256 centre   14  58  15  05  23  04  18  00  FF 
+3257 centre   15  57  15  05  23  05  18  00  FF 
+3258 centre   16  57  15  05  23  05  18  00  FF 
+3259 centre   17  56  15  05  23  05  18  00  FF 
+3260 centre   18  56  15  05  23  05  18  00  FF 
+3261 centre   19  55  15  05  23  01  18  00  FF 
+3262 centre   1A  55  15  05  23  01  18  00  FF 
+3263 centre   1B  54  15  05  23  01  18  00  FF 
+3264 centre   1C  54  15  05  23  01  18  00  FF 
+3265 centre   1D  53  15  05  23  02  18  00  FF 
+3266 centre   1E  53  15  05  23  02  18  00  FF 
+3267 centre   1F  52  15  05  23  02  18  00  FF 
+3268 centre   20  52  15  05  23  02  18  00  FF 
+3269 centre   21  51  15  05  23  03  18  00  FF 
+3270 centre   22  51  15  05  23  03  18  00  FF 
+3271 centre   23  50  15  05  23  03  18  00  FF 
+3272 centre   24  50  15  05  23  03  18  00  FF 
+3273 centre   25  4F  15  05  23  04  18  00  FF 
+3274 centre   26  4F  15  05  23  04  18  00  FF 
+3275 centre   27  4E  15  05  23  04  18  00  FF 
+3276 centre   28  4E  15  05  23  04  18  00  FF 
+3277 centre   29  4D  15  05  23  05  18  00  FF 
+3278 centre   2A  4D  15  05  23  05  18  00  FF 
+3279 centre   2B  4C  15  05  23  05  18  00  FF 
+3280 centre   2C  4C  15  05  23  05  18  00  FF 
+3281 centre   2D  4B  15  05  23  01  18  00  FF 
+3282 centre   2E  4B  15  05  23  01  18  00  FF 
+3283 centre   2F  4A  15  05  23  01  18  00  FF 
+3284 centre   30  4A  15  05  23  01  18  00  FF 
+3285 centre   31  49  15  05  23  02  18  00  FF 
+3286 centre   32  49  15  05  23  02  18  00  FF 
+3287 centre   33  48  15  05  23  02  18  00  FF 
+3288 centre   34  48  15  05  23  02  18  00  FF 
+3289 centre   35  47  15  05  23  03  18  00  FF 
+3290 centre   36  47  15  05  23  03  18  00  FF 
+3291 centre   37  46  15  05  23  03  18  00  FF 
+3292 centre   38  46  15  05  23  03  18  00  FF 
+3293 centre   39  45  15  05  23  04  18  00  FF 
+3294 centre   3A  45  15  05  23  04  18  00  FF 
+3295 centre   3B  44  15  05  23  04  18  00  FF 
+3296 centre   3C  44  15  05  23  04  18  00  FF 
+3297 centre   3D  43  15  05  23  05  18  00  FF 
+3298 centre   3E  43  15  05  23  05  18  00  FF 
+3299 centre   3F  42  15  05  23  05  18  00  FF 
+3300 centre   40  42  15  05  23  05  18  00  FF 
+3301 centre   41  41  15  05  23  01  18  00  FF 
+3302 centre   42  41  15  05  23  01  18  00  FF 
+3303 centre   43  40  15  05  23  01  18  00  FF 
+3304 centre   44  40  15  05  23  01  18  00  FF 
+3305 centre   45  3F  15  05  23  02  18  00  FF 
+3306 centre   46  3F  15  05  23  02  18  00  FF 
+3307 centre   47  3E  15  05  23  02  18  00  FF 
+3308 centre   48  3E  15  05  23  02  18  00  FF 
+3309 centre   49  3D  15  05  23  03  18  00  FF 
+3310 centre   4A  3D  15  05  23  03  18  00  FF 
+3311 centre   4B  3C  15  05  23  03  18  00  FF 
+3312 centre   4C  3C  15  05  23  03  18  00  FF 
+3313 centre   4D  3B  15  05  23  04  18  00  FF 
+3314 centre   4E  3B  15  05  23  04  18  00  FF 
+3315 centre   4F  3A  15  05  23  04  18  00  FF 
+3316 centre   50  3A  15  05  23  04  18  00  FF 
+3317 centre   51  39  15  05  23  05  18  00  FF 
+3318 centre   52  39  15  05  23  05  18  00  FF 
+3319 centre   53  38  15  05  23  05  18  00  FF 
+3320 centre   54  38  15  05  23  05  18  00  FF 
+3321 centre   55  37  15  05  23  01  18  00  FF 
+3322 centre   56  37  15  05  23  01  18  00  FF 
+3323 centre   57  36  15  05  23  01  18  00  FF 
+3324 centre   58  36  15  05  23  01  18  00  FF 
+3325 centre   59  35  15  05  23  02  18  00  FF 
+3326 centre   5A  35  15  05  23  02  18  00  FF 
+3327 centre   5B  34  15  05  23  02  18  00  FF 
+3328 centre   5C  34  15  05  23  02  18  00  FF 
+3329 centre   5D  33  15  05  23  03  18  00  FF 
+3330 centre   5E  33  15  05  23  03  18  00  FF 
+3331 centre   5F  32  15  05  23  03  18  00  FF 
+3332 centre   60  32  15  05  23  03  18  00  FF 
+3333 centre   61  31  15  05  23  04  18  00  FF 
+3334 centre   62  31  15  05  23  04  18  00  FF 
+3335 centre   63  30  15  05  23  04  18  00  FF 
+3336 centre   64  30  15  05  23  04  18  00  FF 
+3337 centre   65  2F  15  05  23  05  18  00  FF 
+3338 centre   66  2F  15  05  23  05  18  00  FF 
+3339 centre   67  2E  15  05  23  05  18  00  FF 
+3340 centre   68  2E  15  05  23  05  18  00  FF 
+3341 centre   69  2D  15  05  23  01  18  00  FF 
+3342 centre   6A  2D  15  05  23  01  18  00  FF 
+3343 centre   6B  2C  15  05  23  01  18  00  FF 
+3344 centre   6C  2C  15  05  23  01  18  00  FF 
+3345 centre   6D  2B  15  05  23  02  18  00  FF 
+3346 centre   6E  2B  15  05  23  02  18  00  FF 
+3347 centre   6F  2A  15  05  23  02  18  00  FF 
+3348 centre   70  2A  15  05  23  02  18  00  FF 
+3349 centre   71  29  15  05  23  03  18  00  FF 
+3350 centre   72  29  15  05  23  03  18  00  FF 
+3351 centre   73  CF  16  06  23  04  18  00  FF 
+3352 centre   74  CF  16  06  23  04  18  00  FF 
+3353 centre   75  CE  16  06  23  04  18  00  FF 
+3354 centre   76  CE  16  06  23  04  18  00  FF 
+3355 centre   77  CD  16  06  23  05  18  00  FF 
+3356 centre   78  CD  16  06  23  05  18  00  FF 
+3357 centre   79  CC  16  06  23  05  18  00  FF 
+3358 centre   7A  CC  16  06  23  05  18  00  FF 
+3359 centre   7B  CB  16  06  23  01  18  00  FF 
+3360 centre   7C  CB  16  06  23  01  18  00  FF 
+3361 centre   7D  CA  16  06  23  01  18  00  FF 
+3362 centre   7E  CA  16  06  23  01  18  00  FF 
+3363 centre   7F  C9  16  06  23  02  18  00  FF 
+3364 centre   80  C9  16  06  23  02  18  00  FF 
+3365 centre   81  C8  16  06  22  02  18  00  FF 
+3366 centre   82  C8  16  06  22  02  18  00  FF 
+3367 centre   83  C7  16  06  22  03  18  00  FF 
+3368 centre   84  C7  16  06  22  03  18  00  FF 
+3369 centre   85  C6  16  06  22  03  18  00  FF 
+3370 centre   86  C6  16  06  22  03  18  00  FF 
+3371 centre   87  C5  16  06  22  04  18  00  FF 
+3372 centre   88  C5  16  06  22  04  18  00  FF 
+3373 centre   89  C4  16  06  22  04  18  00  FF 
+3374 centre   8A  C4  16  06  22  04  18  00  FF 
+3375 centre   8B  C3  16  06  22  05  18  00  FF 
+3376 centre   8C  C3  16  06  22  05  18  00  FF 
+3377 centre   8D  C2  16  06  22  05  18  00  FF 
+3378 centre   8E  C2  16  06  22  05  18  00  FF 
+3379 centre   8F  C1  16  06  22  01  18  00  FF 
+3380 centre   90  C1  16  06  22  01  18  00  FF 
+3381 centre   91  C0  16  06  22  01  18  00  FF 
+3382 centre   92  C0  16  06  22  01  18  00  FF 
+3383 centre   93  BF  16  06  22  02  18  00  FF 
+3384 centre   94  BF  16  06  22  02  18  00  FF 
+3385 centre   95  BE  16  06  22  02  18  00  FF 
+3386 centre   96  BE  16  06  22  02  18  00  FF 
+3387 centre   97  BD  16  06  22  03  18  00  FF 
+3388 centre   98  BD  16  06  22  03  18  00  FF 
+3389 centre   99  BC  16  06  22  03  18  00  FF 
+3390 centre   9A  BC  16  06  22  03  18  00  FF 
+3391 centre   9B  BB  16  06  22  04  18  00  FF 
+3392 centre   9C  BB  16  06  22  04  18  00  FF 
+3393 centre   9D  BA  16  06  22  04  18  00  FF 
+3394 centre   9E  BA  16  06  22  04  18  00  FF 
+3395 centre   9F  B9  16  06  22  05  18  00  FF 
+3396 centre   A0  B9  16  06  22  05  18  00  FF 
+3397 centre   A1  B8  16  06  22  05  18  00  FF 
+3398 centre   A2  B8  16  06  22  05  18  00  FF 
+3399 centre   A3  B7  16  06  22  01  18  00  FF 

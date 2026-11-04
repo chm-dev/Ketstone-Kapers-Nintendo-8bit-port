@@ -1,0 +1,8 @@
+; ADDR name   (rdis.py: names override L_/S_ labels)
+; crack_* = cracker patch in the $9F80 stub, NOT Activision game behaviour. Do not port.
+9F90 crack_sta_iny        ; STA ($00),Y skipped when ($01)>=$9F, INY, JMP $A04F
+9FB0 crack_sta_dex        ; same, DEX, JMP $A174
+9FD0 crack_sta_dey        ; same, DEY, JMP $A1E9
+A04F crack_ret_iny        ; trampoline return site (A04C: JMP $9F90)
+A174 crack_ret_dex
+A1E9 crack_ret_dey
