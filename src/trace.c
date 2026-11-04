@@ -5,13 +5,13 @@
 #ifdef DEBUG_TRACE
 #include "engine.h"
 
-volatile uint8_t dbg_state, dbg_go;
+volatile uint8_t dbg_state, dbg_go, dbg_mode;
 uint8_t dbg_plan[TRACE_PLAN_MAX * 3u];
 volatile uint8_t trace_head, trace_tail;
 uint8_t trace_ring[TRACE_ROWS * TRACE_COLS];
 uint8_t trace_in;
 
-static uint8_t plan_i;
+static uint8_t plan_i, k;
 static uint16_t plan_left;
 static uint8_t *row;
 
@@ -71,6 +71,18 @@ void trace_emit(void)
     row[17] = game_time;
     row[18] = thief_anim;
     row[19] = thief_escaped;
+    row[20] = obj_8d;
+    for (k = 0u; k < 4u; k++) {
+        row[21u + k] = obj_x[k];
+        row[25u + k] = obj_fl[k];
+        row[29u + k] = obj_h[k];
+        row[33u + k] = obj_t[k];
+    }
+    row[37] = snd_id;
+    row[38] = e_6c;
+    row[39] = kop_col;
+    row[40] = obj_5f;
+    row[41] = play_on;
     trace_head++;                              /* publish after the row is complete */
 }
 

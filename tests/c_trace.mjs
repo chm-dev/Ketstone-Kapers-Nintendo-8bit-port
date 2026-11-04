@@ -23,8 +23,9 @@ const noi = path.resolve(args[0] && args[0].endsWith('.noi') ? args.shift() : ro
 const only = args;
 
 /* record layout (src/trace.h) */
-const REC = [0x90, 0x8F, 0x8E, 0x6B, 0x2C, 0x2D, 0x2E, 0x2F, 0x1D, 0x1E, 0x1C, 0x20, 0x0C, 0x19, 0x1B, 0x1F, 0x11, 0x28, 0x63, 0x1A];
-const TRACE_ROWS = 32, TRACE_COLS = REC.length, PLAN_MAX = 16;
+const REC = [0x90, 0x8F, 0x8E, 0x6B, 0x2C, 0x2D, 0x2E, 0x2F, 0x1D, 0x1E, 0x1C, 0x20, 0x0C, 0x19, 0x1B, 0x1F, 0x11, 0x28, 0x63, 0x1A,
+    0x8D, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x17, 0x6C, 0x0D, 0x5F, 0x14];
+const TRACE_ROWS = 16, TRACE_COLS = REC.length, PLAN_MAX = 16;
 
 const OLD = [0x90, 0x2C, 0x1D, 0x1E, 0x19, 0x1C, 0x20, 0x0C];
 const ESC = [0x90, 0x8F, 0x2C, 0x2D, 0x1D, 0x1E, 0x1C, 0x20, 0x0C, 0x19];
@@ -46,9 +47,16 @@ const SCENARIOS = [
       plan: 'centre:10,up:150,centre:20,down:100',
       init: { screen: 4, path: 0x04, e8e: 0x80, e6b: 0, x0: 0x78 } },
     { name: 'thief', golden: 'thief_idle.txt', check: [0x90, 0x1B, 0x1F, 0x11, 0x28, 0x63], plan: 'centre:3400' },
+    /* full engine: walk left onto screen 1, stand, the ball rolls into Kop (spawn, ball, collision
+     * box, hit freeze, slot clear).  $0D (latch) is info only: the Atari stops latching mid-hit. */
+    { name: 'ball1', golden: 'ball1.txt', check: [0x90, 0x1E, 0x2C, 0x75, 0x30, 0x34, 0x71, 0x8D, 0x5F, 0x6C],
+      plan: 'golden', init: { pickups: [2, 2, 2, 2] } },
 ];
-/* never compared: $2B scratch pointer, $58 thief direction byte, $14 state flag */
-const SKIP = new Set([0x2B, 0x58, 0x14]);
+/* obstacle chain replays (dbg_mode 1): the C obj_floor() in place of tools/obstacle_model.py step() */
+const OBST = ['03', '07', '0B', '0F'].map(l => ({ name: `obst_${l}`, golden: `obst_lv${l}.txt`, l22: parseInt(l, 16) }));
+const OBST_BASELINE_BAD = 17;     /* tools/obstacle_model.py BASELINE_BAD */
+/* never compared: $2B scratch pointer, $58 thief direction byte */
+const SKIP = new Set([0x2B, 0x58]);
 
 function parsePlan(plan) {
     const out = [];
@@ -63,10 +71,24 @@ function parsePlan(plan) {
 }
 
 function readGolden(file) {
-    const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/).filter(l => l.trim());
-    const cols = lines[0].trim().split(/\s+/).slice(2).map(h => parseInt(h, 16));
-    const rows = lines.slice(1).map(l => l.trim().split(/\s+/).slice(2).map(h => parseInt(h, 16)));
-    return { cols, rows };
+    /* repeated 'frame ...' header lines (obst_lv*: one every 30 rows) are skipped */
+    const all = fs.readFileSync(file, 'utf8').split(/\r?\n/).filter(l => l.trim());
+    const lines = [all[0], ...all.slice(1).filter(l => !l.startsWith('frame'))];
+    const skip = lines[0].trim().split(/\s+/)[1] === 'input' ? 2 : 1;   /* obst_lv* have no input column */
+    const cols = lines[0].trim().split(/\s+/).slice(skip).map(h => parseInt(h, 16));
+    const rows = lines.slice(1).map(l => l.trim().split(/\s+/).slice(skip).map(h => parseInt(h, 16)));
+    const inputs = lines.slice(1).map(l => (skip === 2 ? l.trim().split(/\s+/)[1] : ''));
+    return { cols, rows, inputs };
+}
+
+/* plan string from the golden's input column (run-length) */
+function planFromGolden(g) {
+    const out = [];
+    for (const s of g.inputs) {
+        if (out.length && out[out.length - 1][0] === s) out[out.length - 1][1]++;
+        else out.push([s, 1]);
+    }
+    return out.map(([s, n]) => `${s}:${n}`).join(',');
 }
 
 const hex = v => v.toString(16).toUpperCase().padStart(2, '0');
@@ -85,9 +107,127 @@ async function waitState(v, ms = 20000) {
 
 async function poke(name, v, off = 0) { await writeBytes(S(name) + off, [v & 0xFF]); }
 
+/* upload a plan ([byte, count]), start it, drain the ring, return to dbg_state 1 */
+async function runPlan(plan, total, name) {
+    const pb = new Array(PLAN_MAX * 3).fill(0);
+    plan.forEach(([b, n], i) => { pb[i * 3] = b; pb[i * 3 + 1] = n & 0xFF; pb[i * 3 + 2] = n >> 8; });
+    await writeBytes(S('_dbg_plan'), pb);
+    await poke('_dbg_go', 1);
+    const rows = [];
+    let tail = 0, idle = 0;
+    while (rows.length < total) {
+        const head = (await readBytes(S('_trace_head'), 1))[0];
+        const n = (head - tail) & 0xFF;
+        if (!n) {
+            if (++idle > 400) throw new Error(`${name}: no trace progress at row ${rows.length}`);
+            await sleep(20);
+            continue;
+        }
+        idle = 0;
+        const ring = await readBytes(S('_trace_ring'), TRACE_ROWS * TRACE_COLS);
+        for (let i = 0; i < n; i++) {
+            const slot = (tail + i) % TRACE_ROWS;
+            rows.push(ring.slice(slot * TRACE_COLS, (slot + 1) * TRACE_COLS));
+        }
+        tail = (tail + n) & 0xFF;
+        await poke('_trace_tail', tail);
+    }
+    await waitState(3);
+    await poke('_dbg_go', 0);
+    return rows;
+}
+
+/* ---- obstacle chain replay = tools/obstacle_model.py replay() with the C step */
+const R = a => REC.indexOf(a);
+function stateOfGolden(g, r) {
+    const c = a => g.rows[r][g.cols.indexOf(a)];
+    return { t: [0, 1, 2, 3].map(f => c(0x75 + f)), x: [0, 1, 2, 3].map(f => c(0x30 + f)),
+        fl: [0, 1, 2, 3].map(f => c(0x34 + f)), h: [0, 1, 2, 3].map(f => c(0x71 + f)), p: c(0x8D), c90: c(0x90) };
+}
+function stateOfRec(r) {
+    return { t: [0, 1, 2, 3].map(f => r[R(0x75 + f)]), x: [0, 1, 2, 3].map(f => r[R(0x30 + f)]),
+        fl: [0, 1, 2, 3].map(f => r[R(0x34 + f)]), h: [0, 1, 2, 3].map(f => r[R(0x71 + f)]), p: r[R(0x8D)], c90: r[R(0x90)] };
+}
+const sameKind = (u, v) => u === v || (u >= 6 && u <= 7 && v >= 6 && v <= 7) || (u >= 10 && u <= 11 && v >= 10 && v <= 11);
+function oDiff(pr, ex, types) {
+    const d = [];
+    for (let f = 0; f < 4; f++)
+        if (types[f] >= 6 && types[f] <= 11 && (pr.t[f] !== ex.t[f] || pr.x[f] !== ex.x[f] || pr.h[f] !== ex.h[f])) d.push(f);
+    if (types.includes(8) && pr.p !== ex.p) d.push('p');
+    return d;
+}
+
+async function runObst(sc) {
+    const g = readGolden(path.join(ROOT, 'tests', 'golden', sc.golden));
+    const N = g.rows.length;
+    const v = (r, a) => g.rows[r][g.cols.indexOf(a)];
+    const types = r => [0, 1, 2, 3].map(f => v(r, 0x75 + f));
+    const reseed = i => v(i - 1, 0x1E) !== v(i, 0x1E) || [0, 1, 2, 3].some(f => !sameKind(v(i - 1, 0x75 + f), v(i, 0x75 + f)));
+    let runs = 0;
+    /* C states for rows i..j-1 starting from state s (= after row i-1) */
+    async function chain(s, i, j) {
+        const out = {};
+        let seed = s, r = i;
+        while (r < j) {
+            const plan = [];
+            let r1 = r;
+            for (; r1 < j; r1++) {
+                const k = (v(r1, 0x90) - v(r1 - 1, 0x90)) & 0xFF;
+                if (k > 3) throw new Error(`${sc.name}: row ${r1} steps ${k} inside a chain`);
+                const b = k | (v(r1, 0x17) >= 5 ? 4 : 0) | (v(r1, 0x14) & 0x80 ? 8 : 0) | ((v(r1, 0x6E) & 15) << 4);
+                if (plan.length && plan[plan.length - 1][0] === b) plan[plan.length - 1][1]++;
+                else if (plan.length === PLAN_MAX) break;
+                else plan.push([b, 1]);
+            }
+            await waitState(1);
+            await writeBytes(S('_obj_t'), seed.t);
+            await writeBytes(S('_obj_x'), seed.x);
+            await writeBytes(S('_obj_fl'), seed.fl);
+            await writeBytes(S('_obj_h'), seed.h);
+            await poke('_obj_8d', seed.p);
+            await poke('_frame_90', seed.c90);
+            await poke('_level', sc.l22);
+            await poke('_dbg_mode', 1);
+            const rows = await runPlan(plan, r1 - r, sc.name);
+            runs++;
+            rows.forEach((row, q) => { out[r + q] = stateOfRec(row); });
+            seed = out[r1 - 1];
+            r = r1;
+        }
+        return out;
+    }
+    let n = 0, bad = 0, torn = 0, rs = 0, shown = 0;
+    let s = stateOfGolden(g, 0), ch = null;
+    for (let i = 1; i < N; i++) {
+        if (reseed(i)) { rs++; s = stateOfGolden(g, i); ch = null; continue; }
+        if (!ch || !(i in ch)) {
+            let j = i + 1;
+            while (j < N && !reseed(j)) j++;
+            ch = await chain(s, i, j);
+        }
+        const ty = types(i - 1);
+        const d = oDiff(ch[i], stateOfGolden(g, i), ty);
+        n += ty.filter(t => t >= 6 && t <= 11).length + (ty.includes(8) ? 1 : 0);
+        if (!d.length) continue;
+        let ok = false;
+        for (let c = i + 1; c < Math.min(i + 4, N); c++) {
+            if (reseed(c) || !(c in ch)) break;
+            if (!oDiff(ch[c], stateOfGolden(g, c), types(c)).length) { ok = true; break; }
+        }
+        if (ok) { torn += d.length; continue; }
+        bad += d.length;
+        if (shown++ < 6) console.log(`  row ${i} ($90 ${hex(v(i, 0x90))}): ` + d.map(f => f === 'p' ? `$8D C ${hex(ch[i].p)} atari ${hex(v(i, 0x8D))}`
+            : `floor ${f}: C t${hex(ch[i].t[f])} x${hex(ch[i].x[f])} h${hex(ch[i].h[f])} / atari t${hex(v(i, 0x75 + f))} x${hex(v(i, 0x30 + f))} h${hex(v(i, 0x71 + f))}`).join('; '));
+        s = stateOfGolden(g, i);          /* re-sync after a real mismatch */
+        ch = null;
+    }
+    console.log(`${sc.name.padEnd(8)} $22=${hex(sc.l22)} ${n - bad - torn}/${n} floor-frames match, ${torn} torn, ${bad} mismatches (${rs} reseeds, ${runs} C runs)`);
+    return bad;
+}
+
 async function runScenario(sc) {
     const g = readGolden(path.join(ROOT, 'tests', 'golden', sc.golden));
-    const plan = parsePlan(sc.plan);
+    const plan = parsePlan(sc.plan === 'golden' ? planFromGolden(g) : sc.plan);
     const total = plan.reduce((a, p) => a + p[1], 0);
     if (total !== g.rows.length) throw new Error(`${sc.name}: plan ${total} frames, golden ${g.rows.length}`);
     if (plan.length > PLAN_MAX) throw new Error(`${sc.name}: plan too long`);
@@ -104,36 +244,12 @@ async function runScenario(sc) {
     await poke('_thief_anim', 3);
     const ini = sc.init || {};
     for (const [k, v] of Object.entries(ini)) {
-        if (k[0] === 'x') await poke('_kop_xs', v, Number(k.slice(1)));
+        if (k === 'pickups') await writeBytes(S('_pickup_scr'), v);
+        else if (k[0] === 'x') await poke('_kop_xs', v, Number(k.slice(1)));
         else await poke({ screen: '_kop_screen', path: '_kop_path', c1c: '_kop_c1c', e8e: '_elev_8e', e6b: '_elev_6b' }[k], v);
     }
-    const pb = new Array(PLAN_MAX * 3).fill(0);
-    plan.forEach(([b, n], i) => { pb[i * 3] = b; pb[i * 3 + 1] = n & 0xFF; pb[i * 3 + 2] = n >> 8; });
-    await writeBytes(S('_dbg_plan'), pb);
-    await poke('_dbg_go', 1);
-
-    /* drain the ring */
-    const rows = [];
-    let tail = 0, idle = 0;
-    while (rows.length < total) {
-        const head = (await readBytes(S('_trace_head'), 1))[0];
-        const n = (head - tail) & 0xFF;
-        if (!n) {
-            if (++idle > 400) throw new Error(`${sc.name}: no trace progress at row ${rows.length}`);
-            await sleep(20);
-            continue;
-        }
-        idle = 0;
-        const ring = await readBytes(S('_trace_ring'), TRACE_ROWS * TRACE_COLS);
-        for (let i = 0; i < n; i++) {
-            const slot = (tail + i) % TRACE_ROWS;
-            rows.push(ring.slice(slot * TRACE_COLS, (slot + 1) * TRACE_COLS));
-        }
-        tail = (tail + n) & 0xFF;
-        await poke('_trace_tail', tail);
-    }
-    await waitState(3);
-    await poke('_dbg_go', 0);
+    await poke('_dbg_mode', 0);
+    const rows = await runPlan(plan, total, sc.name);
 
     /* write the C trace in golden format (golden's columns) */
     const outDir = path.join(ROOT, 'build', 'c_trace');
@@ -180,6 +296,16 @@ async function main() {
     for (const sc of SCENARIOS) {
         if (only.length && !only.includes(sc.name)) continue;
         if (await runScenario(sc)) fail++;
+    }
+    let obad = 0, oran = 0;
+    for (const sc of OBST) {
+        if (only.length && !only.includes(sc.name) && !only.includes('obst')) continue;
+        obad += await runObst(sc);
+        oran++;
+    }
+    if (oran) {
+        console.log(`obstacles: ${obad} mismatches (python model baseline ${OBST_BASELINE_BAD} over all 4 goldens)`);
+        if (obad > OBST_BASELINE_BAD) fail++;
     }
     console.log(fail ? `FAILED: ${fail}` : 'all goldens match');
     return fail;
