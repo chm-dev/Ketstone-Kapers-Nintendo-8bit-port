@@ -19,3 +19,6 @@
 ### 2026-11-04 (cont.) - Phase 1 RE pass
 - Models (kk_model.py): Kop walk/jump/escalators/elevator + thief + timer, all frame-exact vs Altirra (tests/run_models.ps1). Tools: atari_trace/events/sound/lives/screens/ramdiff, dl_dump, extract_data (assets/data/keystone_data.json). Spec sections 4-8.
 - Findings: 8 flip-screens, 4 floors, per-floor arrays, hardware-collision driven hits, 4 lives, bonus count, BGM from ROM tables, ball cycle table.
+
+### 2026-11-04 - Phase 2 step 1: backgrounds on NES
+- tools/gen_bg.py: 8 screen composites -> one shared 4-palette set (bg + 4 triples, 16x16 attr cells) -> src/bg_data*.c (PRG banks 1/2). main.c = screen viewer, verified in Mesen. Proof ROM data removed. GBDK NES gotchas added to info/GBDK_BUILD_NOTES.md.
