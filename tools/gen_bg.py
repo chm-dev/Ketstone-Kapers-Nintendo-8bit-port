@@ -25,11 +25,46 @@ TW, TH = 20, 24
 ap = argparse.ArgumentParser()
 ap.add_argument('--emit', action='store_true')
 ap.add_argument('--seed', type=int, default=1)
+ap.add_argument('--restarts', type=int, default=12)
 args = ap.parse_args()
+
+
+SKY = (106, 124, 244)
+# Cleanup of baked-in dynamic content (G9). Coordinates are in the 160x181 playfield crop.
+#   (screen, x0, x1, y0, y1, refx): rows y0..y1-1, columns x0..x1-1 are overwritten with the pixel of
+#   the same row at column refx (bands are horizontally uniform there).
+COPYCOLS = [
+    (1, 70, 82, 41, 52, 60),     # screen 1: money bag on the roof (x 72-80, y 41-51, over skyline/roof edge)
+    (2, 70, 82, 74, 84, 64),     # screen 2: item on floor 3 (x 72-80, y 74-83)
+    (2, 70, 82, 105, 116, 64),   # screen 2: item on floor 2 (y 105-115)
+    (2, 70, 82, 138, 148, 64),   # screen 2: item on floor 1 (y 138-147)
+]
+# screen 4 elevator: the open car (floor 1, y 121-144) is replaced by the closed door of floor 3 (y 57-80)
+ELEV = (4, 72, 80, 57, 121, 24)   # (screen, x0, x1, src_y0, dst_y0, nrows)
+BLACK = (0, 0, 0)
+
+
+def clean(s, a):
+    a = a.copy()
+    for (cs, x0, x1, y0, y1, rx) in COPYCOLS:
+        if cs == s:
+            for y in range(y0, y1):
+                a[y, x0:x1] = a[y, rx]
+    if s == ELEV[0]:
+        _, x0, x1, sy, dy, n = ELEV
+        a[dy:dy + n, x0:x1] = a[sy:sy + n, x0:x1]
+    a[0:18] = SKY                       # Atari HUD line (score, hats, time, note) baked into sky rows 1-17
+    a[173:181] = BLACK                  # Activision logo band below the street (Atari-only; NES HUD is separate)
+    for y in range(160, 173):           # 1x2 px minimap-ish speck (148,161,255) on the entrance steps, x=75
+        for x in range(1, 160):
+            if tuple(a[y, x]) == (148, 161, 255):
+                a[y, x] = a[y, x - 1]
+    return a
 
 
 def load(s):
     im = Image.open(SCR / f'screen_{s}.png').convert('RGB').crop((8, 23, 328, 204)).resize((160, 181), Image.NEAREST)
+    im = Image.fromarray(clean(s, np.asarray(im)))
     out = Image.new('RGB', (160, 192))
     out.paste(im)
     return np.asarray(out)
@@ -67,7 +102,7 @@ def total(bg, tri):
 
 rng = random.Random(args.seed)
 best = None
-for restart in range(12):
+for restart in range(args.restarts):
     bg = rng.randrange(NC)
     tri = [[rng.randrange(NC) for _ in range(3)] for _ in range(4)]
     cur = total(bg, tri)
