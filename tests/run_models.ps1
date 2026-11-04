@@ -15,4 +15,5 @@ Run 'esc2'    @('tests/test_kk_model.py','tests/golden/kop_esc2.txt','left:200,r
 Run 'elev_a'  @('tests/test_elevator.py','tests/golden/elev_a.txt','centre:10,up:5,centre:400,down:5,centre:30,right:30,centre:10','--init=screen=4,path=4,e8e=E0,e6b=0,x0=78')
 Run 'elev_b'  @('tests/test_elevator.py','tests/golden/elev_b.txt','centre:10,up:150,centre:20,down:100','--init=screen=4,path=4,e8e=80,e6b=0,x0=78')
 Run 'thief'   @('tests/test_thief_model.py','tests/golden/thief_idle.txt')
+& python -I tools/obstacle_model.py | Out-Null; if ($LASTEXITCODE -ne 0) { $fail += ' obstacle' }
 if ($fail) { "FAILED: $fail"; exit 1 } else { 'all models match' }

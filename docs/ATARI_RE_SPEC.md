@@ -120,3 +120,80 @@ Method: boot, START, wait 600 frames (120 is too short: input is ignored during 
 | Sound | effects and BGM captured/verified |
 | Display kernel | not replicated on purpose (backgrounds from screenshots) |
 | Open | per-type obstacle kinematics and sprite pointer table (`$BC9E`), difficulty tiers beyond level 1, thief flee/reverse override trace, attract demo input table (`$B9B7`), HUD layout, SELECT/START screen flow, exact Y of each floor |
+
+## 9. Sprites: shapes, colours, PMG multiplexing (sprite agent, 2026-11-04)
+Tools: `tools/atari_sprite_probe.py` (captures: screenshot + RAM `$0000-$0FFF`, runtime dir `assets/atari/runtime/sprites/`, gitignored), `tools/gen_assets.py` (decode + NES export + `--verify`). **[V]** below = matched by `gen_assets.py --verify` over 177 captures (Kop poses, thief on both paths, all obstacle types at `$22` = 3/7/11/15): PMG bytes at the predicted rows 9142/9190 (all misses are one transient frame at a screen change), screenshot pixels with the predicted Atari colour 41815/42741 (misses = sprite overlaps, the escalator rail drawn over the thief on screen 0 floor 1, one-frame lag).
+
+**Players** [V]: single-line PMG at `$0C00` (P0) .. `$0F00` (P3), all normal width during play. P3 = Kop (and the thief when it is on another floor of Kop's screen, screens 1-6). P0 = the floor's object (obstacle, pickup, or the thief on Kop's floor / on screens 0 and 7), P1 = second copy of the same object (same bytes, `AE5E/AE61` write both), P2 = escalator (quad width, `$6D`). The DLI (`B25D-B3EC`) re-positions every player per floor band, top floor first.
+- **Coordinates** [V]: HPOS h of a player's left pixel -> playfield x = h - `$30` (screenshot x = 2h - 88); PMG row R -> playfield y = R - 39 (screenshot y = R - 16). Kop HPOS = `$2C+f` directly, objects HPOS = `$30+f`.
+- **Shapes are stored bottom row first** [V] (both draw loops write Y=0 at the highest PMG address and `DEX`).
+  - Kop pose p (`$20`): shape `$BB00+$BBAD[p]` (`BBAD = 13 47 31 5D 73 89 13 00`: 1-5 walk, 2 doubles as the jump pose, 6 stand, 7 duck = `$BB00`), 25 rows, row Y at R = 188 - 32*floor - h - Y (h = `$1C&$1F`). Row visible only if `$B900[M+Y]` bit0 = 1, M = `$3B` (`$3E` ducking): GTIA ignores colour bit 0, so the colour table doubles as the row mask (`ADE2`).
+  - Object type t (`$75+f`): shape `$B800+$BC9E[t]`, `$BBB4[t]+1` rows, row Y at R = `$3E + $BE50[f] + $71[f]` - Y (`AE3E`). `BC9E = 1B 09 1E 35 4C 63 7A 88 01 96 BC C6 B4 B8 D0 9F A9`, `BBB4 = 00 13x5 0C 0C 06 08 08 08 02 02 17 08 09`.
+  - Types: 1-5 thief run frames (`$63`), 6/7 radio (2 frames), 8 ball, 9 shopping cart, 10/11 toy plane (2 frames), `$0F` suitcase (floors 0/2), `$10` money bag (floors 1/3). 12/13 (3-row shapes) and 14 (pointer `$D0` runs into table data) are never stored in `$75` by the code [H] and are not exported.
+- **Facing** [V]: init (`A17F-A1AA`) copies `$BB00-$BBA0` -> `$0300` and `$B800-$B8CF` -> `$0400` bit-reversed. The high byte picks the set: Kop `$BB`/`$03` by `$89+f` bit3 (= `$0C` bit3, set when walking left); objects and thief `$B8`/`$04` by `$34+f` bit3 (`$58` for the P3 thief). The mirrored copy sits at the same HPOS = an H-flip of the 8 px column. Obstacles with bit3 set move right; the thief moves right with bit3 clear.
+- **Colours: one colour per scanline per player from page `$B9`** [V]. COLPM3 = `($67+f),Y` and COLPM0/1 = `($BCAF[t]),Y+1` (one line late through `$11`), Y = band line counter. Net effect per shape row Y (colour stays attached to the body):
+  - Kop: `$B900[M-3+Y]` -> `$82` legs/body, `$2A` face/hands, `$00` hat.
+  - thief: `$B900[1+Y]` (stripes `$02`/`$0C`, face `$2A/$26/$28`), the same on the P0 and the P3 path.
+  - types 8/10/11: `$B900[$BCAF[t]+Y]` (the pointer is moved by `$71`, `B273-B27F`).
+  - other objects: `$B900[$BCAF[t]+1+Y]` (their `$71` is fixed at `$1A`).
+  - `BCAF = 31 00x5 6B 6B 31 4E 28 28 5A 5A 5A 20 18`.
+- **Band artefact** [V]: rows 91-95, 123-127 and 155-159 of P3 are zeroed after drawing (`ADFA`), so the top row of Kop's hat disappears at jump height >= 8. Not worth porting.
+- **Copies (`$34&7`, DLI `B2C3-B30F`)** [V for 0/4/6, code for 7]:
+  - mode 0: one copy.
+  - mode 4: P1 at X+`$40`. When X >= `$A0` it wraps to X-`$81` (bit3 = 0) or X-`$7A` (bit3 = 1).
+  - mode 6 (radios, X = `$58`): P1 at X+`$20`, and P0 is re-written mid-line to `$58`/`$98` (`$56` = 0), giving three radios at `$58/$78/$98`.
+  - mode 7 (after a radio hit): X and X+`$20`.
+  - Other `$34&7` values are not produced.
+- **Priority** [code]: PRIOR = `$40+f`, normally 1 (players over playfield). It is 4 (playfield over players) on floors whose background id `$38+f` is 1 or 5 (pillars), set at `AE75`. Seen as `$40 = 01 04 01 01` on screen 3. Player order P0 > P1 > P2 > P3, so an obstacle covers Kop when they overlap.
+- **HUD minimap** (`B3EF-B4C6`, bottom band) [code, H]: direct GRAFP writes, not PMG memory.
+  - P1 = Kop marker at HPOS `$5D`, colour `$80`, shape `($59)`.
+  - P0 = thief marker at `$5E`, colour `$0F`, shape `($5B)` by floor.
+  - P2 = escalator marks (`$BAA6`) at `$59`/`$A0`, colour `$C0`.
+  - P3 = elevator car at `$7B`, colour `$8A`, shape `($60)` from `$B8D0[$6B&3]`.
+  - The marks are 1-2 px; not exported, see DECISIONS SP3.
+- **Escalator P2** [code]: diagonal patterns written to `$0E60-$0EBF` on screens 0/7. The 4-phase animation moves P2's HPOS (`$3C-$3E` from `$B8DA/$B8DE[$48]`, `$48 = $B8E2[($8F>>2)&3]`). It is already in the background composites; animate it as BG tiles on the NES.
+
+**NES export** (`python tools/gen_assets.py --emit`):
+- `src/spr_data.c/.h`: 20 frames, 41 deduplicated 8x8 tiles (H-flip duplicates merged), 4 sprite palettes (global search over all tiles, YUV distance with chroma x2, Kop/thief weighted; entry 0 = `bg_pal[0]` because `$3F10` mirrors the backdrop). GBDK metasprites, item offsets relative to the previous item (checked with `png2asset`).
+- `assets/data/sprites.json`: decoded rows and colours, NES items.
+- Previews: `assets/data/sprites_{kop,thief,obstacles}.png` (Atari | NES) and `sprites_chr.png`.
+- Pivot = the feet line: Kop y = 147 - 32*floor - h, objects 147 - 32*floor + (`$71`-`$1A`); x = HPOS - `$30`.
+- **Scanlines** [V over 177 captures]: worst case 4 NES sprites on a line (Kop + 3 radios, or Kop + 2 copies + 1). Floors never share lines, and Kop's jump (max 9) stays out of the upper band. The 8/line limit is never reached, so no flicker is needed, provided the escalators/elevator stay BG and the minimap gets its own band.
+
+### 9b. Obstacle kinematics (types 6-11) [V: tools/obstacle_model.py vs tests/golden/obst_lv{03,07,0B,0F}.txt]
+Goldens: per-frame `$90 $1E $2C $17 $14 $8D $6E $6F $30-$37 $71-$78 $0D-$10`, Kop walking left from screen 0 with `$22` poked after START (`atari_sprite_probe.py --poke 22=NN`), 1140 frames each. The model replays them free-running, re-seeding only on a screen change or a slot rewrite: 9517/9534 floor-frames match.
+- 64 samples are "torn": the main loop is not locked to the video frame, so the dump caught the loop halfway through a 3-4 px/frame update. They match again a row later.
+- The remaining 17 mismatches are torn samples longer than 3 rows (4 px carts/planes, `$22=$0F`) and 2 ball rows on the first frame after a spawn.
+- A screen change costs 2 main loops in one video frame (`$90` += 2). The model steps once per `$90` increment.
+Data: `assets/data/obstacles.json` (`python tools/obstacle_model.py --json`), per level `$22` 0..16.
+
+**Gating and tiers.** `S_AEEB(thr)`: enabled if (`$22&3`) >= thr or `$22>>2` > 0. Speed index = `$22>>2`, minus 1 when (`$22&3`) < thr. Thresholds `$BBA2[t]`: radio 1, ball 0, cart 2, plane 3. A gated-off slot becomes `$6E` (0 = empty, X = 1).
+
+**Spawn** (`S_AFBB` at every screen change) [V 55/55 non-random cases; random flips V as observed]:
+- Type: screen 0 none; screen == `$85[f]` -> pickup `$0F+(f&1)` at X `$78`; else t = f + (s&3) + 7, t >= 11 -> t-4, floor 3 remapped.
+- Flags: `$34` = copy_mode(t, tier) | (`$0C & $0C`). Obstacles start moving in Kop's walking direction: bit3 set (Kop walking left) means they move right.
+- tier = 0 if `$22>>2` == 0, else min((`$22>>2`) - ((`$22&3`) < thr), 3). copy_mode = `$BC00+$B8F5[t]` [tier]:
+  - radio: `00 04 06 06`
+  - ball: `00 00 04 04`
+  - cart: `00 00 04 00`
+  - plane: `00 00 00 00`
+- Start X:
+  - moving right: `$39`
+  - moving left: `$BA` (`$7C` with 2 copies)
+  - radio: `$58` (`$78` when single)
+- Random direction (POKEY RANDOM bit3, X = `$7A` when it flips): cart for `$22` in 6..9 or >= 14, plane for `$22` >= 7.
+- On screen 4 the radio is removed when `$22` < 5, otherwise forced to mode 4.
+- Spawn also resets `$71=$1A`, `$8D=0` and `$90 &= $F3`.
+
+**Motion** (per frame, floors 3..0; nothing moves while `$17` >= 5, i.e. during a hit or death, or while `$14` bit7 is clear):
+- Step: +-1 px (bit3 = right). Wrap: x == `$18` -> `$D9`, x >= `$DA` -> `$20`.
+- Radio: stationary. Frame = 6 + (code byte `$AAEE[$90>>1]` & 1), pseudo-random flicker.
+- Ball: 1 px on odd `$90` (0.5 px/frame).
+  - Bounce phase `$8D` is a single global counter, advanced by every ball on screen. It wraps at period = (amp+8)*2; amp = 3 for `$22` < 4 or >= 12, else 12.
+  - Each frame: a = (phase - amp) & 255. If a < 16, fold it (a ^= 15 when a >= 8); when `B9A7[a] & $90` != 0 the ball holds (no phase or height change), which slows it near the top.
+  - First half of the period: `$71--` (up). Second half: `$71++`.
+- Cart: every frame. `$22` >= 14: 4 px; else speed index 1 -> 2 px, otherwise 1 px.
+- Plane: `$71=$0A` (flies 16 px above the floor objects), frame `$0A + (($90&2)>>1)`, speed index+1 px/frame (max 4).
+- **Radio hit** [code]: only when Kop's jump height is < 6.
+  - The hit copy i has `$BEF2[i]`-KopX < `$11` (copies `$98/$78/$58` = bits 0/1/2 of `$6F`). That bit is cleared.
+  - After the freeze, `$30 = $BEE9[$6F]` and `$34 = $BEE1[$6F]`, so the remaining radios stay.

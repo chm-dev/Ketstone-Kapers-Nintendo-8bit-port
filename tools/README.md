@@ -20,3 +20,6 @@
 | `dl_dump.py` | Decode a display list from a RAM dump. |
 | `kk_model.py` | Reference model (Kop, Thief); tests in `tests/` (`tests/run_models.ps1`). |
 | `extract_data.py` | ROM tables + measured sequences -> `assets/data/keystone_data.json`. |
+| `atari_sprite_probe.py` | Live sprite/PMG captures for sprite RE. |
+| `gen_assets.py` | Sprite export -> `src/spr_data.c/.h` (`--emit`, `--verify`). |
+| `obstacle_model.py` | Obstacle reference model, replays `tests/golden/obst_*.txt` (baseline 17 torn mismatches). |
