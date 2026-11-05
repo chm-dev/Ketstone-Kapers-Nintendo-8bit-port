@@ -32,4 +32,4 @@ Index: `info/README.md`. General tool knowledge goes in `info/`, project status 
 - **The user runs playtests.** Build the ROM, hand over a checklist; do not drive the emulator to confirm gameplay.
 - **No git commits (user rule from river-raid, assumed here):** do not run `git init/add/commit/push` without asking. This folder is not a repo yet.
 - Session end: summarize what changed, which ROMs were rebuilt, and update `HANDOFF.md`.
-- **Width decision (user, 2026-11-04): NES starts as a 160 px pillarbox** (centred, original pixels). Keep camera and world coordinates separate so a wider view stays possible later; check scroll/world width in the RE (`docs/PORTING_PLAN.md`).
+- **Width decision (user, 2026-11-05): NES is 256 px full width, 1.6x horizontal** of the 160-unit world (world/logic stays 160 units; renderer maps `screen_x=(HPOS-$30)*8/5`; see `docs/NES_FULL_WIDTH_PLAN.md`). GBC/DMG stay 160 px 1:1. The 2026-11-04 160 px pillarbox was the first stage (see `docs/PORTING_PLAN.md`).

@@ -3,13 +3,16 @@
 
 Input : assets/atari/runtime/screens/screen_0..7.png (336x224, 2 px per colour clock).
         Playfield crop = columns 4..163 (clocks), lines 23..203 (181 lines), padded to 192 = 24 tile rows.
+        The 160 px crop is then scaled horizontally to --width px (default 256 = 1.6x, the full NES
+        width; W1 in docs/DECISIONS_PENDING.md): source column = floor(dst*160/width), the same
+        mapping the renderer uses for sprites (screen_x = world_x*8/5).
 Method: the Atari colours (about 25, DLI colour bands) cannot fit one NES palette per 16x16 cell, so
         a global search picks BG colour + 4 triples that minimise the colour error over all cells of
         all screens; each 16x16 attribute cell then takes its best palette and its pixels snap to it.
 Output: assets/data/bg_preview_N.png (quantised result), console stats (error, unique tiles per screen).
-        --emit writes src/bg_data.c/.h (palette, per-screen CHR + 20x24 map + 10x12 attribute cells).
+        --emit writes src/bg_data.c/.h (palette, per-screen CHR + TWx24 map + 16x12 attribute cells).
 
-Usage: python tools/gen_bg.py [--emit] [--seed N]
+Usage: python tools/gen_bg.py [--emit] [--seed N] [--width 256]
 """
 import argparse
 import random
@@ -20,13 +23,16 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SCR = ROOT / 'assets/atari/runtime/screens'
-TW, TH = 20, 24
+TH = 24
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--emit', action='store_true')
 ap.add_argument('--seed', type=int, default=1)
 ap.add_argument('--restarts', type=int, default=12)
+ap.add_argument('--width', type=int, default=256, help='playfield width in px (256 = 1.6x full width)')
 args = ap.parse_args()
+assert args.width % 16 == 0 and 160 <= args.width <= 256
+TW, AW = args.width // 8, args.width // 16      # tile columns, 16 px attribute cell columns
 
 
 SKY = (106, 124, 244)
@@ -64,9 +70,11 @@ def clean(s, a):
 
 def load(s):
     im = Image.open(SCR / f'screen_{s}.png').convert('RGB').crop((8, 23, 328, 204)).resize((160, 181), Image.NEAREST)
-    im = Image.fromarray(clean(s, np.asarray(im)))
-    out = Image.new('RGB', (160, 192))
-    out.paste(im)
+    a = clean(s, np.asarray(im))
+    if args.width != 160:                        # 1.6x stretch, nearest, same mapping as the sprite renderer
+        a = a[:, (np.arange(args.width) * 160) // args.width]
+    out = Image.new('RGB', (args.width, 192))
+    out.paste(Image.fromarray(a))
     return np.asarray(out)
 
 
@@ -80,10 +88,10 @@ D = np.sqrt((((rgb[:, None, :] - rgb[None, :, :]) * [0.3, 0.59, 0.11]) ** 2).sum
 idx = [np.array([[cidx[tuple(p)] for p in row] for row in a]) for a in shots]
 
 # histogram per 16x16 cell: (screen, cy, cx) -> counts[NC]
-cells = np.zeros((8, 12, 10, NC))
+cells = np.zeros((8, TH // 2, AW, NC))
 for s in range(8):
-    for cy in range(12):
-        for cx in range(10):
+    for cy in range(TH // 2):
+        for cx in range(AW):
             blk = idx[s][cy * 16:cy * 16 + 16, cx * 16:cx * 16 + 16]
             cells[s, cy, cx] = np.bincount(blk.ravel(), minlength=NC)
 cells = cells.reshape(-1, NC)
@@ -130,17 +138,17 @@ for p in pals:
 
 # quantise: per cell choose palette, snap pixels
 allc = np.stack([cost_pal(p) for p in pals])
-choice = allc.argmin(0).reshape(8, 12, 10)
+choice = allc.argmin(0).reshape(8, TH // 2, AW)
 ntile = []
 screens = []
 for s in range(8):
-    # tile 0 = solid colour 3 (black in palette 1): the margin around the 160 px pillarbox
+    # tile 0 = solid colour 3 (black in palette 1): the margin around/below the playfield
     blank = np.full((8, 8), 3, int)
     tiles, tindex, nt = [blank], {blank.tobytes(): 0}, []
-    q = np.zeros((192, 160), int)
-    pix = np.zeros((192, 160, 3), np.uint8)
-    for cy in range(12):
-        for cx in range(10):
+    q = np.zeros((192, args.width), int)
+    pix = np.zeros((192, args.width, 3), np.uint8)
+    for cy in range(TH // 2):
+        for cx in range(AW):
             p = pals[choice[s, cy, cx]]
             blk = idx[s][cy * 16:cy * 16 + 16, cx * 16:cx * 16 + 16]
             sub = D[blk][:, :, p].argmin(-1)
@@ -156,7 +164,7 @@ for s in range(8):
             nt.append(tindex[key])
     ntile.append(len(tiles))
     screens.append((tiles, nt, choice[s]))
-    Image.fromarray(pix).resize((320, 384), Image.NEAREST).save(ROOT / f'assets/data/bg_preview_{s}.png')
+    Image.fromarray(pix).resize((args.width * 2, 384), Image.NEAREST).save(ROOT / f'assets/data/bg_preview_{s}.png')
 print('unique tiles per screen', ntile)
 
 NES = [  # 2C02 RGB (FCEUX-like) for the usable colours
@@ -207,7 +215,7 @@ if args.emit:
          'extern const uint8_t bg_ntiles[BG_SCREENS]; /* tiles in bg_chr[s] */',
          'extern const uint8_t *const bg_chr[BG_SCREENS];  /* 16 bytes per tile, CHR-RAM format */',
          'extern const uint8_t *const bg_map[BG_SCREENS];  /* BG_W*BG_H tile ids */',
-         'extern const uint8_t *const bg_attr[BG_SCREENS]; /* palette id per 16x16 cell, 10x12 */', '#endif']
+         f'extern const uint8_t *const bg_attr[BG_SCREENS]; /* palette id per 16x16 cell, {AW}x{TH // 2} */', '#endif']
     hdr = ['#include "bg_data.h"', '/* generated by tools/gen_bg.py - do not edit */']
     c = list(hdr)
     c += arr('bg_pal', pal_nes)
@@ -216,8 +224,8 @@ if args.emit:
     banks = [list(hdr), list(hdr)]
     for s, (tiles, nt, ch) in enumerate(screens):
         chrb = [b for t in tiles for b in chr_bytes(t)]
-        attr = [int(v) for v in ch.ravel()]     # one palette id per 16x16 cell, 10 per row
-        banks[s >> 2] += arr(f'bg_chr_{s}', chrb) + arr(f'bg_map_{s}', nt, TW) + arr(f'bg_attr_{s}', attr, 10)
+        attr = [int(v) for v in ch.ravel()]     # one palette id per 16x16 cell, AW per row
+        banks[s >> 2] += arr(f'bg_chr_{s}', chrb) + arr(f'bg_map_{s}', nt, TW) + arr(f'bg_attr_{s}', attr, AW)
         h.insert(-1, f'extern const uint8_t bg_chr_{s}[], bg_map_{s}[], bg_attr_{s}[];')
     for n in ('chr', 'map', 'attr'):
         c.append(f'const uint8_t *const bg_{n}[BG_SCREENS] = {{' + ','.join(f'bg_{n}_{s}' for s in range(8)) + '};')

@@ -27,3 +27,19 @@
 NES engine port, sprite RE/export, obstacle model+C port, collisions/score/states, sound, bg cleanup, HUD, escalator/elevator animation committed. GBC port started. See HANDOFF.md and docs/DECISIONS_PENDING.md.
 
 ## 2026-11-05 GBC and DMG ports done; all three ROMs build. See HANDOFF.md.
+
+## 2026-11-05 NES full-width plan (docs only)
+- Decided NES 256 px full width at 1.6x x; world/logic stays 160 units. Plan: `docs/NES_FULL_WIDTH_PLAN.md`; decision/revert: W1. 1.5x rejected (240 px leaves 8 px bars and splits the 16x16 attribute cells). No code/data changed, no ROMs rebuilt.
+
+## 2026-11-05 NES full width implemented (256 px, 1.6x)
+- NES playfield is now 256x192 at x=0,y=16: `gen_bg.py --width 256` (32x24 map, 16x12 attrs, src = dst*5/8), renderer maps sprites through a 160-byte `PF_X[]` LUT (`world_x*8/5`). World, engine, goldens untouched.
+- `gen_dyn.py` rebuilt at 256 (phases still verified in Atari space): escalator 30/41 tiles, elevator car 12 px = two tile columns (`DYN_ELEV_W 2`, `dyn_elev[72]`); `TILE_LIMIT` is now `HUD_T0`.
+- HUD: 32-column layout, font trimmed to 64 tiles (37 sky + 25 band glyphs + hat + black, band remapped through `hud_bmap`), `HUD_T0 175`, ends 238. Minimap 16 px cells, markers re-derived from the scaled box.
+- Sprites: new NES-only `src/spr_nes.c/.h` (13 px wide, 152 tiles, bank 3, `SPR_BANK`); `src/spr_data.c` is no longer compiled for NES and stays the GBC/DMG set. OAM capped at 64 (whole actors skipped).
+- Static CHR/palettes moved to `gfx_init`: screen flip 7 frames (was 13). ROM now 8 banks (128 KB; 4 empty - GBDK rounding).
+- Verified: PPU nametable/attrs/CHR equal the generated data; playfield matches the mock (corr 0.97); models + all 8 goldens pass (obstacle chain at the 17 baseline); GBC/DMG rebuilt (only the transparent sprite-palette entry changed) and both Gearboy smoke runs pass. No human playtest yet; Stage 3 (art cleanup) open. Details: W2-W9 in docs/DECISIONS_PENDING.md.
+
+## 2026-11-05 First hand-corrected sprites imported
+- User edited the 1:1 sheet (`assets/data/spr_nes_edit.png`): radio A/B edges, moneybag top/lower rows, suitcase reshaped (bracket handle, 12 px wide, 9 px tall). `tools/spr_nes_edit.py --import` validated every pixel (0 out-of-bounds, 0 off-palette) and wrote `assets/data/spr_nes_overrides.json` (8 frames).
+- Editing split shared tiles: 152 -> 172 sprite tiles, so the minimap markers moved to OBJ `$C0` (`gen_hud.py`). Suitcase stays 9 px: the 10th row sat above the frame's tile grid (a third tile row would be a metasprite geometry change, option B chosen).
+- Verified: re-export equals the edited PNG pixel for pixel, ROM boots with markers at `$C0-$C2`, models + all 8 goldens pass. W11 in docs/DECISIONS_PENDING.md.

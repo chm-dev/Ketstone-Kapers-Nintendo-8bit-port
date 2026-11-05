@@ -19,7 +19,7 @@
 #include "dyn_data.h"
 #include "engine.h"
 
-#define MAP_X0 6u                   /* BG map position of playfield tile (0,0), see main.c show_screen */
+#define MAP_X0 0u                   /* BG map position of playfield tile (0,0), see main.c show_screen */
 #define MAP_Y0 2u
 #define NO_STATE 0xFFu
 
@@ -107,8 +107,9 @@ void dyn_update(void) BANKED
             if (d_st == d_door[d_i])
                 continue;
             d_door[d_i] = d_st;
-            set_bkg_tiles(MAP_X0 + DYN_ELEV_TX, (uint8_t)(MAP_Y0 + dyn_elev_ty[d_i]), 1u, 4u,
-                          dyn_elev + (uint8_t)(d_i * 12u + d_st * 4u));
+            set_bkg_tiles((uint8_t)(MAP_X0 + DYN_ELEV_TX), (uint8_t)(MAP_Y0 + dyn_elev_ty[d_i]),
+                          DYN_ELEV_W, 4u,
+                          dyn_elev + (uint8_t)(d_i * 24u + d_st * 8u));
         }
     }
 }

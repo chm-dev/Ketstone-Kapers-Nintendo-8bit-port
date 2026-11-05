@@ -252,7 +252,7 @@ import importlib.util
 spec = importlib.util.spec_from_file_location('gen_hud', ROOT / 'tools/gen_hud.py')
 gen_hud = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(gen_hud)
-GL, ORDER = gen_hud.G, gen_hud.ORDER
+GL, ORDER = gen_hud.G, gen_hud.ORDER_FULL
 
 
 def glyph(ch):

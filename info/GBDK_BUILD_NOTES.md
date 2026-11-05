@@ -9,6 +9,17 @@ General toolchain knowledge, distilled from the River Raid port. GBDK v4.5.0 liv
 - RAM: GBDK keeps `$0000-$00FF` zero page, `$0100-$01C7` transfer buffer + attribute shadow, `$01C8-$01FF` stack, `$0200-$02FF` OAM shadow; C data starts at `$0300`. `build.ps1` asserts DATA/BSS fit below `$0800`. NES RAM is tiny: keep globals few, put platform-specific ones inside `#ifdef`.
 - API: `set_bkg_palette(first, n, const palette_color_t*)` (palette_color_t = NES colour byte), `set_bkg_data`, `set_bkg_tiles`, `set_bkg_attributes`, `DISPLAY_ON/OFF`, `SHOW_BKG`, `vsync()`.
 - Build: `.\build.ps1 [-Clean]`; `Makefile` mirrors it. Check `roms/*.map` after link.
+- **Bank count is rounded up (2026-11-05):** with modules in banks 1, 2 and 3 GBDK-2020 links an
+  *8*\ x16 KB PRG image (bank 0 and 4-6 empty) instead of 5 banks; the ROM size is not linear in the
+  number of banked modules. Fixed bank = the last PRG bank; `-Wf-boN` + `SWITCH_ROM(N)` address bank N.
+- **Banked data is only readable with the right bank selected**, including `const` tables read every
+  frame (metasprite frames): call `SWITCH_ROM(N)` before the reads (Keystone Kapers does it once at the
+  top of its sprite pass). Reading banked data without the switch silently returns another bank's bytes
+  (it shows up as wrong sprite palettes, not as a crash).
+- `set_bkg_data`/`set_sprite_data` with the display off and NMI off (`PPUCTRL = shadow_PPUCTRL &
+  ~(PPUCTRL_NMI|PPUCTRL_INC32)`) is safe; with NMI on, GBDK's handler writes the PPU (attribute flush)
+  and scrambles a long CHR upload. Static tiles/palettes can be uploaded once in `gfx_init` instead of
+  every screen change (Keystone Kapers: screen flip 13 -> 7 frames).
 
 ## Game Boy (sm83)
 - Compile: `lcc -msm83:gb -Isrc` (SDCC sm83). Link: `-Wl-j -Wl-m -Wl-yt0x19 -Wl-yo4` (MBC5, 4 banks). `-DPROF_EXPORT_STATICS` exposes statics to profilers.
@@ -36,6 +47,7 @@ Reference project with full history: `C:\dev\AI\river-raid-port` (`archive/nes`,
 - Call `set_bkg_palette` after `DISPLAY_OFF` (a call before the first one never reached the PPU).
 
 - NES: at runtime the hardware PPUCTRL can be left in +32 increment mode. Before a direct set_bkg_data with the display off, write PPUCTRL = shadow_PPUCTRL & ~(PPUCTRL_NMI|PPUCTRL_INC32), then restore from shadow_PPUCTRL. Otherwise the CHR lands 32 bytes apart.
+- NES: this ROM boots with `shadow_PPUCTRL = $88` (BG pattern table `$0000`, OBJ table `$1000`). `set_bkg_data` picks the base from bit 4 and `set_sprite_data` from bit 3, so **BG and OBJ tile ids are independent** (256 each). The `gen_dyn.py TILE_LIMIT = $80` comment ("shared sprite/HUD range") is GBC-derived and conservative for NES; the real BG ceiling is 256 total (raise it to `HUD_T0` for the full-width plan).
 
 ## GBC gotchas found in Keystone Kapers (2026-11-05)
 - `.\build_gbc.ps1` links with `-Wl-yt0x19 -Wl-yo8 -Wm-yc` (MBC5, CGB compatible, one ROM for GBC + DMG; see the DMG section). Output `.gb` from lcc, copied to `.gbc` (lcc picks the output type from the extension).

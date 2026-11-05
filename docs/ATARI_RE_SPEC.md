@@ -26,7 +26,7 @@ Segments 00-25 (about 70 KB through `$2000-$3FFF` plus `$D65F` writes, seg 00/03
 - Zero page [H]: `$03` level (BCD), `$22` ?, `$90` frame counter, `$94` VBI sync flag, `$9E` attract flag, `$A1-$A6` timers.
 
 ## 3. DLI kernel $B200 [V, structure only]
-Per-scanline kernel: STA WSYNC loops, writes COLBK/COLPF/HPOSP per line from tables ($BCAF,X, zero page $70-, $75,Y). It draws floors/sprites, so the mode-C bitmap alone does not reproduce the screen. Strategy: RE game state, redraw natively. Width: pillarbox chosen; still record world width / scroll / object activation range.
+Per-scanline kernel: STA WSYNC loops, writes COLBK/COLPF/HPOSP per line from tables ($BCAF,X, zero page $70-, $75,Y). It draws floors/sprites, so the mode-C bitmap alone does not reproduce the screen. Strategy: RE game state, redraw natively. Width (2026-11-05): NES is 256 px full width = the 160-unit world rendered at 1.6x x (`docs/NES_FULL_WIDTH_PLAN.md`); GB/GBC/DMG stay 160 px 1:1. World = 8 flip-screens, no smooth scroll; object activation is still per current screen (`$30+f`/`$75+f` slots).
 
 ## 4. RAM mapping, first pass (tools/atari_ramdiff.py)
 Method: boot, START, wait 600 frames (120 is too short: input is ignored during the intro), checkpoint, hold one input for 120 frames, diff `$00-$1FF` every 8 frames.
@@ -159,6 +159,7 @@ Tools: `tools/atari_sprite_probe.py` (captures: screenshot + RAM `$0000-$0FFF`, 
 - Previews: `assets/data/sprites_{kop,thief,obstacles}.png` (Atari | NES) and `sprites_chr.png`.
 - Pivot = the feet line: Kop y = 147 - 32*floor - h, objects 147 - 32*floor + (`$71`-`$1A`); x = HPOS - `$30`.
 - **Scanlines** [V over 177 captures]: worst case 4 NES sprites on a line (Kop + 3 radios, or Kop + 2 copies + 1). Floors never share lines, and Kop's jump (max 9) stays out of the upper band. The 8/line limit is never reached, so no flicker is needed, provided the escalators/elevator stay BG and the minimap gets its own band.
+- **Full-width plan (2026-11-05)**: this 160 px export stays the GB/GBC/DMG set. The NES full-width build uses an NES-only widened copy (12-13 px, 1.6x x) generated from these frames; pivots are scaled on x only, collision boxes stay in world units. See `docs/NES_FULL_WIDTH_PLAN.md`.
 
 ### 9b. Obstacle kinematics (types 6-11) [V: tools/obstacle_model.py vs tests/golden/obst_lv{03,07,0B,0F}.txt]
 Goldens: per-frame `$90 $1E $2C $17 $14 $8D $6E $6F $30-$37 $71-$78 $0D-$10`, Kop walking left from screen 0 with `$22` poked after START (`atari_sprite_probe.py --poke 22=NN`), 1140 frames each. The model replays them free-running, re-seeding only on a screen change or a slot rewrite: 9517/9534 floor-frames match.

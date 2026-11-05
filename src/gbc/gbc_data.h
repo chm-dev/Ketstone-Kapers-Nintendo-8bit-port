@@ -9,7 +9,7 @@
 #define GBC_PAL_MAP 6u        /* minimap (window) */
 #define GBC_PAL_TXT 7u        /* HUD text (window) */
 #define GBC_ROM_BANKS 3u      /* banks 0..2 used (the DMG data follows) */
-#define GBC_SRC_FINGERPRINT "46917cff87ddd6b3"  /* sha1 of src/spr_data.c + src/sound_data.c used (build_gbc.ps1 checks it) */
+#define GBC_SRC_FINGERPRINT "c97ffe89bac7267d"  /* sha1 of src/spr_data.c + src/sound_data.c used (build_gbc.ps1 checks it) */
 /* screen s: tiles go to VRAM bank 1 ids 0.., map/attr = 20x24 (attr has bit 3 = bank 1, flips, palette) */
 extern const uint8_t gbc_bank[8];
 extern const uint8_t gbc_ntiles[8];

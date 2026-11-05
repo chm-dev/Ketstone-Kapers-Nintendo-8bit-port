@@ -14,9 +14,12 @@ Pivot of every frame = left edge of the 8 px column at the Atari HPOS (playfield
 the "feet line": Kop shape row 2 / object shape row 0 (playfield y = 147 - 32*floor - height, see the
 header comment of src/spr_data.h).
 
-Output (--emit): src/spr_data.c / src/spr_data.h, assets/data/sprites.json (decoded frames + palettes),
-previews assets/data/sprites_{kop,thief,obstacles}.png (Atari colours | NES colours, x4) and
-assets/data/sprites_chr.png (the CHR sheet).
+Output (--emit): src/spr_data.c / src/spr_data.h (the 160 px set used by GBC/DMG),
+assets/data/sprites.json (decoded frames + palettes), previews
+assets/data/sprites_{kop,thief,obstacles}.png (Atari colours | NES colours, x4) and
+assets/data/sprites_chr.png (the CHR sheet).  The NES gets its own widened set in
+src/spr_nes.c / spr_nes.h: the same 20 shapes and frame order stretched 8 -> 13 px
+(1.6x horizontally, W1 in docs/DECISIONS_PENDING.md), two 8-px sprite columns per row.
 --verify DIR...: compare decoded frames with Altirra captures (tools/atari_sprite_probe.py) - PMG column
 contents at the predicted rows and screenshot colours at the predicted pixels.
 
@@ -26,6 +29,7 @@ import argparse
 import itertools
 import json
 import random
+import re
 from pathlib import Path
 
 import numpy as np
@@ -387,6 +391,180 @@ def emit(frames, pals, chr_list):
     (ROOT / 'src/spr_data.c').write_text('\n'.join(c) + '\n')
 
 
+# ---------------------------------------------------------------- NES-only widened set
+NES_W = 13      # 8 px Atari player * 1.6 (W1); two 8-px sprite columns per tile row
+# The minimap marker tiles are uploaded at OBJ HUD_SPR_T0 (gen_hud.py): the actor tiles must stay below it.
+HUD_SPR_H = ROOT / 'src/hud_data.h'
+HUD_SPR_T0 = int(re.search(r'#define HUD_SPR_T0\s+(\w+)', HUD_SPR_H.read_text()).group(1).rstrip('uU'), 0) \
+    if HUD_SPR_H.exists() else 0x80
+
+
+OVERRIDES = ROOT / 'assets/data/spr_nes_overrides.json'
+
+
+def load_overrides():
+    """Hand edits from tools/spr_nes_edit.py ({} when the file does not exist)."""
+    return json.loads(OVERRIDES.read_text()) if OVERRIDES.exists() else {}
+
+
+def build_nes(frames, pals, D, ov=None):
+    """Widened copies of the same frames: 13 px wide, same pivot (left edge), same frame order.
+
+    The 8 px shape is stretched with src = floor(x*8/13) (the inverse of the renderer's
+    screen_x = world_x*8/5, so the 1.6x look matches the background).  Each 8-row tile becomes
+    two 8x8 tiles at dx = 0 and dx = 8; the mirrored facing is the mirror of the whole 13 px
+    frame, so the tile columns swap.  Tiles are still deduped against their mirrors.
+
+    ov (optional): assets/data/spr_nes_overrides.json from tools/spr_nes_edit.py - per frame and
+    facing, the hand-edited palette-index pixels of every tile, with the palette pinned to the one
+    the generator gave that tile.
+    """
+    ov = ov if ov is not None else {}
+    idx = [(x * 8) // NES_W for x in range(NES_W)]
+    chr_list, index = [], {}
+
+    def tile_of_px(q):
+        key = tuple(map(tuple, q))
+        if key in index:
+            return index[key], 0
+        fk = tuple(tuple(r[::-1]) for r in q)
+        if fk in index:
+            return index[fk], 1
+        ti = len(chr_list)
+        index[key] = ti
+        chr_list.append(q)
+        return ti, 0
+
+    def tile_of(rows):
+        pi, q = quantise(rows, pals, D)
+        ti, fl = tile_of_px(q)
+        return ti, fl, pi
+
+    def items_of(sp, top, pivot):
+        out = []
+        for t0 in range(0, len(sp), 8):
+            chunk = sp[t0:t0 + 8]
+            chunk = chunk + [[None] * NES_W] * (8 - len(chunk))
+            dy = -(top - t0 - pivot)
+            for c in range(2):
+                tile = [(r[c * 8:(c + 1) * 8] + [None] * 8)[:8] for r in chunk]
+                ti, fl, pi = tile_of(tile)
+                out.append(dict(dy=dy, dx=c * 8, tile=ti, pal=pi, flip=fl))
+        return out
+
+    n_edit = 0
+    for f in frames:
+        pix, top, bot = frame_pixels(f)
+        sp = [[row[i] for i in idx] for row in pix]
+        f['nes_items'] = [items_of(sp, top, f['pivot']),
+                          items_of([list(reversed(row)) for row in sp], top, f['pivot'])]
+        o = ov.get(f['name'])
+        if not o:
+            continue
+        for flip in (0, 1):
+            cells = o.get(str(flip))
+            if not cells:
+                continue
+            items = f['nes_items'][flip]
+            if len(cells) != len(items):
+                raise SystemExit(f'spr_nes_overrides.json: {f["name"]} flip={flip} has {len(cells)} tiles, '
+                                 f'the art has {len(items)} - re-run tools/spr_nes_edit.py --export')
+            new = []
+            for it, c in zip(items, cells):
+                if (int(c['dy']), int(c['dx'])) != (it['dy'], it['dx']):
+                    raise SystemExit(f'spr_nes_overrides.json: {f["name"]} flip={flip} tile layout changed '
+                                     f'- re-run tools/spr_nes_edit.py --export')
+                q = [[int(v) & 3 for v in row] for row in c['px']]
+                ti, fl = tile_of_px(q)
+                new.append(dict(dy=it['dy'], dx=it['dx'], tile=ti, pal=int(c['pal']), flip=fl))
+            f['nes_items'][flip] = new
+            n_edit += 1
+    if n_edit:
+        print(f'hand-edited sprite frames applied: {n_edit} (assets/data/spr_nes_overrides.json)')
+    return chr_list
+
+
+def emit_nes(frames, pals, chr_list):
+    """src/spr_nes.c/.h: the same symbols as spr_data.h, but 13 px wide (NES build only)."""
+    assert len(chr_list) <= HUD_SPR_T0, (f'{len(chr_list)} sprite tiles overlap the HUD marker tiles at '
+                                         f'OBJ ${HUD_SPR_T0:02X} (raise HUD_SPR_T0 in gen_hud.py)')
+    names = [f['name'] for f in frames]
+    h = ['#ifndef SPR_NES_H', '#define SPR_NES_H', '#include <stdint.h>', '#include "platform.h"',
+         '#include <gbdk/metasprites.h>   /* platform-neutral dispatcher */',
+         '/* generated by tools/gen_assets.py - do not edit.  NES-only widened sprite set (W1):',
+         ' * the 20 shapes of src/spr_data.h stretched 8 -> 13 px (1.6x), same frame order, same pivot',
+         ' * (left edge at the Atari HPOS = playfield px 0).  Two 8-px sprite columns per tile row,',
+         ' * joined through dx = 0 / 8 items, so an actor costs 2 x (rows) hardware sprites.',
+         ' * build.ps1 compiles this file *instead of* src/spr_data.c for NES (GBC/DMG keep that one).',
+         ' */',
+         '#define SPR_TILE_BASE 0u   /* engine may move the sprite tiles; frames are base-relative */',
+         f'#define SPR_NTILES {len(chr_list)}u',
+         '#define SPR_BANK 3u        /* PRG bank of spr_nes.c (build.ps1 -Wf-bo3): SWITCH_ROM(SPR_BANK)',
+         '                            * before reading spr_chr / spr_frame / spr_frame_ntiles */',
+         '#define SPR_W 13u          /* widened frame width in px */',
+         '#define SPR_PF_X(hpos) ((uint8_t)((hpos) - 0x30u))',
+         '#define SPR_FEET_Y0 147u',
+         '#define SPR_FLOOR_DY 32u']
+    h.append('enum {')
+    for i, n in enumerate(names):
+        h.append(f'    SPR_F_{n} = {i},')
+    h += [f'    SPR_NFRAMES = {len(names)}', '};',
+          'extern const uint8_t spr_chr[SPR_NTILES * 16u];',
+          'extern const palette_color_t spr_palettes[16];',
+          'extern const metasprite_t *const spr_frame[SPR_NFRAMES][2];',
+          'extern const uint8_t spr_frame_ntiles[SPR_NFRAMES];  /* hardware sprites per frame */',
+          'extern const uint8_t spr_kop_pose[8];',
+          'extern const uint8_t spr_obj_type[17];',
+          'extern const uint8_t spr_copy_n[8];',
+          'extern const uint8_t spr_copy_dx[8][3];',
+          '#endif']
+    c = ['#include "spr_nes.h"', '/* generated by tools/gen_assets.py - do not edit */']
+    chrb = [b for q in chr_list for b in chr_bytes(q)]
+    c.append('const uint8_t spr_chr[SPR_NTILES * 16u] = {')
+    for i in range(0, len(chrb), 16):
+        c.append('  ' + ','.join(f'0x{b:02X}' for b in chrb[i:i + 16]) + ',')
+    c.append('};')
+    bk = 0x0F
+    bgc = ROOT / 'src/bg_data.c'
+    if bgc.exists():
+        txt = bgc.read_text()
+        i = txt.find('bg_pal[')
+        if i >= 0:
+            bk = int(txt[txt.find('{', i) + 1:].split(',')[0].strip(), 0)
+    pal = []
+    for p in pals:
+        pal += [bk] + p
+    c.append('const palette_color_t spr_palettes[16] = {' + ','.join(f'0x{v:02X}' for v in pal) + '};')
+    for f in frames:
+        for flip in (0, 1):
+            items = sorted(f['nes_items'][flip], key=lambda it: (it['dy'], it['dx']))
+            px = py = 0
+            parts = []
+            for it in items:
+                props = it['pal'] | (0x40 if it['flip'] else 0)
+                parts.append(f'METASPR_ITEM({it["dy"] - py},{it["dx"] - px},{it["tile"]},0x{props:02X})')
+                py, px = it['dy'], it['dx']
+            c.append(f'static const metasprite_t ms_{f["name"].lower()}_{flip}[] = {{' + ', '.join(parts) +
+                     ', METASPR_TERM};')
+    c.append('const metasprite_t *const spr_frame[SPR_NFRAMES][2] = {')
+    for f in frames:
+        n = f['name'].lower()
+        c.append(f'  {{ms_{n}_0, ms_{n}_1}},')
+    c.append('};')
+    c.append('const uint8_t spr_frame_ntiles[SPR_NFRAMES] = {' +
+             ','.join(str(len(f['nes_items'][0])) for f in frames) + '};')
+    kp = [names.index(KOP_POSES.get(p, 'KOP_STAND')) for p in range(8)]
+    c.append('const uint8_t spr_kop_pose[8] = {' + ','.join(map(str, kp)) + '};')
+    ot = [names.index(OBJ_TYPES[t]) if t in OBJ_TYPES else 0xFF for t in range(17)]
+    c.append('const uint8_t spr_obj_type[17] = {' + ','.join(map(str, ot)) + '};')
+    cn = [len(COPY_MODES.get(m, [0])) for m in range(8)]
+    c.append('const uint8_t spr_copy_n[8] = {' + ','.join(map(str, cn)) + '};')
+    c.append('const uint8_t spr_copy_dx[8][3] = {' + ','.join(
+        '{' + ','.join(f'0x{v:02X}' for v in (COPY_MODES.get(m, [0]) + [0, 0])[:3]) + '}' for m in range(8)) + '};')
+    (ROOT / 'src/spr_nes.h').write_text('\n'.join(h) + '\n')
+    (ROOT / 'src/spr_nes.c').write_text('\n'.join(c) + '\n')
+
+
 def emit_json(frames, pals, chr_list, argb):
     out = dict(
         source='tools/gen_assets.py from assets/atari/keystone_image_9f80_bfff.bin; spec section 9',
@@ -516,11 +694,16 @@ def main():
     for f in frames:
         print(f'  {f["name"]:10s} ' + ' '.join(f'(dy{it["dy"]:+d} t{it["tile"]} p{it["pal"]}{" F" if it["flip"] else ""})'
                                              for it in f['items']))
+    nes_chr = build_nes(frames, pals, D, load_overrides())
+    print('NES wide (13 px) tiles', len(nes_chr), 'worst frame sprites',
+          max(len(f['nes_items'][0]) for f in frames))
     preview(frames, pals, chr_list, argb)
     if a.emit:
         emit(frames, pals, chr_list)
+        emit_nes(frames, pals, nes_chr)
         emit_json(frames, pals, chr_list, argb)
-        print('wrote src/spr_data.c/.h, assets/data/sprites.json, assets/data/sprites_*.png')
+        print('wrote src/spr_data.c/.h (GBC/DMG), src/spr_nes.c/.h (NES wide), assets/data/sprites.json,'
+              ' assets/data/sprites_*.png')
     if a.verify is not None:
         verify(a.verify, argb)
 

@@ -12,9 +12,12 @@ The Atari draws both with player P2 over the playfield (docs/ATARI_RE_SPEC.md 9,
 
 This tool rebuilds those pixels per phase/state from the cleaned composite (same crop/cleanup as
 tools/gen_bg.py) and quantises them with the existing bg_data palettes; every new 8x8 tile is appended after
-the screen's bg tiles (ids bg_ntiles[s]..). The elevator column needs teal, which no global palette holds:
-screen 4 never uses one of the 4 BG palettes, so that palette is redefined on screen 4 only (cells of the
-door column).
+the screen's bg tiles (ids bg_ntiles[s]..).  The image is built in the 160 px Atari space (the phase
+geometry is verified there) and then stretched to 256 px with gen_bg.py's mapping: 1.6x horizontal
+(docs/DECISIONS_PENDING.md W1).  The elevator car column is 8 px at 160 and 12 px at 256, so it spans two
+8 px tile columns.  The elevator needs teal, which no global palette holds: screen 4 never uses one of the
+4 BG palettes, so that palette is redefined on screen 4 only (cell of the door column, 16 px wide = the
+whole car).
 
 Verification (always printed): synthesized escalator phases vs every Atari screenshot of screens 0/7
 (assets/atari/runtime/screens/shots), elevator open/transition template vs shots 605/685.
@@ -35,8 +38,13 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SCR = ROOT / 'assets/atari/runtime/screens'
-TW, TH = 20, 24
-TILE_LIMIT = 0x80          # BG tiles must stay below the sprite/HUD shared range ($80 HUD markers, $A0 HUD font)
+SW, TH = 256, 24            # NES playfield: 1.6x the 160 px Atari playfield (W1)
+TW = SW // 8                # 32 tile columns
+# BG tiles must stay below the HUD font (BG+OBJ pattern tables are separate on NES, so the old
+# GBC-derived $80 cap does not apply; docs/NES_FULL_WIDTH_PLAN.md "CHR")
+TILE_LIMIT = re.search(r'#define HUD_T0\s+(\w+)',
+                       (ROOT / 'src/hud_data.h').read_text()).group(1)
+TILE_LIMIT = int(TILE_LIMIT.rstrip('uU'), 0)
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--emit', action='store_true')
@@ -121,6 +129,12 @@ def pf_of(path):
     return np.asarray(Image.open(path).convert('RGB').crop((8, 23, 328, 204)).resize((160, 181), Image.NEAREST))
 
 
+def scale_x(a):
+    """160 px Atari space -> 256 px NES playfield: source column floor(dst*160/256) = dst*5/8, the
+    renderer's screen_x = world_x*8/5 inverted (gen_bg.py --width 256 uses the same index)."""
+    return a[:, (np.arange(SW) * a.shape[1]) // SW]
+
+
 def composite(s):
     a = pf_of(SCR / f'screen_{s}.png').copy()
     if s == 4:                                  # gen_bg.py ELEV: floor-0 open car -> closed door of floor 3
@@ -134,6 +148,11 @@ def composite(s):
     out = np.zeros((192, 160, 3), np.uint8)
     out[:181] = a
     return out
+
+
+def composite_s(s):
+    """the composite in NES playfield space (256 px)."""
+    return scale_x(composite(s))
 
 
 def eq(a, c):
@@ -195,15 +214,15 @@ class Screen:
         self.tiles = chr_tiles(s)
         self.map = np.array(BG[f'bg_map_{s}'], int).reshape(TH, TW)
         self.attr = np.array(BG[f'bg_attr_{s}'], int).reshape(TH // 2, TW // 2)
-        self.q = np.zeros((192, 160), np.uint8)
+        self.q = np.zeros((192, SW), np.uint8)
         for ty in range(TH):
             for tx in range(TW):
                 self.q[ty * 8:ty * 8 + 8, tx * 8:tx * 8 + 8] = self.tiles[self.map[ty, tx]]
-        self.atari = composite(s)
+        self.atari = composite_s(s)
         # learned Atari colour -> palette index per palette (majority over the screen)
         votes = {}
         for y in range(192):
-            for x in range(160):
+            for x in range(SW):
                 k = (int(self.attr[y // 16, x // 16]), tuple(int(v) for v in self.atari[y, x]))
                 votes.setdefault(k, {}).setdefault(int(self.q[y, x]), 0)
                 votes[k][int(self.q[y, x])] += 1
@@ -261,7 +280,7 @@ class Screen:
         return bg_ntiles[self.s] + len(self.new) - 1
 
     def render(self, ids, pal_of):
-        pix = np.zeros((192, 160, 3), np.uint8)
+        pix = np.zeros((192, SW, 3), np.uint8)
         for ty in range(TH):
             for tx in range(TW):
                 i = ids[ty][tx]
@@ -283,29 +302,29 @@ esc_out = {}
 for s in (0, 7):
     sc = Screen(s)
     colbk = colbk_mask(s)
-    base = esc_clean(sc.atari[:181], colbk)
-    ph = [esc_phase(s, base, k, colbk) for k in range(4)]
+    base = esc_clean(composite(s)[:181], colbk)     # Atari 160 px space: the phase geometry is verified there
+    ph160 = [esc_phase(s, base, k, colbk) for k in range(4)]
+    ph = [scale_x(a) for a in ph160]
     # verify against the Atari shots: each shot's P2 bands must equal one phase (ignoring sprite pixels)
     hits, near, tot = [0] * 4, 0, 0
     for f, a in shots(s):
         for y0 in ESC[s]:
             tot += 1
             reg = slice(y0, y0 + 25), slice(40, 110)
-            best = min(range(4), key=lambda k: int((a[reg] != ph[k][reg]).any(-1).sum()))
-            d = int((a[reg] != ph[best][reg]).any(-1).sum())
+            best = min(range(4), key=lambda k: int((a[reg] != ph160[k][reg]).any(-1).sum()))
+            d = int((a[reg] != ph160[best][reg]).any(-1).sum())
             if d == 0:
                 hits[best] += 1
             elif d < 30:
                 near += 1                       # Kop / thief / obstacle over the band
     print(f'screen {s}: escalator bands exact per phase {hits}, sprite-covered {near}, of {tot}')
     # mode of the 4 phases vs the composite (the composite is a mode over many frames)
-    full = [np.zeros((192, 160, 3), np.uint8) for _ in range(4)]
+    full = [np.zeros((192, SW, 3), np.uint8) for _ in range(4)]
     for k in range(4):
         full[k][:181] = ph[k]
         full[k][181:] = sc.atari[181:]
     # tiles that change between phases
-    fb = np.zeros((192, 160, 3), np.uint8)
-    fb[:181] = base
+    fb = sc.atari
     qk = [[[sc.quant_tile(full[k], tx, ty, fb) for tx in range(TW)] for ty in range(TH)] for k in range(4)]
     dyn = [(tx, ty) for ty in range(TH) for tx in range(TW)
            if any(not (qk[k][ty][tx] == qk[0][ty][tx]).all() for k in range(1, 4))
@@ -318,8 +337,8 @@ for s in (0, 7):
         else:
             runs.append([tx, ty, 1])
     print(f'screen {s}: {len(dyn)} dynamic positions in {len(runs)} runs, {len(sc.new)} new tiles, '
-          f'total {bg_ntiles[s] + len(sc.new)}')
-    assert bg_ntiles[s] + len(sc.new) <= TILE_LIMIT, 'too many BG tiles'
+          f'total {bg_ntiles[s] + len(sc.new)} / {TILE_LIMIT}')
+    assert bg_ntiles[s] + len(sc.new) <= TILE_LIMIT, f'screen {s}: too many BG tiles'
     esc_out[s] = (sc, runs, ids)
     for k in range(4):
         m = [[ids.get((tx, ty), [sc.map[ty, tx]] * 4)[k] for tx in range(TW)] for ty in range(TH)]
@@ -329,8 +348,9 @@ for s in (0, 7):
 sc = Screen(4)
 used = set(int(v) for v in sc.attr.ravel())
 free = [p for p in range(4) if p not in used]
-CAR_X = 72                                  # car column x 72..79 = tile column 9 (P2 HPOS $78)
-CAR_TX = CAR_X // 8
+CAR_X = 72                                  # Atari car column x 72..79 (P2 HPOS $78)
+CAR_TX = (CAR_X * SW) // 160 // 8           # NES tile column of the scaled car: x 116..127 = columns 14+15
+CAR_TC = 2                                  # the 8 px car is 12 px at 1.6x: two tile columns (W1 gotcha)
 CAR_Y0 = [121, 89, 57]                      # first car line per floor (PMG rows $A0/$80/$60)
 # open car template: Atari shot 605 (floor 0 car open, nobody in front)
 open_t = pf_of(SCR / 'shots/0605.png')[121:146, CAR_X:CAR_X + 8].copy()
@@ -342,7 +362,7 @@ mask = np.array([[tuple(int(v) for v in chk[y, x]) not in kopc for x in range(8)
 print('elevator: transition template vs shot 685 (non-Kop px): %d/%d equal' %
       (int(((chk == part_t).all(-1) & mask).sum()), int(mask.sum())))
 print('elevator: shot 685 colours', sorted({tuple(int(v) for v in p) for p in chk.reshape(-1, 3)}))
-door_p = int(sc.attr[6, CAR_TX // 2])     # palette gen_bg.py chose for the door column (mid floor 1)
+door_p = int(sc.attr[6, CAR_TX // 2])       # palette gen_bg.py chose for the door column (mid floor 1)
 
 
 def learned_nes(rgb):
@@ -362,7 +382,8 @@ else:
 
 
 def car_img(f, state):
-    a = sc.atari.copy()
+    """screen 4 in Atari space (160 px) with floor f's car drawn in the given state."""
+    a = composite(4)
     y0 = CAR_Y0[f]
     if state:
         a[y0:y0 + 24, CAR_X:CAR_X + 8] = open_t[:24]
@@ -388,8 +409,9 @@ for f in range(3):
     ty0 = CAR_Y0[f] // 8
     st = []
     for state in range(3):              # 0 closed, 1 transition, 2 open
-        img = car_img(f, state)
-        st.append([sc.tile_id(sc.quant_tile(img, CAR_TX, ty)) for ty in range(ty0, ty0 + 4)])
+        img = scale_x(car_img(f, state))
+        st.append([sc.tile_id(sc.quant_tile(img, CAR_TX + c, ty))
+                   for ty in range(ty0, ty0 + 4) for c in range(CAR_TC)])
     elev.append((ty0, st))
 print(f'elevator: {len(fix)} static overrides, rows per floor {[e[0] for e in elev]}, '
       f'{len(sc.new)} new tiles, total {bg_ntiles[4] + len(sc.new)}')
@@ -401,11 +423,12 @@ for f in range(3):
         m = [[fixmap.get((tx, ty), int(sc.map[ty, tx])) for tx in range(TW)] for ty in range(TH)]
         ty0, st = elev[f]
         for i in range(4):
-            m[ty0 + i][CAR_TX] = st[state][i]
-        previews.append((f's4 f{f} st{state}', car_img(f, state), sc.render(m, sc.cell_pal)))
+            for c in range(CAR_TC):
+                m[ty0 + i][CAR_TX + c] = st[state][2 * i + c]
+        previews.append((f's4 f{f} st{state}', scale_x(car_img(f, state)), sc.render(m, sc.cell_pal)))
 
 # ---------------------------------------------------------------- preview
-W = 160 * 2 + 8
+W = SW * 2 + 8
 pv = Image.new('RGB', (W * 4, 200 * ((len(previews) + 3) // 4)), (40, 40, 40))
 for i, (name, a, n) in enumerate(previews):
     x, y = (i % 4) * W, (i // 4) * 200
@@ -452,11 +475,12 @@ if args.emit:
     cells = sorted(sc.pal_over)
     c += arr('dyn_elev_cells', [len(cells)] + [v for cc in cells for v in cc])
     h.append('extern const uint8_t dyn_elev_cells[];   /* count, then (cx, cy) 16x16 cells using DYN_ELEV_PAL */')
-    h.append(f'#define DYN_ELEV_TX {CAR_TX}u   /* car tile column */')
+    h.append(f'#define DYN_ELEV_TX {CAR_TX}u   /* first car tile column */')
+    h.append(f'#define DYN_ELEV_W {CAR_TC}u    /* car tile columns (8 px at 160 -> 12 px at 256) */')
     h.append('extern const uint8_t dyn_elev_ty[3];      /* first car tile row per floor */')
     c += arr('dyn_elev_ty', [e[0] for e in elev])
-    h.append('extern const uint8_t dyn_elev[36];        /* [floor][state 0 closed,1 moving doors,2 open][4 rows] */')
-    c += arr('dyn_elev', [i for e in elev for st in e[1] for i in st], 4)
+    h.append('extern const uint8_t dyn_elev[72];        /* [floor][state 0 closed,1 moving doors,2 open][4 rows][2 cols] */')
+    c += arr('dyn_elev', [i for e in elev for st in e[1] for i in st], 8)
     h.append('#endif')
     (ROOT / 'src/dyn_data.h').write_text('\n'.join(h) + '\n')
     (ROOT / 'src/dyn_data.c').write_text('\n'.join(c) + '\n')

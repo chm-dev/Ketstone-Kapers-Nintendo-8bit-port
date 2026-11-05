@@ -83,7 +83,9 @@ $linkFlags = @(
     '-Wf--opt-code-size'
 )
 
-$sources = Get-ChildItem -Path $srcRoot -Filter '*.c' -File | Sort-Object Name
+$sources = Get-ChildItem -Path $srcRoot -Filter '*.c' -File |
+    Where-Object { $_.Name -ne 'spr_data.c' } |    # GBC/DMG 8 px sprite set; NES uses src/spr_nes.c (13 px, W1)
+    Sort-Object Name
 if (-not $sources) {
     throw "No C sources found under $srcRoot"
 }
@@ -116,6 +118,7 @@ foreach ($src in $sources) {
     if ($name -eq 'hud_data') { $bankFlags = @('-Wf-bo1') }   # HUD font/minimap tiles in PRG bank 1
     if ($name -eq 'dyn_data') { $bankFlags = @('-Wf-bo2') }   # escalator/elevator tiles in PRG bank 2
     if ($name -eq 'dyn') { $bankFlags = @('-Wf-bo2') }        # their BANKED code, same bank (DYN_BANK)
+    if ($name -eq 'spr_nes') { $bankFlags = @('-Wf-bo3') }    # widened sprite CHR/frames in PRG bank 3 (SPR_BANK)
     & $lcc @compileFlags @bankFlags '-c' '-o' $obj $src.FullName
     if ($LASTEXITCODE -ne 0) {
         throw "Compilation failed: $($src.Name)"

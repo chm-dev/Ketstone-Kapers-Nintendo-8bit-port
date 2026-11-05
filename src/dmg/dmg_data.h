@@ -7,7 +7,7 @@
  * Banked arrays: SWITCH_ROM(dmg_bank[s]) first.  Tile ids in the maps are final (HUD ids 0..60, screen tiles from DMG_TILE_BASE). */
 #define DMG_FIRST_BANK 3u     /* = GBC_ROM_BANKS when generated (build_gbc.ps1 checks it) */
 #define DMG_ROM_BANKS 5u      /* banks 0..4 used */
-#define DMG_SRC_FINGERPRINT "8b2adb88f531516d"  /* sha1 of src/spr_data.c (build_gbc.ps1 checks it) */
+#define DMG_SRC_FINGERPRINT "183907c7b19c3fb9"  /* sha1 of src/spr_data.c (build_gbc.ps1 checks it) */
 #define DMG_TILE_BASE 61u     /* first BG id of a screen's tiles */
 #define DMG_BGP 228u
 #define DMG_OBP0 224u               /* sprites: idx 1 white, idx 2 dark grey, idx 3 black */

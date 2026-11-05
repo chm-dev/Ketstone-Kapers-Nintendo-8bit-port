@@ -4,7 +4,7 @@ const uint8_t bg_pal[] = {
   24,45,26,40,24,34,45,37,24,15,26,16,24,26,50,9,
 };
 const uint8_t bg_ntiles[] = {
-  89,79,82,82,60,77,79,83,
+  145,143,158,144,86,141,156,115,
 };
 const uint8_t *const bg_chr[BG_SCREENS] = {bg_chr_0,bg_chr_1,bg_chr_2,bg_chr_3,bg_chr_4,bg_chr_5,bg_chr_6,bg_chr_7};
 const uint8_t *const bg_map[BG_SCREENS] = {bg_map_0,bg_map_1,bg_map_2,bg_map_3,bg_map_4,bg_map_5,bg_map_6,bg_map_7};
