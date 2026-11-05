@@ -22,3 +22,6 @@
 
 ### 2026-11-04 - Phase 2 step 1: backgrounds on NES
 - tools/gen_bg.py: 8 screen composites -> one shared 4-palette set (bg + 4 triples, 16x16 attr cells) -> src/bg_data*.c (PRG banks 1/2). main.c = screen viewer, verified in Mesen. Proof ROM data removed. GBDK NES gotchas added to info/GBDK_BUILD_NOTES.md.
+
+## 2026-11-05 unattended orchestration
+NES engine port, sprite RE/export, obstacle model+C port, collisions/score/states, sound, bg cleanup, HUD, escalator/elevator animation committed. GBC port started. See HANDOFF.md and docs/DECISIONS_PENDING.md.
