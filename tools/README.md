@@ -23,3 +23,4 @@
 | `atari_sprite_probe.py` | Live sprite/PMG captures for sprite RE. |
 | `gen_assets.py` | Sprite export -> `src/spr_data.c/.h` (`--emit`, `--verify`). |
 | `obstacle_model.py` | Obstacle reference model, replays `tests/golden/obst_*.txt` (baseline 17 torn mismatches). |
+| `gen_hud.py` | HUD font / hat / margin tiles + minimap marker sprites -> `src/hud_data.c/.h` (PRG bank 1). Reads the palettes in `src/bg_data.c` / `spr_data.c` to pick colours: re-run after `gen_bg.py --emit` / `gen_assets.py --emit`. |

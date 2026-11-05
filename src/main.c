@@ -12,6 +12,7 @@
 
 #include "bg_data.h"
 #include "engine.h"
+#include "hud_data.h"
 #include "trace.h"
 #include "sound.h"
 #include "spr_data.h"
@@ -31,35 +32,73 @@
 #define OAM_THIEF    3u     /* 3 */
 #define OAM_OBJ      6u     /* up to 4 floors x 3 copies x 2 */
 
-/* ---- bare digit line (row 26, under the playfield) */
-#define HUD_ROW      26u
-#define HUD_COL      6u
-#define HUD_W        20u
-#define TILE_DIGIT   0xF0u  /* BG tiles $F0..$F9 = 0..9; tile 0 = black margin */
-
-static const uint8_t digit_rows[10][7] = {
-    { 0x70, 0x88, 0x98, 0xA8, 0xC8, 0x88, 0x70 }, { 0x20, 0x60, 0x20, 0x20, 0x20, 0x20, 0x70 },
-    { 0x70, 0x88, 0x08, 0x10, 0x20, 0x40, 0xF8 }, { 0xF8, 0x10, 0x20, 0x10, 0x08, 0x88, 0x70 },
-    { 0x10, 0x30, 0x50, 0x90, 0xF8, 0x10, 0x10 }, { 0xF8, 0x80, 0xF0, 0x08, 0x08, 0x88, 0x70 },
-    { 0x30, 0x40, 0x80, 0xF0, 0x88, 0x88, 0x70 }, { 0xF8, 0x08, 0x10, 0x20, 0x40, 0x40, 0x40 },
-    { 0x70, 0x88, 0x88, 0x70, 0x88, 0x88, 0x70 }, { 0x70, 0x88, 0x88, 0x78, 0x08, 0x10, 0x60 },
-};
-
+/* ---- HUD: score/lives/time/level in the sky strip (BG rows 2-3, dark font on the sky),
+ *      title text in the bottom band (BG rows 26-28, bright font on the black margin).
+ *      Tiles: src/hud_data.c (tools/gen_hud.py), uploaded in show_screen(). */
+#define BAND_ROW     26u
+/* minimap = the box baked into the BG (playfield x 40..119, screen y 172..185): 10 px per screen,
+ * screen 0 at the right end, floor lines (olive stripes) every 4 lines from y 172 (floor 3) to 184 (floor 0) */
+#define MAP_X0       88u
+#define MAP_Y_TOP    172u
+#define OAM_HUD      60u    /* 3 marker sprites: Kop, thief, elevator car (obstacle OAM ends at 30) */
+#define SKY_SPACE    (HT_FONT_S + 36u)
 static uint8_t shown_screen = 0xFFu;
 static uint8_t oam_used = 40u;
-static uint8_t hud_buf[HUD_W];
-static uint8_t hud_last[6];
+static uint8_t hud_buf[16];
+static uint8_t hud_last[5];
+static uint8_t band_mode;           /* 0 minimap, 1 title text */
+static uint8_t title_msg;           /* 0 power-on, 1 game over */
 static uint8_t r_i, r_n, r_f, r_o;
 
-static void digit_tiles(void)
+/* font tile of an ASCII char: 0-9, A-Z, ':' '-' '!', anything else = blank */
+static uint8_t ch_tile(char c, uint8_t base)
 {
-    uint8_t d, r, t[16];
-    for (d = 0u; d < 10u; d++) {
-        for (r = 0u; r < 8u; r++) {
-            t[r * 2u] = 0xFFu;                                   /* colour 1 or 3: plane 0 set */
-            t[r * 2u + 1u] = (r < 7u) ? (uint8_t)~(digit_rows[d][r] >> 1) : 0xFFu;
-        }
-        set_bkg_data((uint8_t)(TILE_DIGIT + d), 1u, t);
+    if (c >= '0' && c <= '9')
+        return (uint8_t)(base + (uint8_t)(c - '0'));
+    if (c >= 'A' && c <= 'Z')
+        return (uint8_t)(base + 10u + (uint8_t)(c - 'A'));
+    if (c == ':')
+        return (uint8_t)(base + 37u);
+    if (c == '-')
+        return (uint8_t)(base + 38u);
+    if (c == '!')
+        return (uint8_t)(base + 39u);
+    return (uint8_t)(base + 36u);
+}
+
+static void put_text(uint8_t x, uint8_t y, const char *s, uint8_t base)
+{
+    for (r_n = 0u; s[r_n]; r_n++)
+        hud_buf[r_n] = ch_tile(s[r_n], base);
+    set_bkg_tiles(x, y, r_n, 1u, hud_buf);
+}
+
+static void put_bcd(uint8_t x, uint8_t y, uint8_t v, uint8_t base)
+{
+    hud_buf[0] = (uint8_t)(base + (v >> 4));
+    hud_buf[1] = (uint8_t)(base + (v & 0x0Fu));
+    set_bkg_tiles(x, y, 2u, 1u, hud_buf);
+}
+
+/* labels of the sky strip and the bottom band (title text; blank while playing) */
+static void hud_static(void)
+{
+    uint8_t c;
+    put_text(6u, 2u, "SCORE", HT_FONT_S);
+    put_text(20u, 2u, "LV", HT_FONT_S);
+    put_text(12u, 3u, "TIME", HT_FONT_S);
+    for (c = 3u; c < 13u; c++)                           /* sky strip palette: tools/gen_hud.py picks it from the data */
+        set_bkg_attribute_xy_nes16x16(c, 1u, HUD_SKY_PAL);
+    set_sprite_tile(OAM_HUD, HUD_SPR_T0);                /* markers: Kop white, thief red, car yellow (colours chosen by gen_hud.py) */
+    set_sprite_prop(OAM_HUD, HUD_SPR_PROP0);
+    set_sprite_tile(OAM_HUD + 1u, HUD_SPR_T0 + 1u);
+    set_sprite_prop(OAM_HUD + 1u, HUD_SPR_PROP1);
+    set_sprite_tile(OAM_HUD + 2u, HUD_SPR_T0 + 2u);
+    set_sprite_prop(OAM_HUD + 2u, HUD_SPR_PROP2);
+    if (band_mode) {
+        put_text(title_msg ? 11u : 8u, BAND_ROW, title_msg ? "GAME OVER" : "KEYSTONE KAPERS", HT_FONT_L);
+        put_text(8u, BAND_ROW + 1u, "SELECT LEVEL", HT_FONT_L);
+        put_text(10u, BAND_ROW + 2u, "PRESS START", HT_FONT_L);
     }
 }
 
@@ -73,20 +112,23 @@ static void show_screen(uint8_t s)
      * flush) and a mid-upload NMI scrambled the CHR of the next screen (E5). */
     PPUCTRL = shadow_PPUCTRL & (uint8_t)~(PPUCTRL_NMI | PPUCTRL_INC32);
 #endif
+    SWITCH_ROM(HUD_BANK);
+    set_bkg_data(HUD_T0, HUD_NTILES, hud_tiles);          /* all CHR uploads first (INC32 state, E5) */
+    set_sprite_data(HUD_SPR_T0, HUD_NSPR, hud_spr);
     SWITCH_ROM(BG_BANK(s));
     set_bkg_palette(0u, 4u, bg_pal);
     set_sprite_palette(0u, 4u, spr_palettes);
     set_sprite_data(SPR_TILE_BASE, SPR_NTILES, spr_chr);
     set_bkg_data(0u, bg_ntiles[s], bg_chr[s]);
-    digit_tiles();
-    fill_bkg_rect(0u, 0u, 32u, 30u, 0u);                 /* tile 0 = black margin */
+    fill_bkg_rect(0u, 0u, 32u, 30u, HT_BLACK);           /* black margin (own tile: palette-independent) */
     for (y = 0u; y < 15u; y++)
         for (x = 0u; x < 16u; x++)
-            set_bkg_attribute_xy_nes16x16(x, y, 1u);
+            set_bkg_attribute_xy_nes16x16(x, y, HUD_MARGIN_PAL);
     set_bkg_tiles(6u, 2u, BG_W, BG_H, bg_map[s]);
     for (y = 0u; y < BG_H / 2u; y++)
         for (x = 0u; x < BG_W / 2u; x++)
             set_bkg_attribute_xy_nes16x16(3u + x, 1u + y, bg_attr[s][y * (BG_W / 2u) + x]);
+    hud_static();
     shown_screen = s;
     hud_last[0] = 0xFFu;                     /* force a HUD redraw */
 #ifdef NINTENDO_NES
@@ -135,17 +177,13 @@ static void render(void)
     oam_used = r_o;
 }
 
-/* ---------------------------------------------------------------- bare digit line */
+/* ---------------------------------------------------------------- HUD */
 
-static void put_bcd(uint8_t at, uint8_t v)
-{
-    hud_buf[at] = (uint8_t)(TILE_DIGIT + (v >> 4));
-    hud_buf[at + 1u] = (uint8_t)(TILE_DIGIT + (v & 0x0Fu));
-}
-
-/* score 6 digits | time 2 | lives 1 | level 2 (cols 6-11, 13-14, 16, 18-19) */
+#ifndef DEBUG_TRACE
+/* score (leading zeros blank) | lives as hats | time | level; title: the selected level too */
 static void hud(uint8_t lvl)
 {
+    uint8_t i, z;
     if (hud_last[0] == score_hi && hud_last[1] == score_lo && hud_last[2] == game_time
             && hud_last[3] == lives && hud_last[4] == lvl)
         return;
@@ -154,18 +192,53 @@ static void hud(uint8_t lvl)
     hud_last[2] = game_time;
     hud_last[3] = lives;
     hud_last[4] = lvl;
-    for (r_i = 0u; r_i < HUD_W; r_i++)
-        hud_buf[r_i] = 0u;
-    put_bcd(0u, score_hi);
-    put_bcd(2u, score_lo);
-    hud_buf[4] = TILE_DIGIT;
-    hud_buf[5] = TILE_DIGIT;
-    put_bcd(7u, game_time);
-    hud_buf[10] = (uint8_t)(TILE_DIGIT + (lives & 0x0Fu));
-    put_bcd(12u, (uint8_t)(((lvl / 10u) << 4) | (lvl % 10u)));
-    set_bkg_tiles(HUD_COL, HUD_ROW, HUD_W, 1u, hud_buf);
+    hud_buf[0] = score_hi >> 4;
+    hud_buf[1] = score_hi & 0x0Fu;
+    hud_buf[2] = score_lo >> 4;
+    hud_buf[3] = score_lo & 0x0Fu;
+    hud_buf[4] = 0u;
+    z = 1u;
+    for (i = 0u; i < 5u; i++) {
+        if (z && hud_buf[i] == 0u)
+            hud_buf[i] = SKY_SPACE;
+        else {
+            z = 0u;
+            hud_buf[i] += HT_FONT_S;
+        }
+    }
+    hud_buf[5] = HT_FONT_S;                              /* the score ends in "00" */
+    set_bkg_tiles(12u, 2u, 6u, 1u, hud_buf);
+    for (i = 0u; i < 3u; i++)
+        hud_buf[i] = (i < lives) ? HT_HAT : SKY_SPACE;
+    set_bkg_tiles(6u, 3u, 3u, 1u, hud_buf);
+    put_bcd(17u, 3u, game_time, HT_FONT_S);
+    if (lvl >= 10u)
+        lvl = (uint8_t)(0x10u | (uint8_t)(lvl - 10u));
+    put_bcd(23u, 2u, lvl, HT_FONT_S);
+    if (band_mode)
+        put_bcd(21u, BAND_ROW + 1u, lvl, HT_FONT_L);
 }
 
+/* minimap marker (2x2 px sprite on the baked box): 10 px per screen, 16 world px per map px */
+static void mark(uint8_t slot, uint8_t scr, uint8_t fl, uint8_t x)
+{
+    uint8_t v = (x > 0x2Cu) ? (uint8_t)((x - 0x2Cu) >> 4) : 0u;
+    if (v > 9u)
+        v = 9u;
+    move_sprite((uint8_t)(OAM_HUD + slot), (uint8_t)(MAP_X0 + 10u * (7u - scr) + v),
+                (uint8_t)(MAP_Y_TOP + 4u * (3u - fl) + DEVICE_SPRITE_PX_OFFSET_Y));
+}
+
+static void markers(void)
+{
+    mark(0u, kop_screen, KOP_FLOOR(), KOP_X());
+    if (thief_escaped)
+        hide_sprite(OAM_HUD + 1u);
+    else
+        mark(1u, thief_screen(), THIEF_FLOOR(), thief_x);
+    mark(2u, 4u, car_floor(), 0x78u);                    /* elevator shaft on screen 4 */
+}
+#endif
 /* ---------------------------------------------------------------- sound */
 
 static void sound_events(void)
@@ -248,6 +321,7 @@ void main(void)
     engine_init();
     play_on = 0u;                            /* title: frozen level-start scene */
     gs = GS_TITLE;
+    band_mode = 1u;
     for (;;) {
         pad_old = pad;
         pad = joypad();
@@ -260,6 +334,8 @@ void main(void)
             else if ((pad & J_START) && !(pad_old & J_START)) {
                 game_new(start_sel);
                 gs = GS_PLAY;
+                band_mode = 0u;
+                shown_screen = 0xFFu;        /* redraw: minimap instead of the title text */
             }
             eng_events = 0u;
         } else {
@@ -267,11 +343,15 @@ void main(void)
             if (game_over) {
                 gs = GS_TITLE;
                 lock = 120u;                 /* keep the final score on screen a moment */
+                band_mode = 1u;
+                title_msg = 1u;
+                shown_screen = 0xFFu;
             }
         }
         sound_events();
         render();
         hud(gs == GS_TITLE ? start_sel : (uint8_t)(level + 1u));
+        markers();
         vsync();
         snd_tick();
     }

@@ -96,6 +96,7 @@ foreach ($src in $sources) {
     [string[]]$bankFlags = @()
     if ($name -eq 'bg_data_a') { $bankFlags = @('-Wf-bo1') }   # screens 0-3 data in PRG bank 1
     if ($name -eq 'bg_data_b') { $bankFlags = @('-Wf-bo2') }   # screens 4-7 data in PRG bank 2
+    if ($name -eq 'hud_data') { $bankFlags = @('-Wf-bo1') }   # HUD font/minimap tiles in PRG bank 1
     & $lcc @compileFlags @bankFlags '-c' '-o' $obj $src.FullName
     if ($LASTEXITCODE -ne 0) {
         throw "Compilation failed: $($src.Name)"
