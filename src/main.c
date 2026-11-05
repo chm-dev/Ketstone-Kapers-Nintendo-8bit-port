@@ -334,6 +334,7 @@ void main(void)
         pad = joypad();
         if (gs == GS_TITLE) {
             rng_s += 0x3Du;                  /* the moment START is pressed seeds the RNG */
+            eng_events = 0u;                 /* before game_new(): keeps EV_MUSIC_ON (C5) */
             if (lock)
                 lock--;
             else if ((pad & J_SELECT) && !(pad_old & J_SELECT))
@@ -344,7 +345,6 @@ void main(void)
                 band_mode = 0u;
                 shown_screen = 0xFFu;        /* redraw: minimap instead of the title text */
             }
-            eng_events = 0u;
         } else {
             engine_frame(read_input(pad));
             if (game_over) {

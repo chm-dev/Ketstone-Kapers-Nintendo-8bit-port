@@ -1,0 +1,13 @@
+[
+  {"wait": 2000}, {"shot": "build/gbc_shots/01_title.png"},
+  {"tap": "select"}, {"wait": 300}, {"shot": "build/gbc_shots/02_title_sel.png"},
+  {"tap": "start"}, {"wait": 9000}, {"shot": "build/gbc_shots/03_play_s0.png"},
+  {"peek": "_play_on"}, {"peek": "_kop_screen"},
+  {"press": "left"}, {"wait": 700}, {"shot": "build/gbc_shots/04_walk_left.png"},
+  {"wait": 1200}, {"release": "left"}, {"wait": 200}, {"shot": "build/gbc_shots/05_screen1.png"},
+  {"peek": "_kop_screen"},
+  {"press": "a"}, {"wait": 250}, {"shot": "build/gbc_shots/06_jump.png"}, {"release": "a"},
+  {"poke": "_kop_screen", "bytes": "04"}, {"wait": 1500}, {"shot": "build/gbc_shots/07_screen4.png"},
+  {"poke": "_kop_screen", "bytes": "07"}, {"wait": 1500}, {"shot": "build/gbc_shots/08_screen7.png"},
+  {"poke": "_kop_screen", "bytes": "00"}, {"wait": 1500}, {"shot": "build/gbc_shots/09_screen0.png"}
+]

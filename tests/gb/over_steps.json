@@ -1,0 +1,6 @@
+[
+  {"wait": 1500}, {"tap": "start"}, {"wait": 8800},
+  {"poke": "_lives", "bytes": "00"}, {"poke": "_game_time", "bytes": "01"}, {"wait": 3500},
+  {"peek": "_game_over"}, {"shot": "build/gbc_shots/g1_gameover.png"},
+  {"wait": 2500}, {"tap": "start"}, {"wait": 1500}, {"shot": "build/gbc_shots/g2_newgame.png"}, {"peek": "_lives"}
+]

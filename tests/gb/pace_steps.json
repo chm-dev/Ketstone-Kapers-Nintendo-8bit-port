@@ -1,0 +1,6 @@
+[
+  {"wait": 1500}, {"tap": "start"}, {"wait": 2000}, {"apu": true},
+  {"wait": 7500}, {"peek": "_sys_time", "n": 2}, {"peek": "_frame_8f"},
+  {"press": "left"}, {"wait": 3000}, {"peek": "_sys_time", "n": 2}, {"peek": "_frame_8f"}, {"apu": true},
+  {"release": "left"}
+]

@@ -1,0 +1,12 @@
+[
+  {"wait": 1500}, {"tap": "start"}, {"wait": 8800},
+  {"poke": "_kop_screen", "bytes": "07"}, {"poke": "_kop_xs", "bytes": "98"}, {"wait": 1200},
+  {"shot": "build/gbc_shots/e1_s7_floor0.png"},
+  {"press": "left"}, {"wait": 600}, {"release": "left"}, {"wait": 700},
+  {"shot": "build/gbc_shots/e2_riding.png"}, {"peek": "_kop_face"}, {"peek": "_kop_c1c"},
+  {"wait": 1600}, {"shot": "build/gbc_shots/e3_floor1.png"}, {"peek": "_kop_path"}, {"peek": "_kop_c1c"},
+  {"press": "right"}, {"wait": 400}, {"shot": "build/gbc_shots/e4_walk_right.png"}, {"release": "right"},
+  {"press": "down"}, {"wait": 300}, {"shot": "build/gbc_shots/e5_duck.png"}, {"release": "down"},
+  {"poke": "_kop_screen", "bytes": "04"}, {"wait": 2500}, {"shot": "build/gbc_shots/e6_s4.png"},
+  {"peek": "_elev_8e"}, {"peek": "_elev_6b"}
+]

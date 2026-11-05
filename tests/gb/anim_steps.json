@@ -1,0 +1,23 @@
+[
+  {"wait": 1500}, {"tap": "start"}, {"wait": 8800},
+  {"poke": "_kop_screen", "bytes": "07"}, {"wait": 1000}, {"pause": true},
+  {"step": 4}, {"shot": "build/gbc_shots/a1_esc.png"}, {"peek": "_frame_8f"},
+  {"step": 4}, {"shot": "build/gbc_shots/a2_esc.png"}, {"peek": "_frame_8f"},
+  {"step": 4}, {"shot": "build/gbc_shots/a3_esc.png"}, {"peek": "_frame_8f"},
+  {"step": 4}, {"shot": "build/gbc_shots/a4_esc.png"}, {"peek": "_frame_8f"},
+  {"poke": "_kop_screen", "bytes": "06"},
+  {"step": 1}, {"shot": "build/gbc_shots/f1_flip.png"},
+  {"step": 1}, {"shot": "build/gbc_shots/f2_flip.png"},
+  {"step": 1}, {"shot": "build/gbc_shots/f3_flip.png"},
+  {"step": 1}, {"shot": "build/gbc_shots/f4_flip.png"},
+  {"step": 1}, {"shot": "build/gbc_shots/f5_flip.png"},
+  {"poke": "_kop_screen", "bytes": "04"}, {"step": 10},
+  {"poke": "_elev_6b", "bytes": "00"},
+  {"poke": "_elev_8e", "bytes": "00"}, {"step": 2}, {"shot": "build/gbc_shots/l1_closed.png"},
+  {"poke": "_elev_8e", "bytes": "70"}, {"step": 2}, {"shot": "build/gbc_shots/l2_moving.png"},
+  {"poke": "_elev_8e", "bytes": "80"}, {"step": 2}, {"shot": "build/gbc_shots/l3_open.png"},
+  {"poke": "_elev_8e", "bytes": "F0"}, {"step": 2}, {"shot": "build/gbc_shots/l4_moving.png"},
+  {"poke": "_elev_8e", "bytes": "00"}, {"poke": "_kop_face", "bytes": "E0"}, {"step": 2},
+  {"shot": "build/gbc_shots/l5_kop_in_car.png"}, {"peek": "_kop_face"},
+  {"cont": true}
+]

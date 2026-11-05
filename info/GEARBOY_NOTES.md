@@ -1,7 +1,9 @@
 # Gearboy (GB/GBC emulator with MCP server)
 
 `./gearboy/Gearboy.exe`, gitignored, local to this machine.
-- Launch headless: `gearboy/Gearboy.exe --headless --mcp-http --mcp-http-port 7777 rom.gb rom.noi`. Endpoint `http://127.0.0.1:7777/mcp`.
+- Launch headless: `gearboy/Gearboy.exe --portable --headless --mcp-http --mcp-http-port 7777 rom.gb rom.noi`. Endpoint `http://127.0.0.1:7777/mcp`.
+- **Pass `--portable`** so `gearboy/config.ini` is read (`ForceDMG = false`). Without it a CGB-only (`$C0`) ROM booted as a DMG here (`_cpu` = `$01`, `is_cgb` still true in `get_media_info`).
+- This project: `pwsh tests/gb/run_gbc.ps1 <steps.json>` (lock `build/gearboy.lock`, start, `tests/gb/shots.mjs` steps: press/release/tap/wait/poke/peek/shot/apu, stop). Ad-hoc: `tests/gb/probe.mjs tools|call <tool> '<json>'`.
 - Starts paused: call `debug_continue`.
 - Requests after `initialize` need header `MCP-Protocol-Version: 2025-11-25`.
 - Memory: `read_memory` area 6 = WRAM, offsets from `$C000`.

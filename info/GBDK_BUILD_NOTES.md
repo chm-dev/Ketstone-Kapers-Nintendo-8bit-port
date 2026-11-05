@@ -36,3 +36,13 @@ Reference project with full history: `C:\dev\AI\river-raid-port` (`archive/nes`,
 - Call `set_bkg_palette` after `DISPLAY_OFF` (a call before the first one never reached the PPU).
 
 - NES: at runtime the hardware PPUCTRL can be left in +32 increment mode. Before a direct set_bkg_data with the display off, write PPUCTRL = shadow_PPUCTRL & ~(PPUCTRL_NMI|PPUCTRL_INC32), then restore from shadow_PPUCTRL. Otherwise the CHR lands 32 bytes apart.
+
+## GBC gotchas found in Keystone Kapers (2026-11-05)
+- `.\build_gbc.ps1` links with `-Wl-yt0x19 -Wl-yo4 -Wm-yC` (MBC5, CGB-only). Output `.gb` from lcc, renamed to `.gbc` (lcc picks the output type from the extension).
+- `palette_color_t` and the palette calls need `<gb/cgb.h>`; `<gb/gb.h>` alone does not declare them (platform.h includes both on sm83).
+- Metasprite `props` bits differ: NES `$40` = mirror, GB `$40` = FLIP**Y**, GB mirror = `S_FLIPX` `$20`, GB behind-BG = `$80`. NES-generated metasprites need a remap (main_gbc.c `draw()` does it per tile).
+- GBDK's default BG addressing is `$8800` mode: BG ids 0-127 at `$9000`, 128-255 at `$8800` (shared with OBJ 128-255); OBJ 0-127 at `$8000` never collide with BG. Screen tiles in VRAM bank 1 (attribute bit 3) leave bank 0 for the HUD and sprites.
+- `set_bkg_data` / `set_bkg_tiles` / `set_bkg_attributes` / `set_win_tiles` wait for VRAM access: usable with the display on (a 95-tile screen rewrite takes ~2-3 frames in double speed). Window attributes: `VBK_REG = VBK_ATTRIBUTES; set_win_tiles(...)`.
+- Write CGB palettes in VBlank (right after `vsync()`) or with the display off. To hide a rewrite, black the palettes instead of `DISPLAY_OFF` (LCD off shows white).
+- The BG-priority attribute (`$80`) hides sprites only over BG colours 1-3: draw HUD text on colour 1 if sprites must stay behind it.
+- GB APU: a volume change (NRx2) only takes effect on a retrigger (NRx4 bit 7); NRx2 = 0 turns the channel's DAC off. Load wave RAM (`AUD3WAVE[]`) with NR30 = 0.

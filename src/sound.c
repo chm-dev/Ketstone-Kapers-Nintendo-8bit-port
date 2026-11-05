@@ -147,7 +147,7 @@ void snd_tick(void)
     }
 }
 
-#else  /* Game Boy: not implemented yet */
+#else  /* Game Boy: the real driver is src/gbc/sound_gbc.c (build_gbc.ps1 does not compile this file) */
 
 void snd_init(void) {}
 void snd_play(uint8_t id) { (void)id; }

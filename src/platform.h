@@ -5,6 +5,7 @@
  * both targets: SM83 (Game Boy Color, build_gbc.ps1) and 6502 (NES, build.ps1). */
 #ifdef __SDCC_sm83
 #include <gb/gb.h>
+#include <gb/cgb.h>       /* palette_color_t, set_*_palette, cpu_fast (spr_data.h uses palette_color_t) */
 #else
 #include <nes/nes.h>
 #endif
