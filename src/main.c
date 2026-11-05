@@ -4,6 +4,7 @@
  * background (tools/gen_bg.py data, CHR upload per screen) in a 160 px pillarbox centred on the
  * 256 px NES screen, sprites from src/spr_data* (tools/gen_assets.py), a bare digit line under
  * the playfield (score, time, lives, level; the real HUD comes later), and sound events.
+ * Animated scenery (escalator steps, elevator doors) is dyn.c (banked), driven from render().
  * DEBUG_TRACE builds replay scripted input and log the golden-trace columns (trace.h,
  * tests/run_c_trace.ps1).
  */
@@ -11,6 +12,7 @@
 #include <stdint.h>
 
 #include "bg_data.h"
+#include "dyn.h"
 #include "engine.h"
 #include "hud_data.h"
 #include "trace.h"
@@ -120,6 +122,8 @@ static void show_screen(uint8_t s)
     set_sprite_palette(0u, 4u, spr_palettes);
     set_sprite_data(SPR_TILE_BASE, SPR_NTILES, spr_chr);
     set_bkg_data(0u, bg_ntiles[s], bg_chr[s]);
+    dyn_load_chr(s);                                     /* escalator / elevator tiles after the bg tiles */
+    SWITCH_ROM(BG_BANK(s));
     fill_bkg_rect(0u, 0u, 32u, 30u, HT_BLACK);           /* black margin (own tile: palette-independent) */
     for (y = 0u; y < 15u; y++)
         for (x = 0u; x < 16u; x++)
@@ -128,6 +132,7 @@ static void show_screen(uint8_t s)
     for (y = 0u; y < BG_H / 2u; y++)
         for (x = 0u; x < BG_W / 2u; x++)
             set_bkg_attribute_xy_nes16x16(3u + x, 1u + y, bg_attr[s][y * (BG_W / 2u) + x]);
+    dyn_screen(s);                                       /* animated scenery: current phase / door state */
     hud_static();
     shown_screen = s;
     hud_last[0] = 0xFFu;                     /* force a HUD redraw */
@@ -154,9 +159,11 @@ static void render(void)
     uint8_t f, fr;
     if (kop_screen != shown_screen)
         show_screen(kop_screen & 7u);
+    dyn_update();
     r_o = OAM_KOP;
-    /* Kop: feet = floor line - $1C (bits 5-7 = floor marker, 0-4 = height) */
-    draw(spr_kop_pose[kop_pose & 7u], kop_face & 8u, KOP_X(), (uint8_t)(FEET_Y0 - kop_c1c));
+    /* Kop: feet = floor line - $1C (bits 5-7 = floor marker, 0-4 = height); hidden in the closed car */
+    if (!dyn_kop_hidden())
+        draw(spr_kop_pose[kop_pose & 7u], kop_face & 8u, KOP_X(), (uint8_t)(FEET_Y0 - kop_c1c));
     /* thief: on any floor of Kop's screen (the P0 slot copy, types 1-5, is not drawn twice) */
     if (thief_screen() == kop_screen && !thief_escaped)
         draw((uint8_t)(SPR_F_THIEF1 + ((thief_anim - 1u) % 5u)), thief_dir_left(), thief_x,

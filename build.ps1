@@ -88,6 +88,23 @@ if (-not $sources) {
     throw "No C sources found under $srcRoot"
 }
 
+# src/dyn_data.* (tools/gen_dyn.py) holds tile ids that follow the bg_data tiles of each screen:
+# it is stale as soon as gen_bg.py --emit rewrites bg_data*.c.
+$dynH = Join-Path $srcRoot 'dyn_data.h'
+if (Test-Path $dynH) {
+    $ms = New-Object System.IO.MemoryStream
+    foreach ($f in 'bg_data.c', 'bg_data_a.c', 'bg_data_b.c') {
+        $b = [System.Text.Encoding]::UTF8.GetBytes(([System.IO.File]::ReadAllText((Join-Path $srcRoot $f)) -replace "`r`n", "`n"))
+        $ms.Write($b, 0, $b.Length)
+    }
+    $sha = [System.Security.Cryptography.SHA1]::Create().ComputeHash($ms.ToArray())
+    $fp = -join ($sha[0..7] | ForEach-Object { $_.ToString('x2') })
+    $m = Select-String -Path $dynH -Pattern 'DYN_BG_FINGERPRINT "([0-9a-f]+)"'
+    if (-not $m -or $m.Matches[0].Groups[1].Value -ne $fp) {
+        throw "src/dyn_data.* does not match src/bg_data*.c (fingerprint $fp): run python -I tools/gen_dyn.py --emit"
+    }
+}
+
 $objects = @()
 foreach ($src in $sources) {
     $name = [System.IO.Path]::GetFileNameWithoutExtension($src.Name)
@@ -97,6 +114,8 @@ foreach ($src in $sources) {
     if ($name -eq 'bg_data_a') { $bankFlags = @('-Wf-bo1') }   # screens 0-3 data in PRG bank 1
     if ($name -eq 'bg_data_b') { $bankFlags = @('-Wf-bo2') }   # screens 4-7 data in PRG bank 2
     if ($name -eq 'hud_data') { $bankFlags = @('-Wf-bo1') }   # HUD font/minimap tiles in PRG bank 1
+    if ($name -eq 'dyn_data') { $bankFlags = @('-Wf-bo2') }   # escalator/elevator tiles in PRG bank 2
+    if ($name -eq 'dyn') { $bankFlags = @('-Wf-bo2') }        # their BANKED code, same bank (DYN_BANK)
     & $lcc @compileFlags @bankFlags '-c' '-o' $obj $src.FullName
     if ($LASTEXITCODE -ne 0) {
         throw "Compilation failed: $($src.Name)"
