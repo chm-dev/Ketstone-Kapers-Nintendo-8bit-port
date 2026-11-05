@@ -30,3 +30,5 @@ Not done / approximated: attract demo, long game-over countdown, music restart p
 - Playtest all three ROMs, then review docs/DECISIONS_PENDING.md and rework what you dislike (per-screen palettes on NES B2, attract demo, wider NES view, real-capture of pickup/hit sounds S2, catch/death/radio captures).
 - Processes: stop AltirraBridgeServer, MesenCE-MCP-Windows, Gearboy at session end; build/*.lock must not linger.
 - Do not read docs/atari_disasm.txt whole; grep by address.
+
+- 2026-11-05: GB camera now shows the skyline from floor 3 (cam_y 31/21/10/0 per floor, V1); DMG lift marker is a black 4x2 bar (V2). Playtest floor-change easing on GB.

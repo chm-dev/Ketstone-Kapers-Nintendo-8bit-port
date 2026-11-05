@@ -344,11 +344,12 @@ OBP0 = sum(OBP0_SHADE[k] << (2 * k) for k in (1, 2, 3))
 OBP0_DOC = ', '.join(f'idx {k} {("white", "light grey", "dark grey", "black")[OBP0_SHADE[k]]}' for k in (1, 2, 3))
 OBP1 = 0xE4
 BGP = 0xE4
-marker = [np.zeros((8, 8), np.uint8), np.zeros((8, 8), np.uint8)]
-marker[0][0:2, 0:2] = 1                  # OBP0 idx 1 = white (Kop) / OBP1 idx 1 = light grey (car)
-marker[1][0:2, 0:2] = 3                  # idx 3 = black in both (thief)
-print('sprite tiles', NT, 'marker tiles 2; OBP0', hex(OBP0))
-bud = {'BG ids': TILE_BASE + mx, 'OBJ ids': NT + 2}
+marker = [np.zeros((8, 8), np.uint8) for _ in range(3)]
+marker[0][0:2, 0:2] = 1                  # OBP0 idx 1 = white (Kop)
+marker[1][0:2, 0:2] = 3                  # idx 3 = black (thief, 2x2)
+marker[2][0:2, 0:4] = 3                  # V2: car = black 4x2 bar (light grey was invisible on the minimap stripes)
+print('sprite tiles', NT, 'marker tiles 3; OBP0', hex(OBP0))
+bud = {'BG ids': TILE_BASE + mx, 'OBJ ids': NT + 3}
 print('VRAM budget: BG ids used up to %d of 256 (HUD %d + worst screen %d), OBJ %d of 128, %d of 384 tiles in use' % (
     bud['BG ids'], TILE_BASE, mx, bud['OBJ ids'], bud['BG ids'] + bud['OBJ ids']))
 
@@ -536,11 +537,12 @@ if args.emit:
          'extern const uint8_t *const dmg_esc[8];        /* 0 = none */',
          'extern const uint8_t dmg_elev[];               /* [floor][state 0 closed,1 moving,2 open][4 ids] (bank dmg_bank[4]) */',
          f'#define DMG_HUD_BANK {banks["hud"]}u',
-         '#define DMG_MARK_TILE_A 0x7Eu             /* OBJ ids: marker idx 1 (Kop white, car light grey) */',
-         '#define DMG_MARK_TILE_B 0x7Fu             /* marker idx 3 (thief black) */',
+         '#define DMG_MARK_TILE_A 0x7Du             /* OBJ ids: Kop marker (white 2x2) */',
+         '#define DMG_MARK_TILE_B 0x7Eu             /* thief marker (black 2x2) */',
+         '#define DMG_MARK_TILE_C 0x7Fu             /* car marker (black 4x2 bar) */',
          'extern const uint8_t dmg_hud_chr[];      /* bank DMG_HUD_BANK, GBC_HUD_NTILES tiles */',
          f'extern const uint8_t dmg_spr_chr[{NT * 16}];  /* bank DMG_HUD_BANK: spr_data.c tiles baked to OBP0 idx */',
-         'extern const uint8_t dmg_marker_chr[32];',
+         'extern const uint8_t dmg_marker_chr[48];',
          '#endif']
     for s in range(8):
         h.insert(-1, f'extern const uint8_t dmg_chr_{s}[], dmg_map_{s}[];')

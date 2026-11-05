@@ -1,0 +1,10 @@
+[
+  {"wait": 2000}, {"tap": "start"}, {"wait": 9000}, {"poke": "_kop_xs", "bytes": "7A 7A 7A 7A"},
+  {"peek": "_kop_path"}, {"shot": "build/gbc_shots/f0.png"},
+  {"poke": "_kop_path", "bytes": "08"}, {"poke": "_kop_c1c", "bytes": "20"}, {"poke": "_kop_xs", "bytes": "7A 7A 7A 7A"}, {"wait": 150}, {"shot": "build/gbc_shots/f1.png"},
+  {"poke": "_kop_path", "bytes": "10"}, {"poke": "_kop_c1c", "bytes": "40"}, {"poke": "_kop_xs", "bytes": "7A 7A 7A 7A"}, {"wait": 150}, {"shot": "build/gbc_shots/f2.png"},
+  {"poke": "_kop_path", "bytes": "18"}, {"poke": "_kop_c1c", "bytes": "60"}, {"poke": "_kop_xs", "bytes": "7A 7A 7A 7A"}, {"wait": 150}, {"peek": "_kop_path"}, {"peek": "_kop_xs", "n": 4}, {"peek": "_kop_c1c"}, {"peek": "_kop_screen"}, {"shot": "build/gbc_shots/f3.png"}
+]
+
+
+

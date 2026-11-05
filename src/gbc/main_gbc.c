@@ -34,7 +34,7 @@
 #define VIEW_PLAY    128u   /* BG lines above the HUD window while playing (2 window rows) */
 #define VIEW_TITLE   104u   /* title: 5 window rows */
 #define CAM_F0       31u    /* cam_y with Kop on floor 0 (shows lines 31..158: street top) */
-#define CAM_F3       23u    /* floor 3 (lines 23..150: Kop's jump top on the roof .. floor-0 feet) */
+#define CAM_F3       0u     /* floor 3 (lines 0..127: skyline + roof; V1: was 23) */
 #define CAM_TITLE    48u    /* title: floors 0-2 above the taller window */
 #define OBJ_X_OFS    0x30u  /* Atari HPOS of playfield px 0 (G1) = GBC screen x 0 */
 #define FEET_Y0      147u   /* playfield line of the feet on floor 0 at height 0 */
@@ -351,7 +351,7 @@ static void gfx_init(void)
         SWITCH_ROM(DMG_HUD_BANK);
         set_bkg_data(0u, GBC_HUD_NTILES, dmg_hud_chr);   /* same HUD ids, shades instead of palettes */
         set_sprite_data(SPR_TILE_BASE, SPR_NTILES, dmg_spr_chr);
-        set_sprite_data(DMG_MARK_TILE_A, 2u, dmg_marker_chr);
+        set_sprite_data(DMG_MARK_TILE_A, 3u, dmg_marker_chr);
         BGP_REG = 0xFFu;                                 /* black until the first screen is shown */
         OBP0_REG = DMG_OBP0;
         OBP1_REG = DMG_OBP1;
@@ -362,9 +362,9 @@ static void gfx_init(void)
         if (gb_color) {
             set_sprite_tile((uint8_t)(OAM_MARK + r_i), MARK_TILE);
             set_sprite_prop((uint8_t)(OAM_MARK + r_i), (uint8_t)(MARK_PAL + r_i));
-        } else {    /* Kop: tile A OBP0 white, thief: tile B black, car: tile A OBP1 light grey */
-            set_sprite_tile((uint8_t)(OAM_MARK + r_i), (r_i == 1u) ? DMG_MARK_TILE_B : DMG_MARK_TILE_A);
-            set_sprite_prop((uint8_t)(OAM_MARK + r_i), (r_i == 2u) ? S_PALETTE : 0u);
+        } else {    /* Kop: tile A white 2x2, thief: tile B black 2x2, car: tile C black 4x2 bar (V2) */
+            set_sprite_tile((uint8_t)(OAM_MARK + r_i), (r_i == 0u) ? DMG_MARK_TILE_A : (r_i == 1u) ? DMG_MARK_TILE_B : DMG_MARK_TILE_C);
+            set_sprite_prop((uint8_t)(OAM_MARK + r_i), 0u);
         }
     }
     SCX_REG = 0u;

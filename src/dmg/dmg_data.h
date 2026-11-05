@@ -20,11 +20,12 @@ extern const uint8_t *const dmg_map[8];
 extern const uint8_t *const dmg_esc[8];        /* 0 = none */
 extern const uint8_t dmg_elev[];               /* [floor][state 0 closed,1 moving,2 open][4 ids] (bank dmg_bank[4]) */
 #define DMG_HUD_BANK 3u
-#define DMG_MARK_TILE_A 0x7Eu             /* OBJ ids: marker idx 1 (Kop white, car light grey) */
-#define DMG_MARK_TILE_B 0x7Fu             /* marker idx 3 (thief black) */
+#define DMG_MARK_TILE_A 0x7Du             /* OBJ ids: Kop marker (white 2x2) */
+#define DMG_MARK_TILE_B 0x7Eu             /* thief marker (black 2x2) */
+#define DMG_MARK_TILE_C 0x7Fu             /* car marker (black 4x2 bar) */
 extern const uint8_t dmg_hud_chr[];      /* bank DMG_HUD_BANK, GBC_HUD_NTILES tiles */
 extern const uint8_t dmg_spr_chr[656];  /* bank DMG_HUD_BANK: spr_data.c tiles baked to OBP0 idx */
-extern const uint8_t dmg_marker_chr[32];
+extern const uint8_t dmg_marker_chr[48];
 extern const uint8_t dmg_chr_0[], dmg_map_0[];
 extern const uint8_t dmg_chr_1[], dmg_map_1[];
 extern const uint8_t dmg_chr_2[], dmg_map_2[];
