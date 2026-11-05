@@ -1,6 +1,6 @@
 # HANDOFF (current status)
 
-**Status 2026-11-05: NES game feature-complete (unplaytested by a human); GBC port in progress; DMG not started.**
+**Status 2026-11-05: NES, GBC and DMG all built and feature-complete; none playtested by a human.**
 Read `docs/DECISIONS_PENDING.md` FIRST: every unattended call/guess (E*, S*, SP*, G*, B*, H*, A*, C*) with how to revert.
 
 ## NES (`.\build.ps1` -> `roms/keystone_kapers.nes`)
@@ -20,8 +20,4 @@ Not done / approximated: attract demo, long game-over countdown, music restart p
 8. Sound: walk, 18-frame jump, hit, death, pickup, bonus; check by ear (all mappings are estimates, S1/S2).
 9. Visual: black flash on screen change, margin overlap up to 7 px, palette artefacts, teal elevator colour.
 
-## Next steps
-- GBC port (agent in progress, `build_gbc.ps1`), then DMG (4-shade grey, no CGB palettes).
-- Possible rework after the user's playtest: per-screen palettes (B2), attract demo, widen NES view beyond 160 px.
-- Processes: stop `AltirraBridgeServer`, `MesenCE-MCP-Windows`, Gearboy at session end; build/*.lock must not linger.
-- Do not read `docs/atari_disasm.txt` whole; grep by address.
+## GBC / DMG`n- GBC: `.\build_gbc.ps1` -> `roms/keystone_kapers.gbc` (`src/gbc/`, 2-row bottom HUD, 128-line playfield with 8-line camera, 6 palettes/screen; C1-C8). DMG: `.\build_dmg.ps1` -> `roms/keystone_kapers.gb` (shares `src/gbc/main_gbc.c` via `GB_DMG`; luma 4-shade art, `tools/gen_dmg_assets.py`; D1-D5).`n- Gearboy tests: `pwsh tests/gb/run_gbc.ps1 tests/gb/smoke_steps.json [-Dmg]` (GBC needs `--portable`).`n- Playtest GB: black flash on flips (3 frames; DMG blanks HUD too), camera follow, sprite clipping at edges, sound by ear (wave/noise mapping), DMG shade readability (SHADE_LIMITS/SPR_SHADES), minimap marker colours. Art regeneration: after gen_bg/gen_assets changes rerun gen_gbc_assets.py then gen_dmg_assets.py (builds refuse stale data).`n- Known duplication: title/play/game-over flow is copied between src/main.c and src/gbc/main_gbc.c (C2) - keep in step.`n`n## Next steps (for the user)`n- Playtest all three ROMs, then review docs/DECISIONS_PENDING.md and rework what you dislike (per-screen palettes on NES B2, attract demo, wider NES view, real-capture of pickup/hit sounds S2, catch/death/radio captures).`n- Processes: stop AltirraBridgeServer, MesenCE-MCP-Windows, Gearboy at session end; build/*.lock must not linger.`n- Do not read docs/atari_disasm.txt whole; grep by address.`n

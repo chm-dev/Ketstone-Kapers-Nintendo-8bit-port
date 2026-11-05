@@ -11,3 +11,5 @@
 - Fast-forward does not speed up headless runs; keep benchmarks short.
 - Stop the process when finished.
 - Working clients/recipes live in the river-raid project: `tests/gb/gearboy_client.mjs`, `tests/gb/profile_play.mjs`, `tests/gb/run_emu.ps1`, `tests/gb/sprite_check.mjs`. Copy them when the GB phase starts.
+
+- DMG run: `pwsh tests/gb/run_gbc.ps1 <steps.json> -Dmg` (private copy build/gearboy_dmg with ForceDMG = true; ROM roms/keystone_kapers.gb, symbols roms/keystone_kapers_dmg.noi, shots build/dmg_shots/). Do not edit the shared gearboy/config.ini.

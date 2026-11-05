@@ -23,6 +23,9 @@
 #include "sound.h"
 #include "spr_data.h"
 #include "gbc_data.h"
+#ifdef GB_DMG
+#include "dmg_data.h"
+#endif
 #include "dyn_gbc.h"
 
 /* ---- camera */
@@ -38,13 +41,20 @@
 /* ---- OAM (40 slots) */
 #define OAM_GAME     37u    /* Kop 3 + thief 3 + objects <= 24 */
 #define OAM_MARK     37u    /* 3 minimap markers */
+#ifndef GB_DMG
 #define MARK_TILE    0x7Fu  /* OBJ tile id of the marker (sprite tiles 0..SPR_NTILES-1) */
 #define MARK_PAL     4u
+#endif
 
 /* ---- window HUD */
 #define HUD_COL      10u    /* text block columns 10..19 (minimap 0..9) */
+#ifndef GB_DMG
 #define TXT_ATTR     (GBC_PAL_TXT | 0x80u)   /* BG-over-OBJ priority: text hides sprites */
 #define MAP_ATTR     GBC_PAL_MAP
+#else
+#define TXT_ATTR     0u                      /* DMG: no attribute map */
+#define MAP_ATTR     0u
+#endif
 
 static uint8_t shown_screen = 0xFFu;
 static uint8_t oam_n, oam_used = OAM_GAME;
@@ -58,7 +68,9 @@ static uint8_t title_msg;           /* 0 power-on, 1 game over */
 static uint8_t r_i, r_n, r_f;
 static int16_t d_x, d_y;
 static const metasprite_t *d_m;
+#ifndef GB_DMG
 static const uint16_t black_pal[GBC_NPAL * 4u] = { 0 };
+#endif
 
 /* ---------------------------------------------------------------- HUD (window) */
 
@@ -80,11 +92,15 @@ static uint8_t ch_tile(char c)
 static void win_row(uint8_t x, uint8_t y, uint8_t n, uint8_t attr)
 {
     set_win_tiles(x, y, n, 1u, hud_buf);
+#ifndef GB_DMG
     for (r_i = 0u; r_i < n; r_i++)
         hud_buf[r_i] = attr;
     VBK_REG = VBK_ATTRIBUTES;
     set_win_tiles(x, y, n, 1u, hud_buf);
     VBK_REG = VBK_TILES;
+#else
+    (void)attr;
+#endif
 }
 
 static void put_text(uint8_t x, uint8_t y, const char *s)
@@ -194,13 +210,30 @@ static void show_screen(uint8_t s)
         shadow_OAM[r_i].y = 0u;
     oam_used = 0u;
     vsync();
+#ifndef GB_DMG
     set_bkg_palette(0u, GBC_NPAL, black_pal);
+#else
+    BGP_REG = 0xFFu;                         /* all black while the tiles are rewritten (HUD too) */
+#endif
     SWITCH_ROM(gbc_bank[s]);
+#ifndef GB_DMG
     VBK_REG = VBK_BANK_1;
     set_bkg_data(0u, gbc_ntiles[s], gbc_chr[s]);
     VBK_REG = VBK_BANK_0;
     set_bkg_tiles(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_map[s]);
     set_bkg_attributes(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_attr[s]);
+#else
+    /* screen tiles = BG ids DMG_TILE_BASE..; ids >= 128 live at $8800: a second call */
+    r_n = gbc_ntiles[s];
+    r_f = (uint8_t)(128u - DMG_TILE_BASE);
+    if (r_n <= r_f)
+        set_bkg_data(DMG_TILE_BASE, r_n, gbc_chr[s]);
+    else {
+        set_bkg_data(DMG_TILE_BASE, r_f, gbc_chr[s]);
+        set_bkg_data(128u, (uint8_t)(r_n - r_f), gbc_chr[s] + ((uint16_t)r_f << 4));
+    }
+    set_bkg_tiles(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_map[s]);
+#endif
     gdyn_screen(s);
     if (band_mode != hud_band) {             /* the window only changes with the title/play band */
         hud_band = band_mode;
@@ -212,7 +245,11 @@ static void show_screen(uint8_t s)
     vsync();
     SCY_REG = cam_y;
     WY_REG = win_y;
+#ifndef GB_DMG
     set_bkg_palette(0u, GBC_NPAL, gbc_pal[s]);
+#else
+    BGP_REG = DMG_BGP;
+#endif
 }
 
 /* cam_y follows Kop's floor (1 line every 2 frames); title: fixed */
@@ -243,7 +280,11 @@ static void draw(uint8_t frame, uint8_t flip, uint8_t x, uint8_t pf_y)
             shadow_OAM[oam_n].y = (uint8_t)(d_y + DEVICE_SPRITE_PX_OFFSET_Y);
             shadow_OAM[oam_n].x = (uint8_t)(d_x + DEVICE_SPRITE_PX_OFFSET_X);
             shadow_OAM[oam_n].tile = (uint8_t)(SPR_TILE_BASE + d_m->dtile);
+#ifndef GB_DMG
             shadow_OAM[oam_n].prop = (uint8_t)((d_m->props & 3u) | ((d_m->props & 0x40u) ? S_FLIPX : 0u));
+#else
+            shadow_OAM[oam_n].prop = (uint8_t)((d_m->props & 0x40u) ? S_FLIPX : 0u);   /* OBP0; colours baked in the tiles */
+#endif
             oam_n++;
         }
         d_m++;
@@ -297,34 +338,53 @@ static void sound_events(void)
 
 /* ---------------------------------------------------------------- init */
 
+#ifndef GB_DMG
 static void gbc_required(void)
 {
-    /* DMG: no colour hardware.  Phase 4 brings the DMG build; until then show a blank screen. */
+    /* DMG: no colour hardware (build_dmg.ps1 builds the DMG ROM): show a blank screen. */
     DISPLAY_OFF;
     for (;;)
         vsync();
 }
+#endif
 
 static void gfx_init(void)
 {
+#ifndef GB_DMG
     if (_cpu != CGB_TYPE)
         gbc_required();
     cpu_fast();
+#endif
     DISPLAY_OFF;
     LCDC_REG = LCDCF_OFF | LCDCF_WIN9C00 | LCDCF_BG8800 | LCDCF_BG9800 | LCDCF_OBJ8 | LCDCF_BGON;
+#ifndef GB_DMG
     VBK_REG = VBK_BANK_0;
+#endif
     SWITCH_ROM(GBC_HUD_BANK);
     set_bkg_data(0u, GBC_HUD_NTILES, gbc_hud_chr);       /* window tiles: bank 0, $9000.. */
+#ifndef GB_DMG
     set_sprite_data(SPR_TILE_BASE, SPR_NTILES, spr_chr);
     set_sprite_data(MARK_TILE, 1u, gbc_marker_chr);
     set_bkg_palette(GBC_PAL_MAP, 2u, gbc_hud_pal);
     set_bkg_palette(0u, GBC_NPAL, black_pal);
     set_sprite_palette(0u, 7u, gbc_obj_pal);
+#else
+    set_sprite_data(SPR_TILE_BASE, SPR_NTILES, dmg_spr_chr);
+    set_sprite_data(DMG_MARK_TILE_A, 2u, gbc_marker_chr);
+    BGP_REG = 0xFFu;                                     /* black until the first screen is shown */
+    OBP0_REG = DMG_OBP0;
+    OBP1_REG = DMG_OBP1;
+#endif
     for (r_i = 0u; r_i < 40u; r_i++)
         shadow_OAM[r_i].y = 0u;
     for (r_i = 0u; r_i < 3u; r_i++) {
+#ifndef GB_DMG
         set_sprite_tile((uint8_t)(OAM_MARK + r_i), MARK_TILE);
         set_sprite_prop((uint8_t)(OAM_MARK + r_i), (uint8_t)(MARK_PAL + r_i));
+#else   /* Kop: tile A OBP0 white, thief: tile B black, car: tile A OBP1 light grey */
+        set_sprite_tile((uint8_t)(OAM_MARK + r_i), (r_i == 1u) ? DMG_MARK_TILE_B : DMG_MARK_TILE_A);
+        set_sprite_prop((uint8_t)(OAM_MARK + r_i), (r_i == 2u) ? S_PALETTE : 0u);
+#endif
     }
     SCX_REG = 0u;
     SCY_REG = 0u;

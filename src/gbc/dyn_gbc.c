@@ -8,6 +8,9 @@
 
 #include "engine.h"
 #include "gbc_data.h"
+#ifdef GB_DMG
+#include "dmg_data.h"
+#endif
 #include "dyn_gbc.h"
 
 #define NO_STATE 0xFFu
@@ -62,10 +65,16 @@ void gdyn_update(void)
         d_n = *d_p++;
         for (d_i = 0u; d_i < d_n; d_i++) {
             d_w = d_p[2];
+#ifndef GB_DMG
             d_q = d_p + 3u + (uint8_t)((uint8_t)(d_phase * d_w) << 1);
             set_bkg_tiles(d_p[0], d_p[1], d_w, 1u, d_q);
             set_bkg_attributes(d_p[0], d_p[1], d_w, 1u, d_q + d_w);
             d_p += 3u + (uint8_t)(d_w << 3);
+#else
+            d_q = d_p + 3u + (uint8_t)(d_phase * d_w);       /* tile ids only: w per phase */
+            set_bkg_tiles(d_p[0], d_p[1], d_w, 1u, d_q);
+            d_p += 3u + (uint8_t)(d_w << 2);
+#endif
         }
     } else if (d_scr == 4u) {
         for (d_i = 0u; d_i < 3u; d_i++) {
@@ -74,9 +83,14 @@ void gdyn_update(void)
                 continue;
             d_door[d_i] = d_st;
             SWITCH_ROM(gbc_bank[4]);
+#ifndef GB_DMG
             d_q = gbc_elev + (uint8_t)(d_i * 24u + d_st * 8u);
             set_bkg_tiles(GBC_ELEV_TX, gbc_elev_ty[d_i], 1u, 4u, d_q);
             set_bkg_attributes(GBC_ELEV_TX, gbc_elev_ty[d_i], 1u, 4u, d_q + 4u);
+#else
+            d_q = gbc_elev + (uint8_t)(d_i * 12u + d_st * 4u);
+            set_bkg_tiles(GBC_ELEV_TX, gbc_elev_ty[d_i], 1u, 4u, d_q);
+#endif
         }
     }
 }

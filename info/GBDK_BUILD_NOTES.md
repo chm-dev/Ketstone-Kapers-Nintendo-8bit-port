@@ -46,3 +46,11 @@ Reference project with full history: `C:\dev\AI\river-raid-port` (`archive/nes`,
 - Write CGB palettes in VBlank (right after `vsync()`) or with the display off. To hide a rewrite, black the palettes instead of `DISPLAY_OFF` (LCD off shows white).
 - The BG-priority attribute (`$80`) hides sprites only over BG colours 1-3: draw HUD text on colour 1 if sprites must stay behind it.
 - GB APU: a volume change (NRx2) only takes effect on a retrigger (NRx4 bit 7); NRx2 = 0 turns the channel's DAC off. Load wave RAM (`AUD3WAVE[]`) with NR30 = 0.
+
+## DMG gotchas found in Keystone Kapers (2026-11-05)
+- `.\build_dmg.ps1`: `-msm83:gb -DGB_DMG ... -Wl-yt0x19 -Wl-yo4`, **no** `-Wm-yC` (header `$0143 = 0`). lcc writes `.map`/`.noi` beside the output name, which would overwrite the NES/GBC ones in `roms/`: the script links in `build/dmg` and copies `roms/keystone_kapers_dmg.map/.noi`.
+- DMG VRAM = 384 tiles, one bank: OBJ ids 0-127 `$8000`, BG ids 0-127 `$9000`, BG 128-255 `$8800` (shared with OBJ 128-255). The window uses the BG tile set, so HUD + screen tiles share the BG ids (61 + up to 195). A `set_bkg_data` run that crosses id 128 is split into two calls in `show_screen()`.
+- No BG flips, no per-tile priority, no per-tile palette: dedupe without flips; sprites keep colours by baking shades into tile pixels (colour 0 stays transparent); BGP/OBP0/OBP1 are global, so a black BGP also blanks the HUD during a screen rewrite.
+- A non-CGB ROM in an emulator that has a CGB mode may still run in colour compatibility mode: force DMG (Gearboy `ForceDMG = true`, see tests/gb/run_gbc.ps1 `-Dmg`).
+- Same 4 MHz CPU as the GBC's single-speed mode: engine + render still hold 60 fps (checked with `_sys_time` in Gearboy), `cpu_fast()` is GBC-only.
+- GB APU (pulse, wave, noise) is identical on DMG; wave RAM must be loaded with NR30 = 0.

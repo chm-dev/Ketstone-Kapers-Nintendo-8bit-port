@@ -25,3 +25,5 @@
 
 ## 2026-11-05 unattended orchestration
 NES engine port, sprite RE/export, obstacle model+C port, collisions/score/states, sound, bg cleanup, HUD, escalator/elevator animation committed. GBC port started. See HANDOFF.md and docs/DECISIONS_PENDING.md.
+
+## 2026-11-05 GBC and DMG ports done; all three ROMs build. See HANDOFF.md.
