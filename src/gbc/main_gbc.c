@@ -1,8 +1,12 @@
 /*
- * main_gbc.c - Keystone Kapers on the Game Boy Color: game loop, state machine and renderer.
- * The game logic is the shared engine (src/engine.c, src/obstacle.c: world coordinates); this file is
- * the GBC camera and display, the counterpart of src/main.c (NES).  The title / play / game-over flow
- * is a copy of src/main.c main() (keep the two in step; DECISIONS_PENDING C-log).
+ * main_gbc.c - Keystone Kapers on the Game Boy (one ROM, header $80: CGB colour path on a Game Boy Color,
+ * DMG 4-shade path on a Game Boy; gb_color = (_cpu == CGB_TYPE) picks it at boot): game loop, state machine
+ * and renderer.  The game logic is the shared engine (src/engine.c, src/obstacle.c: world coordinates);
+ * this file is the GB camera and display, the counterpart of src/main.c (NES).  The title / play /
+ * game-over flow is a copy of src/main.c main() (keep the two in step; DECISIONS_PENDING C-log).
+ * Data: CGB = src/gbc/gbc_data.h (tiles in VRAM bank 1 + attributes + palettes), DMG = src/dmg/dmg_data.h
+ * (tiles after the HUD ids, BGP/OBP0/OBP1, sprite shades baked in dmg_spr_chr).  Every VBK / attribute /
+ * palette write is CGB-only: on a DMG a missed VBK switch would write attributes into the tile map.
  *
  * Screen (160x144, 1:1 with the Atari's 160 colour clocks, no pillarbox):
  *   lines 0..VIEW_H-1  BG = the 160x181 playfield (src/gbc/gbc_bank*.c, one screen at a time), scrolled
@@ -23,9 +27,7 @@
 #include "sound.h"
 #include "spr_data.h"
 #include "gbc_data.h"
-#ifdef GB_DMG
 #include "dmg_data.h"
-#endif
 #include "dyn_gbc.h"
 
 /* ---- camera */
@@ -41,21 +43,16 @@
 /* ---- OAM (40 slots) */
 #define OAM_GAME     37u    /* Kop 3 + thief 3 + objects <= 24 */
 #define OAM_MARK     37u    /* 3 minimap markers */
-#ifndef GB_DMG
-#define MARK_TILE    0x7Fu  /* OBJ tile id of the marker (sprite tiles 0..SPR_NTILES-1) */
+#define MARK_TILE    0x7Fu  /* CGB: OBJ tile id of the marker (sprite tiles 0..SPR_NTILES-1) */
 #define MARK_PAL     4u
-#endif
 
 /* ---- window HUD */
 #define HUD_COL      10u    /* text block columns 10..19 (minimap 0..9) */
-#ifndef GB_DMG
-#define TXT_ATTR     (GBC_PAL_TXT | 0x80u)   /* BG-over-OBJ priority: text hides sprites */
+#define TXT_ATTR     (GBC_PAL_TXT | 0x80u)   /* CGB: BG-over-OBJ priority, text hides sprites */
 #define MAP_ATTR     GBC_PAL_MAP
-#else
-#define TXT_ATTR     0u                      /* DMG: no attribute map */
-#define MAP_ATTR     0u
-#endif
 
+uint8_t gb_color;                     /* 1 = Game Boy Color hardware (colour path), 0 = DMG shades */
+static uint8_t pal_mask;            /* OBJ prop palette bits kept: 3 on CGB, 0 on DMG (OBP0) */
 static uint8_t shown_screen = 0xFFu;
 static uint8_t oam_n, oam_used = OAM_GAME;
 static uint8_t cam_y, cam_t, cam_tick, cam_snap = 1u;
@@ -68,8 +65,10 @@ static uint8_t title_msg;           /* 0 power-on, 1 game over */
 static uint8_t r_i, r_n, r_f;
 static int16_t d_x, d_y;
 static const metasprite_t *d_m;
-#ifndef GB_DMG
 static const uint16_t black_pal[GBC_NPAL * 4u] = { 0 };
+
+#if DMG_TILE_BASE != GBC_HUD_NTILES
+#error "DMG screen tiles must start right after the HUD tiles (gen_dmg_assets.py)"
 #endif
 
 /* ---------------------------------------------------------------- HUD (window) */
@@ -92,15 +91,13 @@ static uint8_t ch_tile(char c)
 static void win_row(uint8_t x, uint8_t y, uint8_t n, uint8_t attr)
 {
     set_win_tiles(x, y, n, 1u, hud_buf);
-#ifndef GB_DMG
-    for (r_i = 0u; r_i < n; r_i++)
-        hud_buf[r_i] = attr;
-    VBK_REG = VBK_ATTRIBUTES;
-    set_win_tiles(x, y, n, 1u, hud_buf);
-    VBK_REG = VBK_TILES;
-#else
-    (void)attr;
-#endif
+    if (gb_color) {
+        for (r_i = 0u; r_i < n; r_i++)
+            hud_buf[r_i] = attr;
+        VBK_REG = VBK_ATTRIBUTES;
+        set_win_tiles(x, y, n, 1u, hud_buf);
+        VBK_REG = VBK_TILES;
+    }
 }
 
 static void put_text(uint8_t x, uint8_t y, const char *s)
@@ -210,30 +207,28 @@ static void show_screen(uint8_t s)
         shadow_OAM[r_i].y = 0u;
     oam_used = 0u;
     vsync();
-#ifndef GB_DMG
-    set_bkg_palette(0u, GBC_NPAL, black_pal);
-#else
-    BGP_REG = 0xFFu;                         /* all black while the tiles are rewritten (HUD too) */
-#endif
-    SWITCH_ROM(gbc_bank[s]);
-#ifndef GB_DMG
-    VBK_REG = VBK_BANK_1;
-    set_bkg_data(0u, gbc_ntiles[s], gbc_chr[s]);
-    VBK_REG = VBK_BANK_0;
-    set_bkg_tiles(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_map[s]);
-    set_bkg_attributes(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_attr[s]);
-#else
-    /* screen tiles = BG ids DMG_TILE_BASE..; ids >= 128 live at $8800: a second call */
-    r_n = gbc_ntiles[s];
-    r_f = (uint8_t)(128u - DMG_TILE_BASE);
-    if (r_n <= r_f)
-        set_bkg_data(DMG_TILE_BASE, r_n, gbc_chr[s]);
-    else {
-        set_bkg_data(DMG_TILE_BASE, r_f, gbc_chr[s]);
-        set_bkg_data(128u, (uint8_t)(r_n - r_f), gbc_chr[s] + ((uint16_t)r_f << 4));
+    if (gb_color) {
+        set_bkg_palette(0u, GBC_NPAL, black_pal);
+        SWITCH_ROM(gbc_bank[s]);
+        VBK_REG = VBK_BANK_1;
+        set_bkg_data(0u, gbc_ntiles[s], gbc_chr[s]);
+        VBK_REG = VBK_BANK_0;
+        set_bkg_tiles(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_map[s]);
+        set_bkg_attributes(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_attr[s]);
+    } else {
+        BGP_REG = 0xFFu;                     /* all black while the tiles are rewritten (HUD too, D4) */
+        SWITCH_ROM(dmg_bank[s]);
+        /* screen tiles = BG ids DMG_TILE_BASE..; ids >= 128 live at $8800: a second call */
+        r_n = dmg_ntiles[s];
+        r_f = (uint8_t)(128u - DMG_TILE_BASE);
+        if (r_n <= r_f)
+            set_bkg_data(DMG_TILE_BASE, r_n, dmg_chr[s]);
+        else {
+            set_bkg_data(DMG_TILE_BASE, r_f, dmg_chr[s]);
+            set_bkg_data(128u, (uint8_t)(r_n - r_f), dmg_chr[s] + ((uint16_t)r_f << 4));
+        }
+        set_bkg_tiles(0u, 0u, GBC_BG_W, GBC_BG_H, dmg_map[s]);
     }
-    set_bkg_tiles(0u, 0u, GBC_BG_W, GBC_BG_H, gbc_map[s]);
-#endif
     gdyn_screen(s);
     if (band_mode != hud_band) {             /* the window only changes with the title/play band */
         hud_band = band_mode;
@@ -241,15 +236,15 @@ static void show_screen(uint8_t s)
     }
     shown_screen = s;
     camera();                                /* band_mode may have changed: the new screen shows at its scroll */
-    SWITCH_ROM(gbc_bank[s]);
+    if (gb_color)
+        SWITCH_ROM(gbc_bank[s]);             /* gbc_pal[s] is banked */
     vsync();
     SCY_REG = cam_y;
     WY_REG = win_y;
-#ifndef GB_DMG
-    set_bkg_palette(0u, GBC_NPAL, gbc_pal[s]);
-#else
-    BGP_REG = DMG_BGP;
-#endif
+    if (gb_color)
+        set_bkg_palette(0u, GBC_NPAL, gbc_pal[s]);
+    else
+        BGP_REG = DMG_BGP;
 }
 
 /* cam_y follows Kop's floor (1 line every 2 frames); title: fixed */
@@ -266,7 +261,8 @@ static void camera(void)
 
 /* ---------------------------------------------------------------- sprites */
 
-/* spr_data metasprites carry NES props (bits 0-1 palette, 0x40 mirror): remapped to CGB (S_FLIPX).
+/* spr_data metasprites carry NES props (bits 0-1 palette, 0x40 mirror): remapped to CGB (S_FLIPX);
+ * DMG: palette bits dropped (pal_mask 0 = OBP0, the shades are baked in dmg_spr_chr).
  * Each 8x8 tile is placed on its own: tiles outside the playfield view are dropped. */
 static void draw(uint8_t frame, uint8_t flip, uint8_t x, uint8_t pf_y)
 {
@@ -280,11 +276,7 @@ static void draw(uint8_t frame, uint8_t flip, uint8_t x, uint8_t pf_y)
             shadow_OAM[oam_n].y = (uint8_t)(d_y + DEVICE_SPRITE_PX_OFFSET_Y);
             shadow_OAM[oam_n].x = (uint8_t)(d_x + DEVICE_SPRITE_PX_OFFSET_X);
             shadow_OAM[oam_n].tile = (uint8_t)(SPR_TILE_BASE + d_m->dtile);
-#ifndef GB_DMG
-            shadow_OAM[oam_n].prop = (uint8_t)((d_m->props & 3u) | ((d_m->props & 0x40u) ? S_FLIPX : 0u));
-#else
-            shadow_OAM[oam_n].prop = (uint8_t)((d_m->props & 0x40u) ? S_FLIPX : 0u);   /* OBP0; colours baked in the tiles */
-#endif
+            shadow_OAM[oam_n].prop = (uint8_t)((d_m->props & pal_mask) | ((d_m->props & 0x40u) ? S_FLIPX : 0u));
             oam_n++;
         }
         d_m++;
@@ -338,53 +330,42 @@ static void sound_events(void)
 
 /* ---------------------------------------------------------------- init */
 
-#ifndef GB_DMG
-static void gbc_required(void)
-{
-    /* DMG: no colour hardware (build_dmg.ps1 builds the DMG ROM): show a blank screen. */
-    DISPLAY_OFF;
-    for (;;)
-        vsync();
-}
-#endif
-
 static void gfx_init(void)
 {
-#ifndef GB_DMG
-    if (_cpu != CGB_TYPE)
-        gbc_required();
-    cpu_fast();
-#endif
+    gb_color = (_cpu == CGB_TYPE) ? 1u : 0u;   /* CGB-compatible header ($80): GBDK keeps the boot A register */
+    pal_mask = gb_color ? 3u : 0u;
+    if (gb_color)
+        cpu_fast();
     DISPLAY_OFF;
     LCDC_REG = LCDCF_OFF | LCDCF_WIN9C00 | LCDCF_BG8800 | LCDCF_BG9800 | LCDCF_OBJ8 | LCDCF_BGON;
-#ifndef GB_DMG
-    VBK_REG = VBK_BANK_0;
-#endif
-    SWITCH_ROM(GBC_HUD_BANK);
-    set_bkg_data(0u, GBC_HUD_NTILES, gbc_hud_chr);       /* window tiles: bank 0, $9000.. */
-#ifndef GB_DMG
-    set_sprite_data(SPR_TILE_BASE, SPR_NTILES, spr_chr);
-    set_sprite_data(MARK_TILE, 1u, gbc_marker_chr);
-    set_bkg_palette(GBC_PAL_MAP, 2u, gbc_hud_pal);
-    set_bkg_palette(0u, GBC_NPAL, black_pal);
-    set_sprite_palette(0u, 7u, gbc_obj_pal);
-#else
-    set_sprite_data(SPR_TILE_BASE, SPR_NTILES, dmg_spr_chr);
-    set_sprite_data(DMG_MARK_TILE_A, 2u, gbc_marker_chr);
-    BGP_REG = 0xFFu;                                     /* black until the first screen is shown */
-    OBP0_REG = DMG_OBP0;
-    OBP1_REG = DMG_OBP1;
-#endif
+    if (gb_color) {
+        VBK_REG = VBK_BANK_0;
+        SWITCH_ROM(GBC_HUD_BANK);
+        set_bkg_data(0u, GBC_HUD_NTILES, gbc_hud_chr);   /* window tiles: bank 0, $9000.. */
+        set_sprite_data(SPR_TILE_BASE, SPR_NTILES, spr_chr);
+        set_sprite_data(MARK_TILE, 1u, gbc_marker_chr);
+        set_bkg_palette(GBC_PAL_MAP, 2u, gbc_hud_pal);
+        set_bkg_palette(0u, GBC_NPAL, black_pal);
+        set_sprite_palette(0u, 7u, gbc_obj_pal);
+    } else {
+        SWITCH_ROM(DMG_HUD_BANK);
+        set_bkg_data(0u, GBC_HUD_NTILES, dmg_hud_chr);   /* same HUD ids, shades instead of palettes */
+        set_sprite_data(SPR_TILE_BASE, SPR_NTILES, dmg_spr_chr);
+        set_sprite_data(DMG_MARK_TILE_A, 2u, dmg_marker_chr);
+        BGP_REG = 0xFFu;                                 /* black until the first screen is shown */
+        OBP0_REG = DMG_OBP0;
+        OBP1_REG = DMG_OBP1;
+    }
     for (r_i = 0u; r_i < 40u; r_i++)
         shadow_OAM[r_i].y = 0u;
     for (r_i = 0u; r_i < 3u; r_i++) {
-#ifndef GB_DMG
-        set_sprite_tile((uint8_t)(OAM_MARK + r_i), MARK_TILE);
-        set_sprite_prop((uint8_t)(OAM_MARK + r_i), (uint8_t)(MARK_PAL + r_i));
-#else   /* Kop: tile A OBP0 white, thief: tile B black, car: tile A OBP1 light grey */
-        set_sprite_tile((uint8_t)(OAM_MARK + r_i), (r_i == 1u) ? DMG_MARK_TILE_B : DMG_MARK_TILE_A);
-        set_sprite_prop((uint8_t)(OAM_MARK + r_i), (r_i == 2u) ? S_PALETTE : 0u);
-#endif
+        if (gb_color) {
+            set_sprite_tile((uint8_t)(OAM_MARK + r_i), MARK_TILE);
+            set_sprite_prop((uint8_t)(OAM_MARK + r_i), (uint8_t)(MARK_PAL + r_i));
+        } else {    /* Kop: tile A OBP0 white, thief: tile B black, car: tile A OBP1 light grey */
+            set_sprite_tile((uint8_t)(OAM_MARK + r_i), (r_i == 1u) ? DMG_MARK_TILE_B : DMG_MARK_TILE_A);
+            set_sprite_prop((uint8_t)(OAM_MARK + r_i), (r_i == 2u) ? S_PALETTE : 0u);
+        }
     }
     SCX_REG = 0u;
     SCY_REG = 0u;

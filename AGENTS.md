@@ -15,7 +15,7 @@ Port of the Atari 8-bit **Keystone Kapers** (`xex/Keystone_Kapers.xex`) to **NES
 ## Toolchain
 - NES: `.\build.ps1` -> `roms/keystone_kapers.nes` (GBDK `-mmos6502:nes`, mapper 30 UNROM-512, CHR-RAM; `tools/patch_nes_header.py` forces vertical mirroring - revisit if the final design needs another layout). NES RAM is tiny: keep platform-specific globals inside `#ifdef`.
 - Shared sources include `src/platform.h`, never `<nes/nes.h>` / `<gb/gb.h>` directly. After touching shared files build every target that exists.
-- GBC: `.\build_gbc.ps1` -> `roms/keystone_kapers.gbc` (code in `src/gbc/`, Gearboy tests `tests/gb/`, needs `--portable`). DMG: `.\build_dmg.ps1` -> `roms/keystone_kapers.gb` (shares `src/gbc/` via `GB_DMG`).
+- GBC: `.\build_gbc.ps1` -> `roms/keystone_kapers.gbc` (code in `src/gbc/`, Gearboy tests `tests/gb/`, needs `--portable`). DMG: `.\build_dmg.ps1` -> `roms/keystone_kapers.gb` (same ROM as GBC; build_dmg.ps1 = copy).
 - Emulators: MesenCE-MCP (`./MesenCE-MCP`, notes `info/MESEN_MCP_NOTES.md`, client `tests/mcp_client.mjs`, screenshot `node tests/nes_shot.mjs`), Gearboy (`./gearboy`). `gbdk/`, `gearboy/`, `MesenCE-MCP/`, `xex/` are gitignored local tools.
 
 ## Tool docs (`info/`, read only the one you need in this session)

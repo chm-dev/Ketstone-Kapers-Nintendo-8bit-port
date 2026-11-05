@@ -1,5 +1,5 @@
 [
-  {"wait": 2000}, {"shot": "build/gbc_shots/01_title.png"},
+  {"wait": 2000}, {"peek": "_gb_color"}, {"shot": "build/gbc_shots/01_title.png"},
   {"tap": "select"}, {"wait": 300}, {"shot": "build/gbc_shots/02_title_sel.png"},
   {"tap": "start"}, {"wait": 9000}, {"shot": "build/gbc_shots/03_play_s0.png"},
   {"peek": "_play_on"}, {"peek": "_kop_screen"},

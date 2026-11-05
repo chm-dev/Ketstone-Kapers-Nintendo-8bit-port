@@ -21,9 +21,9 @@ Not done / approximated: attract demo, long game-over countdown, music restart p
 9. Visual: black flash on screen change, margin overlap up to 7 px, palette artefacts, teal elevator colour.
 
 ## GBC / DMG
-- GBC: `.\build_gbc.ps1` -> `roms/keystone_kapers.gbc` (`src/gbc/`, 2-row bottom HUD, 128-line playfield with 8-line camera, 6 palettes/screen; C1-C8). DMG: `.\build_dmg.ps1` -> `roms/keystone_kapers.gb` (shares `src/gbc/main_gbc.c` via `GB_DMG`; luma 4-shade art, `tools/gen_dmg_assets.py`; D1-D5).
+- GB: `.\build_gbc.ps1` -> `roms/keystone_kapers.gbc`: ONE ROM, header $80: colour on GBC, 4 brighter shades on DMG chosen at boot (`gb_color`); `build_dmg.ps1` just copies it to `roms/keystone_kapers.gb`; symbols `roms/keystone_kapers_gb.noi`. GBC details C1-C8, grey art D1-D5, U1-U3 (`src/gbc/`, `src/dmg/` data banks 3-4).
 - Gearboy tests: `pwsh tests/gb/run_gbc.ps1 tests/gb/smoke_steps.json [-Dmg]` (GBC needs `--portable`).
-- Playtest GB: black flash on flips (3 frames; DMG blanks HUD too), camera follow, sprite clipping at edges, sound by ear (wave/noise mapping), DMG shade readability (SHADE_LIMITS/SPR_SHADES), minimap marker colours. Art regeneration: after gen_bg/gen_assets changes rerun gen_gbc_assets.py then gen_dmg_assets.py (builds refuse stale data).
+- Playtest GB: black flash on flips (3 frames; DMG flip ~4 frames, HUD included), camera follow, sprite clipping at edges, sound by ear (wave/noise mapping), DMG shade readability (BG_SHADE/SPR_BLACK_SHARE in gen_dmg_assets.py), minimap marker colours. Art regeneration: after gen_bg/gen_assets changes rerun `gen_gbc_assets.py --emit` then `gen_dmg_assets.py --emit` (builds refuse stale data).
 - Known duplication: title/play/game-over flow is copied between src/main.c and src/gbc/main_gbc.c (C2) - keep in step.
 
 ## Next steps (for the user)

@@ -2,7 +2,7 @@
 
 `./gearboy/Gearboy.exe`, gitignored, local to this machine.
 - Launch headless: `gearboy/Gearboy.exe --portable --headless --mcp-http --mcp-http-port 7777 rom.gb rom.noi`. Endpoint `http://127.0.0.1:7777/mcp`.
-- **Pass `--portable`** so `gearboy/config.ini` is read (`ForceDMG = false`). Without it a CGB-only (`$C0`) ROM booted as a DMG here (`_cpu` = `$01`, `is_cgb` still true in `get_media_info`).
+- **Pass `--portable`** so `gearboy/config.ini` is read (`ForceDMG = false`). Without it a CGB-only (`$C0`) ROM booted as a DMG here (`_cpu` = `$01`, `is_cgb` still true in `get_media_info`). The project ROM is now CGB-compatible (`$80`) and picks its path from `_cpu`.
 - This project: `pwsh tests/gb/run_gbc.ps1 <steps.json>` (lock `build/gearboy.lock`, start, `tests/gb/shots.mjs` steps: press/release/tap/wait/poke/peek/shot/apu, stop). Ad-hoc: `tests/gb/probe.mjs tools|call <tool> '<json>'`.
 - Starts paused: call `debug_continue`.
 - Requests after `initialize` need header `MCP-Protocol-Version: 2025-11-25`.
@@ -12,4 +12,5 @@
 - Stop the process when finished.
 - Working clients/recipes live in the river-raid project: `tests/gb/gearboy_client.mjs`, `tests/gb/profile_play.mjs`, `tests/gb/run_emu.ps1`, `tests/gb/sprite_check.mjs`. Copy them when the GB phase starts.
 
-- DMG run: `pwsh tests/gb/run_gbc.ps1 <steps.json> -Dmg` (private copy build/gearboy_dmg with ForceDMG = true; ROM roms/keystone_kapers.gb, symbols roms/keystone_kapers_dmg.noi, shots build/dmg_shots/). Do not edit the shared gearboy/config.ini.
+- DMG run: `pwsh tests/gb/run_gbc.ps1 <steps.json> -Dmg` (private copy build/gearboy_dmg with ForceDMG = true; the same ROM roms/keystone_kapers.gbc, symbols roms/keystone_kapers_gb.noi, shots build/dmg_shots/). Do not edit the shared gearboy/config.ini.
+- ForceDMG = true also forces a CGB-compatible (`$80`) ROM into DMG mode: GBDK `_cpu` = `$01`, the ROM takes its DMG path (peek `_gb_color` = 00; default config gives 01). Screenshots alone do not tell the mode: Gearboy draws DMG shades in its green palette (shade 0/1 are close there; judge the contrast from the generated preview too).

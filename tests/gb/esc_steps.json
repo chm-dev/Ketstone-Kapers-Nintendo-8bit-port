@@ -1,5 +1,5 @@
 [
-  {"wait": 1500}, {"tap": "start"}, {"wait": 8800},
+  {"wait": 1500}, {"peek": "_gb_color"}, {"tap": "start"}, {"wait": 8800},
   {"poke": "_kop_screen", "bytes": "07"}, {"poke": "_kop_xs", "bytes": "98"}, {"wait": 1200},
   {"shot": "build/gbc_shots/e1_s7_floor0.png"},
   {"press": "left"}, {"wait": 600}, {"release": "left"}, {"wait": 700},

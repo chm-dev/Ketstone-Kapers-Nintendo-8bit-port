@@ -8,6 +8,8 @@
  */
 #include <stdint.h>
 
+extern uint8_t gb_color;        /* main_gbc.c: 1 = CGB colour path, 0 = DMG shades */
+
 void gdyn_screen(uint8_t s);      /* after the screen's map upload: forget the drawn state, draw the current one */
 void gdyn_update(void);           /* every frame: map/attribute writes for changed tiles (VRAM-safe library calls) */
 uint8_t gdyn_kop_hidden(void);    /* Kop inside the closed car (Atari ANDs his shape with $97 = 0, A3) */

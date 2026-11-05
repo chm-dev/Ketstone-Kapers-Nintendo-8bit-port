@@ -38,7 +38,7 @@ Reference project with full history: `C:\dev\AI\river-raid-port` (`archive/nes`,
 - NES: at runtime the hardware PPUCTRL can be left in +32 increment mode. Before a direct set_bkg_data with the display off, write PPUCTRL = shadow_PPUCTRL & ~(PPUCTRL_NMI|PPUCTRL_INC32), then restore from shadow_PPUCTRL. Otherwise the CHR lands 32 bytes apart.
 
 ## GBC gotchas found in Keystone Kapers (2026-11-05)
-- `.\build_gbc.ps1` links with `-Wl-yt0x19 -Wl-yo4 -Wm-yC` (MBC5, CGB-only). Output `.gb` from lcc, renamed to `.gbc` (lcc picks the output type from the extension).
+- `.\build_gbc.ps1` links with `-Wl-yt0x19 -Wl-yo8 -Wm-yc` (MBC5, CGB compatible, one ROM for GBC + DMG; see the DMG section). Output `.gb` from lcc, copied to `.gbc` (lcc picks the output type from the extension).
 - `palette_color_t` and the palette calls need `<gb/cgb.h>`; `<gb/gb.h>` alone does not declare them (platform.h includes both on sm83).
 - Metasprite `props` bits differ: NES `$40` = mirror, GB `$40` = FLIP**Y**, GB mirror = `S_FLIPX` `$20`, GB behind-BG = `$80`. NES-generated metasprites need a remap (main_gbc.c `draw()` does it per tile).
 - GBDK's default BG addressing is `$8800` mode: BG ids 0-127 at `$9000`, 128-255 at `$8800` (shared with OBJ 128-255); OBJ 0-127 at `$8000` never collide with BG. Screen tiles in VRAM bank 1 (attribute bit 3) leave bank 0 for the HUD and sprites.
@@ -48,7 +48,11 @@ Reference project with full history: `C:\dev\AI\river-raid-port` (`archive/nes`,
 - GB APU: a volume change (NRx2) only takes effect on a retrigger (NRx4 bit 7); NRx2 = 0 turns the channel's DAC off. Load wave RAM (`AUD3WAVE[]`) with NR30 = 0.
 
 ## DMG gotchas found in Keystone Kapers (2026-11-05)
-- `.\build_dmg.ps1`: `-msm83:gb -DGB_DMG ... -Wl-yt0x19 -Wl-yo4`, **no** `-Wm-yC` (header `$0143 = 0`). lcc writes `.map`/`.noi` beside the output name, which would overwrite the NES/GBC ones in `roms/`: the script links in `build/dmg` and copies `roms/keystone_kapers_dmg.map/.noi`.
+- **One ROM for both machines (2026-11-05):** `.\build_gbc.ps1` links with `-Wm-yc` (lowercase: header `$0143 = $80`, CGB compatible; `-Wm-yC` = `$C0` CGB only, a plain link = `$00`), MBC5, 8 banks (GBC data banks 1-2, DMG data banks 3-4; MBC5 sizes are powers of two). `main_gbc.c` sets `gb_color = (_cpu == CGB_TYPE)` first thing and branches at runtime; `build_dmg.ps1` only copies the ROM to `.gb`.
+- `src/platform.h` (copied from river-raid) already defines a `gb_cgb` macro (`1u` unless `PLATFORM_DMG`/`PLATFORM_DUAL`): a variable named `gb_cgb` fails with "syntax error: token -> '1u'". This project's runtime flag is `gb_color`.
+- On a DMG, `VBK_REG` writes are ignored: any attribute write (`set_bkg_attributes`, `set_win_tiles` after `VBK_REG = VBK_ATTRIBUTES`) left on the DMG path lands in the tile map. Gate every VBK/attribute/palette write and `cpu_fast()` on the flag.
+- Two generators emitting the same symbol names cannot share one link: the DMG data is `dmg_*` / `DMG_*`; shared constants (`GBC_HT_*`, `GBC_HUD_NTILES`, `GBC_BG_W/H`, `GBC_ELEV_TX`, `gbc_elev_ty`) are asserted equal by `gen_dmg_assets.py`.
+- lcc writes `.map`/`.noi` beside the output name, and `.\build.ps1` (NES) owns `roms/keystone_kapers.map/.noi`: the GB build links in `build/gbc` and copies `roms/keystone_kapers_gb.map/.noi` (Gearboy symbol file).
 - DMG VRAM = 384 tiles, one bank: OBJ ids 0-127 `$8000`, BG ids 0-127 `$9000`, BG 128-255 `$8800` (shared with OBJ 128-255). The window uses the BG tile set, so HUD + screen tiles share the BG ids (61 + up to 195). A `set_bkg_data` run that crosses id 128 is split into two calls in `show_screen()`.
 - No BG flips, no per-tile priority, no per-tile palette: dedupe without flips; sprites keep colours by baking shades into tile pixels (colour 0 stays transparent); BGP/OBP0/OBP1 are global, so a black BGP also blanks the HUD during a screen rewrite.
 - A non-CGB ROM in an emulator that has a CGB mode may still run in colour compatibility mode: force DMG (Gearboy `ForceDMG = true`, see tests/gb/run_gbc.ps1 `-Dmg`).

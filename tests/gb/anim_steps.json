@@ -1,5 +1,5 @@
 [
-  {"wait": 1500}, {"tap": "start"}, {"wait": 8800},
+  {"wait": 1500}, {"peek": "_gb_color"}, {"tap": "start"}, {"wait": 8800},
   {"poke": "_kop_screen", "bytes": "07"}, {"wait": 1000}, {"pause": true},
   {"step": 4}, {"shot": "build/gbc_shots/a1_esc.png"}, {"peek": "_frame_8f"},
   {"step": 4}, {"shot": "build/gbc_shots/a2_esc.png"}, {"peek": "_frame_8f"},
