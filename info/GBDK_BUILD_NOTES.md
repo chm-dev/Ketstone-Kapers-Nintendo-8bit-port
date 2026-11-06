@@ -16,13 +16,27 @@ General toolchain knowledge, distilled from the River Raid port. GBDK v4.5.0 liv
   frame (metasprite frames): call `SWITCH_ROM(N)` before the reads (Keystone Kapers does it once at the
   top of its sprite pass). Reading banked data without the switch silently returns another bank's bytes
   (it shows up as wrong sprite palettes, not as a crash).
-- `set_bkg_data`/`set_sprite_data` with the display off and NMI off (`PPUCTRL = shadow_PPUCTRL &
-  ~(PPUCTRL_NMI|PPUCTRL_INC32)`) is safe; with NMI on, GBDK's handler writes the PPU (attribute flush)
-  and scrambles a long CHR upload. Static tiles/palettes can be uploaded once in `gfx_init` instead of
-  every screen change (Keystone Kapers: screen flip 13 -> 7 frames).
+- `set_bkg_data`/`set_sprite_data` with the display off and the NMI **on** is safe in GBDK 4.5.0: `DISPLAY_OFF`
+  sets `_oam_valid_display_on` ($2A) bit 6 and the NMI's first instruction is `BIT $2A / BVS` -> it skips every
+  PPU/VRAM write (it still counts frames and runs TIM handlers). Only the +32 increment mode has to go for the
+  direct writes (`PPUCTRL = shadow_PPUCTRL & ~PPUCTRL_INC32`). Keystone Kapers needed NMI on during its screen
+  flip so the music (TIM handler) kept ticking (S3); if a build shows CHR corruption with NMI on, check the
+  GBDK version's NMI path first (older notes blamed the attribute flush). Static tiles/palettes can be uploaded
+  once in `gfx_init` instead of every screen change (Keystone Kapers: screen flip 13 -> 7 frames).
+- **A once-per-frame interrupt on NES:** GBDK-NES has no timer, but `add_TIM()` handlers are called from the
+  emulated timer inside the NMI. Setting `TAC_REG = 0x04` (running, 4096 Hz base rate) and
+  `TMA_REG = TIMER_VBLANK_PARITY_MODE_SYSTEM_60HZ` (0x78; `..._50HZ` = 0x5D on PAL) makes the emulated timer
+  overflow **exactly once per NMI** (the library's per-NMI increment table is 256 - TMA), then
+  `set_interrupts(VBL_IFLAG | TIM_IFLAG)`. Measured: one call per frame, no drift. This is the place for
+  anything that must run every frame even when the main loop blocks (sound). Wrap the handler *and everything
+  it calls* in `NO_OVERLAY_LOCALS` (`__no_overlay_locals`) and keep them in the fixed bank; `add_VBL()` is not
+  usable for this on NES - it is faked and only called by `vsync()`.
+- `sys_time` ($22/$23) increments in the NMI, so it can serve as an elapsed-frame clock; note `mesen_step`
+  silently drops frames when `count` is large (keep counts <= 10 in probes).
 
 ## Game Boy (sm83)
 - Compile: `lcc -msm83:gb -Isrc` (SDCC sm83). Link: `-Wl-j -Wl-m -Wl-yt0x19 -Wl-yo4` (MBC5, 4 banks). `-DPROF_EXPORT_STATICS` exposes statics to profilers.
+- `add_VBL(handler)` runs from the real VBL interrupt (unlike NES) and keeps firing while `set_bkg_data` waits for VRAM access, so it is the place for per-frame work that must survive a screen flip (sound, see S3). Handlers must stay short: VBlank is ~1140 cycles, OAM DMA alone eats ~640.
 - Banking: keep banked modules in a real bank (a single-bank link with BANKED calls jumps into unmapped ROM). The linker may not fail on overflow: check each bank's window in the `.map`.
 - Dual DMG/GBC ROM selected at boot (see river-raid `src/platform.h`, `gb_cgb`).
 

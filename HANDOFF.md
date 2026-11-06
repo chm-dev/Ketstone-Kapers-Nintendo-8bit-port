@@ -1,10 +1,24 @@
 # HANDOFF (current status)
 
-**Status 2026-11-05: NES full width (256 px, 1.6x) implemented - stages 1+2 done, playtest pending.**
+**Status 2026-11-06: music no longer stalls on screen transitions (NES + GBC + DMG), S3.**
+**2026-11-05: NES full width (256 px, 1.6x) implemented - stages 1+2 done, playtest pending.**
 **GBC/DMG unchanged (160 px); all three ROMs build and the NES goldens/models pass.**
 NES, GBC and DMG all feature-complete; none playtested by a human since the full-width change.
 Read `docs/DECISIONS_PENDING.md` FIRST: every unattended call/guess (E*, S*, SP*, G*, B*, H*, A*, C*, W*)
 with how to revert.
+
+## Sound clock (2026-11-06, S3)
+`show_screen()` blocks its caller while it uploads the screen (NES ~5-7 frames, GB ~6), and the tune
+was ticked once per main-loop pass, so it froze mid-note (user report: "music jitters / pauses on
+screen transition", all platforms). `snd_tick()` now runs from the frame interrupt: NES = `add_TIM`
+with the emulated timer set to fire once per NMI, GBC/DMG = `add_VBL`, both via `snd_start()` after
+`snd_init()`. NES `show_screen()` keeps the NMI on (GBDK's NMI does no PPU work while the display is
+off) and only clears the +32 increment mode; the flip itself is unchanged (still a few black frames,
+game logic still frozen). Verified in Mesen/Gearboy by sampling the driver state every frame across a
+flip: 9 (NES) / 6 (GB) frozen frames before, 1 tick per frame after; all 8 NES flip screens still
+render correctly; models + all 8 goldens pass; GBC and -Dmg smoke runs pass. Not ear-checked by a
+human yet: the tempo should now be constant, and a screen change no longer shifts the tune.
+
 
 ## NES (`.\build.ps1` -> `roms/keystone_kapers.nes`)
 Done: Kop/thief/timer engine (frame-exact vs 8 goldens), obstacles (matches obstacle goldens at the Python baseline of 17 torn rows), collisions/lives/score/bonus/pickups, title + game over, real sprites, cleaned backgrounds, HUD + minimap, escalator and elevator animation, APU sound.
@@ -47,6 +61,7 @@ A frame cannot grow above its top tile row (the suitcase stays 9 px for that rea
 9. Sound: walk, 18-frame jump, hit, death, pickup, bonus; check by ear (all mappings are estimates, S1/S2).
 10. Visual: black/blank flash on screen change (~7 frames), palette artefacts (B2), teal elevator colour, 1.6x pixel doubling on vertical edges (raw stretch, W8).
 11. Screen changes: no CHR/map corruption after walking through all 8 screens several times (banked data: bg 1-2, dyn 2, sprites 3).
+12. Music (2026-11-06): the tune must run at a constant tempo across a screen change - walk through several screens while the tune plays and listen for a hitch or a lengthened note at the flip (S3). Same check on GBC and DMG (GB: 6-frame stall before the fix).
 
 ## GBC / DMG
 - GB: `.\build_gbc.ps1` -> `roms/keystone_kapers.gbc`: ONE ROM, header $80: colour on GBC, 4 brighter shades on DMG chosen at boot (`gb_color`); `build_dmg.ps1` just copies it to `roms/keystone_kapers.gb`; symbols `roms/keystone_kapers_gb.noi`. GBC details C1-C8, grey art D1-D5, U1-U3 (`src/gbc/`, `src/dmg/` data banks 3-4).
@@ -60,6 +75,7 @@ A frame cannot grow above its top tile row (the suitcase stays 9 px for that rea
 - Processes: stop AltirraBridgeServer, MesenCE-MCP-Windows, Gearboy at session end; build/*.lock must not linger.
 - Do not read docs/atari_disasm.txt whole; grep by address.
 
+- 2026-11-06: music was frozen by the screen flip (9 frames NES, 6 GB); now ticked from the frame interrupt (S3, `snd_start()`), NES keeps the NMI on during the flip. NES/GBC/DMG rebuilt; models + 8 goldens pass.
 - 2026-11-05: NES full width implemented (W1-W9): 32x24 BG at 256 px, 13 px sprites, new HUD layout, 7-frame flip, 128 KB ROM. GBC/DMG rebuilt (only the transparent sprite-palette entry changed). No human playtest yet.
 - 2026-11-05: GB camera now shows the skyline from floor 3 (cam_y 31/21/10/0 per floor, V1); DMG lift marker is a black 4x2 bar (V2). Playtest floor-change easing on GB.
 - 2026-11-05: NES full-width plan documented (`docs/NES_FULL_WIDTH_PLAN.md`, W1): 256 px = 160-unit world at 1.6x x, new 32x24 NES tileset, NES-only widened sprites; 1.5x rejected (240 px leaves 8 px bars and splits the 16x16 attribute cells; 149 vs 145 max BG tiles). No code/data changed, no ROMs rebuilt.

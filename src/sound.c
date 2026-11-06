@@ -2,6 +2,7 @@
  * Effects  : pulse 1 or noise (one effect at a time, like POKEY channel 1).
  * BGM      : POKEY ch3 -> pulse 2, ch4 -> triangle.  10 frames per step.
  * Tables come from tools/gen_sound.py (src/sound_data.c). Non-NES targets get empty stubs. */
+#include "platform.h"
 #include "sound.h"
 
 #ifndef __SDCC_sm83   /* NES (6502) */
@@ -35,6 +36,12 @@ static uint8_t eff_hi;     /* last pulse high byte written (avoid phase resets) 
 static uint8_t bgm_on;
 static uint8_t bgm_idx;    /* 1..SND_BGM_LEN-1 */
 static uint8_t bgm_f;      /* frame within the step */
+static volatile uint8_t busy;  /* set while snd_play/snd_bgm rewrite the state: the TIM (NMI) tick skips */
+
+/* snd_tick/eff_load run inside the frame interrupt, so they must not share the compiler's
+ * overlay locals with the code they interrupt (GBDK-NES add_TIM note). */
+static void eff_load(void) NO_OVERLAY_LOCALS;
+void snd_tick(void) NO_OVERLAY_LOCALS;
 
 static void eff_silence(void)
 {
@@ -86,21 +93,48 @@ void snd_init(void)
     APU_STAT = 0x0F;           /* pulse 1, pulse 2, triangle, noise */
     eff_id = 0;
     bgm_on = 0;
+    busy = 0;
+}
+
+/* The tune/effects are clocked by the frame interrupt, not by the main loop: a screen flip
+ * uploads ~5 KB of VRAM with the display off and blocks its caller for ~6-9 frames, which used
+ * to stop the sequencer mid-note (S3).  GBDK-NES has no true per-frame interrupt, but add_TIM
+ * runs at the end of the NMI; set the emulated timer so it overflows exactly once per frame:
+ * TAC = 4096 Hz base rate, TMA = 256 - (timer ticks per NMI) (GBDK's TIMER_VBLANK_PARITY_MODE_*). */
+static void snd_isr(void) NO_OVERLAY_LOCALS;
+static void snd_isr(void)
+{
+    snd_tick();
+}
+
+void snd_start(void)
+{
+    add_TIM(snd_isr);
+    TMA_REG = (uint8_t)((get_system() == SYSTEM_50HZ) ? TIMER_VBLANK_PARITY_MODE_SYSTEM_50HZ
+                                                      : TIMER_VBLANK_PARITY_MODE_SYSTEM_60HZ);
+    TAC_REG = 0x04u;           /* timer running, rate index 0 (4096 Hz base) */
+    set_interrupts(VBL_IFLAG | TIM_IFLAG);
 }
 
 void snd_play(uint8_t id)
 {
+    busy = 1;
     eff_silence();
     eff_id = 0;
-    if (id == 0 || id > SND_NUM_EFFECTS) return;
+    if (id == 0 || id > SND_NUM_EFFECTS) {
+        busy = 0;
+        return;
+    }
     eff_id = id;
     eff_pos = snd_eff_start[id];
     eff_hi = 0;                /* force the first pulse write to latch the timer */
     eff_load();
+    busy = 0;
 }
 
 void snd_bgm(uint8_t on)
 {
+    busy = 1;
     if (on) {
         if (!bgm_on) {
             bgm_on = 1;
@@ -113,10 +147,13 @@ void snd_bgm(uint8_t on)
         TRI_LIN = 0x80;
         TRI_HI = 0xF8;         /* reload the linear counter with 0 -> silent */
     }
+    busy = 0;
 }
 
 void snd_tick(void)
 {
+    if (busy)
+        return;                /* the main loop is rewriting the state: catch up next frame */
     if (eff_id) {
         if (--eff_wait == 0) eff_load();
     }
@@ -150,6 +187,7 @@ void snd_tick(void)
 #else  /* Game Boy: the real driver is src/gbc/sound_gbc.c (build_gbc.ps1 does not compile this file) */
 
 void snd_init(void) {}
+void snd_start(void) {}
 void snd_play(uint8_t id) { (void)id; }
 void snd_bgm(uint8_t on) { (void)on; }
 void snd_tick(void) {}

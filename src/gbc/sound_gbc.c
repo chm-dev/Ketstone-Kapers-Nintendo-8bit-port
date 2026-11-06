@@ -23,6 +23,7 @@ static uint8_t bgm_idx;
 static uint8_t bgm_f;
 static uint8_t bgm_vol;
 static uint8_t s_d, s_v, s_i;
+static volatile uint8_t busy;  /* set while snd_play/snd_bgm rewrite the state: the VBL tick skips */
 
 static const uint8_t wave_tri[16] = {
     0x01u, 0x23u, 0x45u, 0x67u, 0x89u, 0xABu, 0xCDu, 0xEFu,
@@ -79,21 +80,40 @@ void snd_init(void)
     NR32_REG = 0x20u;           /* wave level 100 % */
     eff_id = 0u;
     bgm_on = 0u;
+    busy = 0u;
+}
+
+/* Clocked by the VBL interrupt, not by the main loop: the screen flip rewrites the whole BG
+ * (tiles + map + attributes) and blocks its caller for ~6 frames (measured), which used to stop
+ * the sequencer mid-note (S3).  VBlank also fires while the flip is running. */
+static void snd_isr(void)
+{
+    snd_tick();
+}
+
+void snd_start(void)
+{
+    add_VBL(snd_isr);
 }
 
 void snd_play(uint8_t id)
 {
+    busy = 1u;
     eff_silence();
     eff_id = 0u;
-    if (id == 0u || id > SND_NUM_EFFECTS)
+    if (id == 0u || id > SND_NUM_EFFECTS) {
+        busy = 0u;
         return;
+    }
     eff_id = id;
     eff_pos = snd_eff_start[id];
     eff_load();
+    busy = 0u;
 }
 
 void snd_bgm(uint8_t on)
 {
+    busy = 1u;
     if (on) {
         if (!bgm_on) {
             bgm_on = 1u;
@@ -105,10 +125,13 @@ void snd_bgm(uint8_t on)
         NR22_REG = 0u;
         NR30_REG = 0u;
     }
+    busy = 0u;
 }
 
 void snd_tick(void)
 {
+    if (busy)
+        return;                /* the main loop is rewriting the state: catch up next frame */
     if (eff_id) {
         if (--eff_wait == 0u)
             eff_load();

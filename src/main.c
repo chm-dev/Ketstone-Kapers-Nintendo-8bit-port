@@ -134,9 +134,10 @@ static void show_screen(uint8_t s)
     vsync();                                 /* let the NMI flush what is already queued */
     DISPLAY_OFF;
 #ifdef NINTENDO_NES
-    /* No NMI while VRAM is written directly: GBDK's NMI writes the PPU too (attribute
-     * flush) and a mid-upload NMI scrambled the CHR of the next screen (E5). */
-    PPUCTRL = shadow_PPUCTRL & (uint8_t)~(PPUCTRL_NMI | PPUCTRL_INC32);
+    /* NMI stays on: with the display off GBDK's NMI skips every PPU/VRAM write (it only bumps
+     * sys_time and runs the sound TIM handler), so the music keeps ticking through the flip (S3).
+     * Only the +32 increment mode has to go for the direct writes below. */
+    PPUCTRL = shadow_PPUCTRL & (uint8_t)~PPUCTRL_INC32;
 #endif
     SWITCH_ROM(BG_BANK(s));
     set_bkg_palette(0u, 4u, bg_pal);                     /* bg_pal is shared; screen 4 redefines one slot (dyn) */
@@ -330,6 +331,7 @@ void main(void)
 {
     gfx_init();
     snd_init();
+    snd_start();                             /* tick the music from the frame interrupt (S3) */
 #ifdef DEBUG_TRACE
     for (;;) {
         uint8_t k;
@@ -358,7 +360,6 @@ void main(void)
             sound_events();
             render();
             vsync();
-            snd_tick();
         }
         trace_finish();
     }
@@ -398,7 +399,6 @@ void main(void)
         hud(gs == GS_TITLE ? start_sel : (uint8_t)(level + 1u));
         markers();
         vsync();
-        snd_tick();
     }
 #endif
 }

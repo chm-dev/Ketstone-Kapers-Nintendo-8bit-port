@@ -397,6 +397,7 @@ void main(void)
 {
     gfx_init();
     snd_init();
+    snd_start();                             /* tick the music from the VBL interrupt (S3) */
     engine_init();
     play_on = 0u;                            /* title: frozen level-start scene */
     gs = GS_TITLE;
@@ -437,6 +438,5 @@ void main(void)
         vsync();
         SCY_REG = cam_y;
         WY_REG = win_y;
-        snd_tick();
     }
 }
